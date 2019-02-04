@@ -2,7 +2,7 @@
   "name": "landing-page",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://koma-uw.github.io/KOMA-UW/iCapstone2019/landing-page/",
+  "homepage": "https://koma_landing.github.io/iCapstone2019/landing-page",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
     "@fortawesome/free-solid-svg-icons": "^5.7.1",
