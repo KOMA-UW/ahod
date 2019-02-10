@@ -1,8 +1,8 @@
-# iCapstone2019
 # AHOD, (All Hands On Deck)
-![][logo]
+     
+   ![][logo]
 
-[logo]: ./readme_imgs/logo.png "Logo Title Text 2"
+   [logo]: ./readme_imgs/logo.png "Logo Title Text 2"
 
 By [Omar Azeemi](https://github.com/oazeemi), [Muatasim Qazi](https://github.com/muatasimqazi), 
 [Alexis Lim](https://github.com/calim) & [Kidus Sendeke](https://github.com/Kidusyohanes)
@@ -19,7 +19,7 @@ A website where group of students can come together to save money to pay off the
 
 > **Community** 
 
-> **Mayment** 
+> **Payment** 
 
 > **Messaging**
 
