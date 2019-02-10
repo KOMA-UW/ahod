@@ -2,7 +2,7 @@
    ![][logo]
 
    [logo]: ./readme_imgs/logo.png "Product Logo"
-   <div style="text-align:center"><img src ="./readme_imgs/logo.png" /></div>
+   <div style="text-align:center;padding-left:1rem;"><img src ="./readme_imgs/logo.png" /></div>
 
 By [Omar Azeemi](https://github.com/oazeemi), [Muatasim Qazi](https://github.com/muatasimqazi), 
 [Alexis Lim](https://github.com/calim) & [Kidus Sendeke](https://github.com/Kidusyohanes)
