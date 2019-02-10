@@ -1,5 +1,4 @@
-# AHOD, (All Hands On Deck)
-     
+
    ![][logo]
 
    [logo]: ./readme_imgs/logo.png "Logo Title Text 2"
