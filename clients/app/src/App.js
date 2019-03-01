@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { ROUTES } from './routes'
 import CssBaseline from '@material-ui/core/CssBaseline'; //normalize.css
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import MainView from './Main'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import LoginView from './components/auth/Login'
+import SignUpView from './components/auth/SignUp'
+import OnBoardingView from './components/auth/OnBoarding'
+import GroupView from './components/dashboards/Group'
 
 const theme = createMuiTheme({
   palette: {
@@ -28,6 +35,15 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Header />
+          <Router>
+            <React.Fragment>
+              <Route exact path={ROUTES.home} component={MainView} />
+              <Route path={ROUTES.login} component={LoginView} />
+              <Route path={ROUTES.signUp} component={SignUpView} />
+              <Route path={ROUTES.onboarding} component={OnBoardingView} />
+              <Route path={ROUTES.group} component={GroupView} />
+            </React.Fragment>
+          </Router>
           <Footer />
         </MuiThemeProvider>
       </React.Fragment>
