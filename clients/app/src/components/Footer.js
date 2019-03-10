@@ -1,6 +1,17 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { withTheme } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { Container, Row, Col } from "react-grid-system";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  EmailIcon
+} from "react-share";
+import logo from "/Users/Omar/Desktop/Capstone/AHOD/clients/app/src/iSchoolPrimary_RGB_White.png";
 
 const Footer = props => {
   const { theme } = props;
@@ -8,32 +19,53 @@ const Footer = props => {
 
   const styles = {
     background: primaryColor,
+    textColor: "white",
     height: "200px",
     position: "absolute",
     bottom: 0,
-    width: "100%",
-    color: "#fff",
-    textAlign: "center"
+    color: "white",
+    width: "100%"
   };
 
   return (
-    <Grid style={styles}>
-      <footer>
-        <div className="container">
-          <div className="columns">
-            <div className="column Clique">
-              <h1> CLIQUE </h1>
-            </div>
+    <Container style={styles}>
+      <Row>
+        <Col sm={3} className="Clique">
+          <Typography variant="h4"> CLIQUE </Typography>{" "}
+        </Col>
 
-            <div className="column Contact" />
+        <Col sm={3} className="Contact">
+          <Typography variant="h6"> Contact </Typography>{" "}
+          <Row>
+            <FacebookShareButton>
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <TwitterShareButton>
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+            <EmailShareButton>
+              <EmailIcon size={32} round />
+            </EmailShareButton>
+          </Row>
+        </Col>
 
-            <div className="column Legal" />
+        <Col sm={3} className="Legal">
+          <Typography variant="h6"> Legal </Typography>{" "}
+          <Typography variant="subtitle1"> T&C </Typography>
+          <Typography variant="subtitle1"> Privacy </Typography>
+        </Col>
 
-            <div className="column iSchool" />
-          </div>
-        </div>
-      </footer>
-    </Grid>
+        <Col sm={3} className="iSchool">
+          <img
+            src={logo}
+            vspace="10"
+            width="250"
+            height="50"
+            alt="Informatics Logo"
+          />
+        </Col>
+      </Row>{" "}
+    </Container>
   );
 };
 
