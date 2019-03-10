@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { ROUTES } from './routes'
 import CssBaseline from '@material-ui/core/CssBaseline'; //normalize.css
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -10,6 +10,8 @@ import LoginView from './components/auth/Login'
 import SignUpView from './components/auth/SignUp'
 import OnBoardingView from './components/auth/OnBoarding'
 import GroupView from './components/dashboards/Group'
+import CreateGroup from './components/forms/create_group'
+import JoinGroup from './components/forms/join_group'
 
 const theme = createMuiTheme({
   palette: {
@@ -42,6 +44,8 @@ class App extends Component {
               <Route path={ROUTES.signUp} component={SignUpView} />
               <Route path={ROUTES.onboarding} component={OnBoardingView} />
               <Route path={ROUTES.group} component={GroupView} />
+              <Route path={ROUTES.create_group} component={CreateGroup} />
+              <Route path={ROUTES.join_group} component={JoinGroup} />
             </React.Fragment>
           </Router>
           <Footer />
