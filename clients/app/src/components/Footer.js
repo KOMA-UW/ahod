@@ -31,7 +31,7 @@ const Footer = props => {
     <Container style={styles}>
       <Row>
         <Col sm={3} className="Clique">
-          <Typography variant="h4"> CLIQUE </Typography>{" "}
+          <Typography variant="h4"> Clique </Typography>{" "}
         </Col>
 
         <Col sm={3} className="Contact">
