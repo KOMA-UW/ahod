@@ -6,7 +6,7 @@ export const users = [
   }
 ];
 
-export const API_URL = "https://api.payinpayout.tech/v1/sessions";
+export const API_URL = "https://api.payinpayout.tech/v1";
 
 export const ROUTES = {
   home: "/",

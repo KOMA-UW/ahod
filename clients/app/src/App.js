@@ -25,12 +25,31 @@ const theme = createMuiTheme({
   }
 });
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: window.localStorage.getItem("auth"),
+      currentUser: {}
+    };
+  }
+
+  setToken = token => this.setState({ token });
+  setUser = currentUser => this.setUser({ currentUser });
+
   render() {
+    const { currentUser, token } = this.state;
     return (
       <React.Fragment>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <AuthContext.Provider>
+          <AuthContext.Provider
+            value={{
+              setUser: this.setUser,
+              currentUser: currentUser,
+              token: token,
+              setToken: this.setToken
+            }}
+          >
             <Router>
               <Routes />
             </Router>
