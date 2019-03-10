@@ -34,7 +34,7 @@ function Header(props) {
             color="inherit"
             aria-label="Menu"
           >
-            <MenuIcon />
+            {authenticated && <MenuIcon />}
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
             CLIQUE

@@ -110,7 +110,7 @@ class SignUpView extends Component {
   render() {
     const { error, errorMessage, loading } = this.state;
     if (this.props.token) {
-      return <Redirect to={ROUTES.home} />;
+      return <Redirect to={ROUTES.dashboard} />;
     }
     return (
       <Container>
