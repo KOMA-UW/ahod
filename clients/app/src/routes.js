@@ -1,10 +1,37 @@
-export const ROUTES = {
-    home: '/',
-    login: '/login',
-    signUp: '/signup',
-    onboarding: '/onboarding',
-    dashboard: '/dashboard',
-    group: '/groups:id',
-    create_group:"/create_group",
-    join_group: '/join_group',
+import React, { Component } from "react";
+import { Route, Switch } from "react-router";
+import { ROUTES } from "./constants";
+
+import MainView from "./components/MainView";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import LoginView from "./components/auth/Login";
+import SignUpView from "./components/auth/SignUp";
+import OnBoardingView from "./components/auth/OnBoarding";
+import GroupView from "./components/dashboards/Group";
+import CreateGroup from "./components/forms/create_group";
+import JoinGroup from "./components/forms/join_group";
+
+import PrivateRoutes from "./PrivateRoutes";
+
+class Routes extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Header />
+        <Switch>
+          <Route exact path={ROUTES.home} component={MainView} />
+          <Route path={ROUTES.login} component={LoginView} />
+          <Route path={ROUTES.signUp} component={SignUpView} />
+          <Route path={ROUTES.onboarding} component={OnBoardingView} />
+          <Route path={ROUTES.group} component={GroupView} />
+          <Route path={ROUTES.create_group} component={CreateGroup} />
+          <Route path={ROUTES.join_group} component={JoinGroup} />
+        </Switch>
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
+
+export default Routes;

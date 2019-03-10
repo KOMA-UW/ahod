@@ -1,54 +1,59 @@
-import React, { Component } from 'react'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
-import { ROUTES } from './routes'
-import CssBaseline from '@material-ui/core/CssBaseline'; //normalize.css
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import MainView from './Main'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import LoginView from './components/auth/Login'
-import SignUpView from './components/auth/SignUp'
-import OnBoardingView from './components/auth/OnBoarding'
-import GroupView from './components/dashboards/Group'
-import CreateGroup from './components/forms/create_group'
-import JoinGroup from './components/forms/join_group'
+import React, { Component } from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import Routes from "./Routes";
+import { AuthContext } from "./Context";
+import { API_URL, ROUTES } from "./constants";
+
+import CssBaseline from "@material-ui/core/CssBaseline"; //normalize.css
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: '#1D65A6',
+      main: "#1D65A6"
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
-      light: '#0066ff',
-      main: '#0044ff',
+      light: "#0066ff",
+      main: "#0044ff",
       // dark: will be calculated from palette.secondary.main,
-      contrastText: '#ffcc00',
-    },
+      contrastText: "#ffcc00"
+    }
     // error: will use the default color
-  },
+  }
 });
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: window.localStorage.getItem("auth"),
+      currentUser: {}
+    };
+  }
+
+  setToken = token => this.setState({ token });
+  setUser = currentUser => this.setUser({ currentUser });
+
   render() {
+    const { currentUser, token } = this.state;
     return (
       <React.Fragment>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <Header />
-          <Router>
-            <React.Fragment>
-              <Route exact path={ROUTES.home} component={MainView} />
-              <Route path={ROUTES.login} component={LoginView} />
-              <Route path={ROUTES.signUp} component={SignUpView} />
-              <Route path={ROUTES.onboarding} component={OnBoardingView} />
-              <Route path={ROUTES.group} component={GroupView} />
-              <Route path={ROUTES.create_group} component={CreateGroup} />
-              <Route path={ROUTES.join_group} component={JoinGroup} />
-            </React.Fragment>
-          </Router>
-          <Footer />
+          <AuthContext.Provider
+            value={{
+              setUser: this.setUser,
+              currentUser: currentUser,
+              token: token,
+              setToken: this.setToken
+            }}
+          >
+            <Router>
+              <Routes />
+            </Router>
+          </AuthContext.Provider>
         </MuiThemeProvider>
       </React.Fragment>
     );
