@@ -21,14 +21,18 @@ const Footer = props => {
     background: primaryColor,
     textColor: "white",
     height: "200px",
-    position: "absolute",
+    position: "fixed",
     bottom: 0,
+    left: 0,
     color: "white",
-    width: "100%"
+    marginBottom: 0,
+    width: "100%",
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2
   };
 
   return (
-    <Container style={styles}>
+    <Container fluid style={styles}>
       <Row>
         <Col sm={3} className="Clique">
           <Typography variant="h4"> CLIQUE </Typography>{" "}
