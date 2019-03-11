@@ -47,6 +47,11 @@ class App extends Component {
       currentUser
     });
 
+  handleLogout = () => {
+    window.localStorage.removeItem("auth");
+    this.setState({ token: null });
+  };
+
   render() {
     const { currentUser, token } = this.state;
     return (
@@ -58,7 +63,8 @@ class App extends Component {
               setUser: this.setUser,
               currentUser: currentUser,
               token: token,
-              setToken: this.setToken
+              setToken: this.setToken,
+              handleLogout: this.handleLogout
             }}
           >
             <Router>

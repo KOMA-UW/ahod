@@ -11,7 +11,7 @@ import {
   TwitterIcon,
   EmailIcon
 } from "react-share";
-import logo from "/Users/Omar/Desktop/Capstone/AHOD/clients/app/src/iSchoolPrimary_RGB_White.png";
+import logo from "../img/ischool_log.png";
 
 const Footer = props => {
   const { theme } = props;

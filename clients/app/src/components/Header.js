@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { withAuth } from "../Context";
 
 const styles = {
   root: {
@@ -22,7 +23,8 @@ const styles = {
 };
 
 function Header(props) {
-  const { classes } = props;
+  const { classes, token } = props;
+  const authenticated = token != null;
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -32,12 +34,18 @@ function Header(props) {
             color="inherit"
             aria-label="Menu"
           >
-            <MenuIcon />
+            {authenticated && <MenuIcon />}
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            AHOD
+            CLIQUE
           </Typography>
-          <Button color="inherit">Login</Button>
+          {authenticated && (
+            <React.Fragment>
+              <Button color="inherit" onClick={props.handleLogout}>
+                Logout
+              </Button>
+            </React.Fragment>
+          )}
         </Toolbar>
       </AppBar>
     </div>
@@ -48,4 +56,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Header);
+export default withAuth(withStyles(styles)(Header));
