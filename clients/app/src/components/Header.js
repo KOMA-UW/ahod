@@ -11,7 +11,13 @@ import { withAuth } from "../Context";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: 68
+  },
+  appBar: {
+    position: "fixed",
+    top: 0,
+    zIndex: 1500
   },
   grow: {
     flexGrow: 1
@@ -27,7 +33,7 @@ function Header(props) {
   const authenticated = token != null;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <IconButton
             className={classes.menuButton}

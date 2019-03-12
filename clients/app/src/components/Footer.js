@@ -15,7 +15,7 @@ import {
 } from "react-share";
 import logo from "../img/ischool_log.png";
 
-const styles = {
+const styles = theme => ({
   root: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     borderRadius: 3,
@@ -28,7 +28,7 @@ const styles = {
   label: {
     textTransform: "capitalize"
   },
-  footer: {
+  footers: {
     background: "#003b77",
     height: "200px",
     position: "fixed",
@@ -40,8 +40,14 @@ const styles = {
     padding: 15
     // paddingTop: theme.spacing.unit * 2,
     // paddingBottom: theme.spacing.unit * 2
+  },
+  footer: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.primary.text,
+    marginTop: theme.spacing.unit * 8,
+    padding: `${theme.spacing.unit * 6}px 0`
   }
-};
+});
 
 const Footer = props => {
   // const { theme } = prosps;
@@ -67,59 +73,61 @@ const Footer = props => {
   const { classes } = props;
 
   return (
-    <Container fluid>
-      <Row className={classes.footer}>
-        <Col sm={3} className="Clique">
-          <Typography variant="h4" color="inherit">
-            {" "}
-            CLIQUE{" "}
-          </Typography>{" "}
-        </Col>
+    <footer className={classes.footer}>
+      <Container fluid>
+        <Row>
+          <Col sm={3} className="Clique">
+            <Typography variant="h4" color="inherit">
+              {" "}
+              CLIQUE{" "}
+            </Typography>{" "}
+          </Col>
 
-        <Col sm={3} className="Contact">
-          <Typography variant="h6" color="inherit">
-            {" "}
-            Contact{" "}
-          </Typography>{" "}
-          <Row>
-            <FacebookShareButton>
-              <FacebookIcon size={32} round />
-            </FacebookShareButton>
-            <TwitterShareButton>
-              <TwitterIcon size={32} round />
-            </TwitterShareButton>
-            <EmailShareButton>
-              <EmailIcon size={32} round />
-            </EmailShareButton>
-          </Row>
-        </Col>
+          <Col sm={3} className="Contact">
+            <Typography variant="h6" color="inherit">
+              {" "}
+              Contact{" "}
+            </Typography>{" "}
+            <Row>
+              <FacebookShareButton url="">
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <TwitterShareButton url="">
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <EmailShareButton url="">
+                <EmailIcon size={32} round />
+              </EmailShareButton>
+            </Row>
+          </Col>
 
-        <Col sm={3} className="Legal">
-          <Typography color="inherit" variant="h6">
-            {" "}
-            Legal{" "}
-          </Typography>{" "}
-          <Typography color="inherit" variant="subtitle1">
-            {" "}
-            T&C{" "}
-          </Typography>
-          <Typography color="inherit" variant="subtitle1">
-            {" "}
-            Privacy{" "}
-          </Typography>
-        </Col>
+          <Col sm={3} className="Legal">
+            <Typography color="inherit" variant="h6">
+              {" "}
+              Legal{" "}
+            </Typography>{" "}
+            <Typography color="inherit" variant="subtitle1">
+              {" "}
+              T&C{" "}
+            </Typography>
+            <Typography color="inherit" variant="subtitle1">
+              {" "}
+              Privacy{" "}
+            </Typography>
+          </Col>
 
-        <Col sm={3} className="iSchool">
-          <img
-            src={logo}
-            vspace="10"
-            width="250"
-            height="50"
-            alt="Informatics Logo"
-          />
-        </Col>
-      </Row>{" "}
-    </Container>
+          <Col sm={3} className="iSchool">
+            <img
+              src={logo}
+              vspace="10"
+              width="250"
+              height="50"
+              alt="Informatics Logo"
+            />
+          </Col>
+        </Row>{" "}
+      </Container>
+    </footer>
   );
 };
 

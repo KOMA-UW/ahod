@@ -3,9 +3,11 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import Routes from "./Routes";
 import { AuthContext } from "./Context";
 import { API_URL, ROUTES } from "./constants";
-
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import CssBaseline from "@material-ui/core/CssBaseline"; //normalize.css
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
@@ -14,26 +16,28 @@ const theme = createMuiTheme({
       light: "#5b92d8",
       dark: "#003b77",
       contrastText: "#ffffff",
-      text: "purple"
+      text: "#fff"
     },
     secondary: {
       main: "#a7503a",
       dark: "#732413",
       contrastText: "#ffffff",
-      text: "red"
+      text: "#fff"
     }
-
-    // text: {
-    //   primary: "#000",
-    //   secondary: "#FFF"
-    // }
-    // error: will use the default color
   },
   typography: {
-    text: {
-      primary: "#000",
-      secondary: "#ffffff"
-    }
+    useNextVariants: true
+  }
+});
+
+const styles = theme => ({
+  layout: {
+    display: "flex",
+    minHeight: "100vh",
+    flexDirection: "column"
+  },
+  content: {
+    flex: 1
   }
 });
 class App extends Component {
@@ -65,30 +69,36 @@ class App extends Component {
     });
   };
   render() {
+    const { classes } = this.props;
     const { currentUser, token, onboarding } = this.state;
     return (
-      <React.Fragment>
+      <div className={classes.layout}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <AuthContext.Provider
-            value={{
-              setUser: this.setUser,
-              currentUser: currentUser,
-              token: token,
-              setToken: this.setToken,
-              handleLogout: this.handleLogout,
-              onboarding: onboarding,
-              beginOnboarding: this.beginOnboarding
-            }}
-          >
-            <Router>
-              <Routes />
-            </Router>{" "}
-          </AuthContext.Provider>{" "}
-        </MuiThemeProvider>{" "}
-      </React.Fragment>
+          <div className={classes.content}>
+            <AuthContext.Provider
+              value={{
+                setUser: this.setUser,
+                currentUser: currentUser,
+                token: token,
+                setToken: this.setToken,
+                handleLogout: this.handleLogout,
+                onboarding: onboarding,
+                beginOnboarding: this.beginOnboarding
+              }}
+            >
+              <Header />
+
+              <Router>
+                <Routes />
+              </Router>
+            </AuthContext.Provider>
+          </div>
+          <Footer />
+        </MuiThemeProvider>
+      </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
