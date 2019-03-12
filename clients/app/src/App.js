@@ -10,23 +10,30 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
       main: "#1D65A6",
-      dark: "#192E5B",
-      light: "#72A2C0"
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      light: "#5b92d8",
+      dark: "#003b77",
+      contrastText: "#ffffff",
+      text: "purple"
     },
     secondary: {
-      light: "#0066ff",
-      main: "#0044ff",
-      // dark: will be calculated from palette.secondary.main,
-      contrastText: "#000"
-    },
-    text: {
-      primary: "#FFF"
+      main: "#a7503a",
+      dark: "#732413",
+      contrastText: "#ffffff",
+      text: "red"
     }
+
+    // text: {
+    //   primary: "#000",
+    //   secondary: "#FFF"
+    // }
     // error: will use the default color
+  },
+  typography: {
+    text: {
+      primary: "#000",
+      secondary: "#ffffff"
+    }
   }
 });
 class App extends Component {
@@ -52,8 +59,13 @@ class App extends Component {
     this.setState({ token: null });
   };
 
+  beginOnboarding = () => {
+    this.setState({
+      onboarding: true
+    });
+  };
   render() {
-    const { currentUser, token } = this.state;
+    const { currentUser, token, onboarding } = this.state;
     return (
       <React.Fragment>
         <MuiThemeProvider theme={theme}>
@@ -64,7 +76,9 @@ class App extends Component {
               currentUser: currentUser,
               token: token,
               setToken: this.setToken,
-              handleLogout: this.handleLogout
+              handleLogout: this.handleLogout,
+              onboarding: onboarding,
+              beginOnboarding: this.beginOnboarding
             }}
           >
             <Router>

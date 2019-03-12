@@ -24,15 +24,51 @@ const styles = theme => ({
 });
 
 class OnBoardingView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      join: false,
+      create: false
+    };
+  }
+  handleClick = name => {
+    this.setState({ [name]: !this.state.name });
+  };
   render() {
     const { classes } = this.props;
+    const { join, create } = this.state;
     return (
       <Container>
         <Row debug>
           <Col>
-            <SimpleCard />
+            <SimpleCard>
+              <div>
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  onClick={() => this.handleClick("join")}
+                >
+                  Join a Group
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => this.handleClick("create")}
+                >
+                  Create a Group
+                </Button>
+              </div>
+            </SimpleCard>
           </Col>
         </Row>
+        {create && (
+          <Row debug>
+            <Col>
+              <SimpleCard>Join a group</SimpleCard>
+            </Col>
+          </Row>
+        )}
       </Container>
     );
   }

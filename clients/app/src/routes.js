@@ -9,6 +9,7 @@ import LoginView from "./components/auth/Login";
 import SignUpView from "./components/auth/SignUp";
 import OnBoardingView from "./components/auth/OnBoarding";
 import GroupView from "./components/dashboards/Group";
+import GroupsView from "./components/dashboards/Groups";
 import CreateGroup from "./components/forms/create_group";
 import JoinGroup from "./components/forms/join_group";
 
@@ -25,6 +26,7 @@ class Routes extends Component {
           <Route path={ROUTES.signUp} component={SignUpView} />
           <Route path={ROUTES.onboarding} component={OnBoardingView} />
           <Route path={ROUTES.group} component={GroupView} />
+          <Route path={ROUTES.groups} component={GroupsView} />
           <Route path={ROUTES.create_group} component={CreateGroup} />
           <Route path={ROUTES.join_group} component={JoinGroup} />
         </Switch>

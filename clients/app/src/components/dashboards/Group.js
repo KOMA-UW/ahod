@@ -1,11 +1,17 @@
-import React from 'react'; 
+import React from "react";
+import SimpleCard from "../SimpleCard";
+import { Container, Row, Col } from "react-grid-system";
 
 export default class GroupView extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Group</h1>.
-            </div>
-        )
-    }
+  render() {
+    return (
+      <Container>
+        <Row>
+          <Col>
+            <SimpleCard>Single Group</SimpleCard>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }

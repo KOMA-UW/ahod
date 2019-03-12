@@ -44,7 +44,7 @@ class Hero extends React.Component {
           mobile
           interval={5000}
           onStart={() => this.context.router.history.push(`/signup`)}
-          style={{ position: "relative", top: -60 }}
+          style={{ position: "relative", top: -60, zIndex: 99 }}
         >
           {icons.map((item, index) => (
             <Slide

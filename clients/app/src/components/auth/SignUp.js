@@ -97,6 +97,7 @@ class SignUpView extends Component {
           throw Error(data);
         }
         this.props.setUser({ ...data });
+        this.props.begingOnboarding();
       })
       .catch(err => {
         this.setState({
@@ -110,7 +111,7 @@ class SignUpView extends Component {
   render() {
     const { error, errorMessage, loading } = this.state;
     if (this.props.token) {
-      return <Redirect to={ROUTES.dashboard} />;
+      return <Redirect to={ROUTES.onboarding} />;
     }
     return (
       <Container>
