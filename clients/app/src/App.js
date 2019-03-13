@@ -46,7 +46,8 @@ class App extends Component {
     this.state = {
       token: window.localStorage.getItem("auth"),
       currentUser: {},
-      showLoginButton: true
+      showLoginButton: true,
+      groupJoined: false
     };
   }
 
@@ -76,10 +77,21 @@ class App extends Component {
       onboarding: true
     });
   };
+  joinGroup = e => {
+    e.preventDefault();
+    console.log("Group joined");
+    this.setState({ groupJoined: true });
+  };
 
   render() {
     const { classes } = this.props;
-    const { currentUser, token, onboarding, showLoginButton } = this.state;
+    const {
+      currentUser,
+      token,
+      onboarding,
+      showLoginButton,
+      groupJoined
+    } = this.state;
     return (
       <div className={classes.layout}>
         <MuiThemeProvider theme={theme}>
@@ -95,7 +107,9 @@ class App extends Component {
                 goToLogin: this.goToLogin,
                 handleLogout: this.handleLogout,
                 onboarding: onboarding,
-                beginOnboarding: this.beginOnboarding
+                beginOnboarding: this.beginOnboarding,
+                groupJoined: groupJoined,
+                joinGroup: this.joinGroup
               }}
             >
               <Router>

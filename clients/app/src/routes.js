@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginView from "./components/auth/Login";
 import SignUpView from "./components/auth/SignUp";
-import OnBoardingView from "./components/auth/OnBoarding";
+import OnBoardingView from "./components/onboarding/OnBoarding";
 import GroupView from "./components/dashboards/Group";
 import GroupsView from "./components/dashboards/Groups";
 import CreateGroup from "./components/forms/create_group";
