@@ -19,6 +19,7 @@ class Routes extends Component {
   render() {
     return (
       <React.Fragment>
+        <Header />
         <Switch>
           <Route exact path={ROUTES.home} component={MainView} />
           <Route path={ROUTES.login} component={LoginView} />

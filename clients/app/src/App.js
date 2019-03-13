@@ -45,7 +45,8 @@ class App extends Component {
     super(props);
     this.state = {
       token: window.localStorage.getItem("auth"),
-      currentUser: {}
+      currentUser: {},
+      showLoginButton: true
     };
   }
 
@@ -58,6 +59,13 @@ class App extends Component {
       currentUser
     });
 
+  handleLogin = () => {
+    this.props.history.push("/login");
+  };
+
+  goToLogin = () => {
+    this.setState({ showLoginButton: false });
+  };
   handleLogout = () => {
     window.localStorage.removeItem("auth");
     this.setState({ token: null });
@@ -68,9 +76,10 @@ class App extends Component {
       onboarding: true
     });
   };
+
   render() {
     const { classes } = this.props;
-    const { currentUser, token, onboarding } = this.state;
+    const { currentUser, token, onboarding, showLoginButton } = this.state;
     return (
       <div className={classes.layout}>
         <MuiThemeProvider theme={theme}>
@@ -82,13 +91,13 @@ class App extends Component {
                 currentUser: currentUser,
                 token: token,
                 setToken: this.setToken,
+                showLoginButton: showLoginButton,
+                goToLogin: this.goToLogin,
                 handleLogout: this.handleLogout,
                 onboarding: onboarding,
                 beginOnboarding: this.beginOnboarding
               }}
             >
-              <Header />
-
               <Router>
                 <Routes />
               </Router>
