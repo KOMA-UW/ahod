@@ -45,6 +45,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.primary.text,
     marginTop: theme.spacing.unit * 8,
+    marginLeft: 70,
     padding: `${theme.spacing.unit * 6}px 0`
   }
 });

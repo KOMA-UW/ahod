@@ -15,9 +15,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import SvgIcon from "@material-ui/core/SvgIcon";
+import Icon from "@material-ui/core/Icon";
+import { loadCSS } from "fg-loadcss/src/loadCSS";
 
 const drawerWidth = 240;
 
@@ -95,6 +95,13 @@ function HomeIcon(props) {
 }
 
 class Header extends React.Component {
+  componentDidMount() {
+    loadCSS(
+      "https://use.fontawesome.com/releases/v5.1.0/css/all.css",
+      document.querySelector("#insertion-point-jss")
+    );
+  }
+
   state = {
     open: false
   };
@@ -142,128 +149,72 @@ class Header extends React.Component {
             )}
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          className={classNames(classes.drawer, {
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open
-          })}
-          classes={{
-            paper: classNames({
+        {authenticated && (
+          <Drawer
+            variant="permanent"
+            className={classNames(classes.drawer, {
               [classes.drawerOpen]: this.state.open,
               [classes.drawerClose]: !this.state.open
-            })
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose} />
-          </div>
-          <List>
-            {["Dashboard", "My Profile", "My Cliques", "Make A Payment"].map(
-              (text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              )
-            )}
-          </List>
-        </Drawer>
+            })}
+            classes={{
+              paper: classNames({
+                [classes.drawerOpen]: this.state.open,
+                [classes.drawerClose]: !this.state.open
+              })
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.toolbar}>
+              <IconButton onClick={this.handleDrawerClose} />
+            </div>
+            <List>
+              {/* {["Dashboard", "My Profile", "My Cliques", "Make A Payment"].map( */}
+              <ListItem button key="Dashboard">
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+
+              <ListItem button key="Profile">
+                <ListItemIcon>
+                  <Icon
+                    className={classNames(classes.icon, "fas fa-user-circle")}
+                    color="action"
+                  />
+                </ListItemIcon>
+                <ListItemText primary="My Profile" />
+              </ListItem>
+
+              <ListItem button key="Cliques">
+                <ListItemIcon>
+                  <Icon
+                    className={classNames(classes.icon, "fas fa-users")}
+                    color="action"
+                  />
+                </ListItemIcon>
+                <ListItemText primary="My Cliques" />
+              </ListItem>
+
+              <ListItem button key="Payment">
+                <ListItemIcon>
+                  <Icon
+                    className={classNames(
+                      classes.icon,
+                      "fas fa-money-bill-alt"
+                    )}
+                    color="action"
+                  />
+                </ListItemIcon>
+                <ListItemText primary="Make A Payment" />
+              </ListItem>
+            </List>
+          </Drawer>
+        )}
       </div>
     );
   }
 }
-
-/* function Header(props) {
-  const { classes, token} = props;
-  const authenticated = token != null;
-  const showButton = showLoginButton && true;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Open Drawer"
-            onClick={this.handleDrawerOpen}
-          >
-            {authenticated && <MenuIcon />}
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            CLIQUE
-          </Typography>
-          {authenticated && (
-            <React.Fragment>
-              <Button color="inherit" onClick={props.handleLogout}>
-                Logout
-              </Button>
-            </React.Fragment>
-          )}
-          {showButton && (
-            <Button
-              color="inherit"
-              component={Link}
-              to={ROUTES.login}
-              onClick={props.goToLogin}
-            >
-              Login
-            </Button>
-          )}
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={classNames(classes.drawer, {
-          [classes.drawerOpen]: this.state.open,
-          [classes.drawerClose]: !this.state.open
-        })}
-        classes={{
-          paper: classNames({
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open
-          })
-        }}
-        open={this.state.open}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-    </div>
-  );
-} */
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired

@@ -140,7 +140,7 @@ class LoginView extends Component {
                         error={error}
                         className={classes.formControl}
                       >
-                        <InputLabel htmlFor="component-email">Eamil</InputLabel>
+                        <InputLabel htmlFor="component-email">Email</InputLabel>
                         <Input
                           id="component-email"
                           value={this.state.data.email}
