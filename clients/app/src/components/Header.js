@@ -18,6 +18,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Icon from "@material-ui/core/Icon";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Divider from "@material-ui/core/Divider";
 
 const drawerWidth = 240;
 
@@ -80,6 +82,13 @@ const styles = theme => ({
     padding: "0 8px",
     ...theme.mixins.toolbar
   },
+  toolbarIcon: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
+    ...theme.mixins.toolbar
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3
@@ -102,17 +111,7 @@ class Header extends React.Component {
     );
   }
 
-  state = {
-    open: false
-  };
-
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+  state = {};
 
   render() {
     const { classes, token, theme } = this.props;
@@ -123,20 +122,22 @@ class Header extends React.Component {
         <AppBar
           position="fixed"
           className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open
+            [classes.appBarShift]: this.props.drawerOpen
           })}
         >
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open
-              })}
-              color="inherit"
-              aria-label="Open Drawer"
-              onClick={this.handleDrawerOpen}
-            >
-              {authenticated && <MenuIcon />}
-            </IconButton>
+          <Toolbar disableGutters={this.props.iconSpace}>
+            {authenticated && (
+              <IconButton
+                className={classNames(classes.menuButton, {
+                  [classes.hide]: this.props.drawerOpen
+                })}
+                color="inherit"
+                aria-label="Open Drawer"
+                onClick={this.props.handleDrawerOpen}
+              >
+                {authenticated && <MenuIcon />}
+              </IconButton>
+            )}
             <Typography variant="h6" color="inherit" className={classes.grow}>
               CLIQUE
             </Typography>
@@ -153,20 +154,24 @@ class Header extends React.Component {
           <Drawer
             variant="permanent"
             className={classNames(classes.drawer, {
-              [classes.drawerOpen]: this.state.open,
-              [classes.drawerClose]: !this.state.open
+              [classes.drawerOpen]: this.props.drawerOpen,
+              [classes.drawerClose]: !this.props.drawerOpen
             })}
             classes={{
               paper: classNames({
-                [classes.drawerOpen]: this.state.open,
-                [classes.drawerClose]: !this.state.open
+                [classes.drawerOpen]: this.props.drawerOpen,
+                [classes.drawerClose]: !this.props.drawerOpen
               })
             }}
-            open={this.state.open}
+            open={this.props.drawerOpen}
           >
-            <div className={classes.toolbar}>
-              <IconButton onClick={this.handleDrawerClose} />
+            <div className={classes.toolbarIcon}>
+              <IconButton onClick={this.props.handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
             </div>
+            <Divider />
+
             <List>
               {/* {["Dashboard", "My Profile", "My Cliques", "Make A Payment"].map( */}
               <ListItem button key="Dashboard">

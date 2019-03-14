@@ -16,7 +16,7 @@ const Groups = props => {
     <Container>
       <Row>
         {groups.map((group, index) => (
-          <Col sm={4}>
+          <Col key={index} sm={4}>
             <Link to={`/groups:${index + 1}`} style={styles.a}>
               <SimpleCard title={`Group ${index + 1}`}>
                 <Typography variant="h6" gutterBottom>

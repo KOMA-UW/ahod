@@ -47,13 +47,16 @@ class App extends Component {
       token: window.localStorage.getItem("auth"),
       currentUser: {},
       showLoginButton: true,
-      groupJoined: false
+      groupJoined: false,
+      iconSpace: false,
+      drawerOpen: false
     };
   }
 
   setToken = token =>
     this.setState({
-      token
+      token,
+      iconSpace: true
     });
   setUser = currentUser =>
     this.setUser({
@@ -69,7 +72,7 @@ class App extends Component {
   };
   handleLogout = () => {
     window.localStorage.removeItem("auth");
-    this.setState({ token: null });
+    this.setState({ token: null, drawerOpen: false });
   };
 
   beginOnboarding = () => {
@@ -83,6 +86,14 @@ class App extends Component {
     this.setState({ groupJoined: true });
   };
 
+  handleDrawerOpen = () => {
+    this.setState({ drawerOpen: true, iconSpace: false });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ drawerOpen: false, iconSpace: true });
+  };
+
   render() {
     const { classes } = this.props;
     const {
@@ -90,34 +101,42 @@ class App extends Component {
       token,
       onboarding,
       showLoginButton,
-      groupJoined
+      groupJoined,
+      drawerOpen
     } = this.state;
+
+    const iconSpace = token != null || this.state.iconSpace;
     return (
       <div className={classes.layout}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <div className={classes.content}>
-            <AuthContext.Provider
-              value={{
-                setUser: this.setUser,
-                currentUser: currentUser,
-                token: token,
-                setToken: this.setToken,
-                showLoginButton: showLoginButton,
-                goToLogin: this.goToLogin,
-                handleLogout: this.handleLogout,
-                onboarding: onboarding,
-                beginOnboarding: this.beginOnboarding,
-                groupJoined: groupJoined,
-                joinGroup: this.joinGroup
-              }}
-            >
+
+          <AuthContext.Provider
+            value={{
+              setUser: this.setUser,
+              currentUser: currentUser,
+              token: token,
+              setToken: this.setToken,
+              showLoginButton: showLoginButton,
+              goToLogin: this.goToLogin,
+              handleLogout: this.handleLogout,
+              onboarding: onboarding,
+              beginOnboarding: this.beginOnboarding,
+              groupJoined: groupJoined,
+              joinGroup: this.joinGroup,
+              drawerOpen: drawerOpen,
+              iconSpace: iconSpace,
+              handleDrawerOpen: this.handleDrawerOpen,
+              handleDrawerClose: this.handleDrawerClose
+            }}
+          >
+            <div className={classes.content}>
               <Router>
                 <Routes />
               </Router>
-            </AuthContext.Provider>
-          </div>
-          <Footer />
+            </div>
+            <Footer />
+          </AuthContext.Provider>
         </MuiThemeProvider>
       </div>
     );

@@ -3,8 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import { withTheme } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { withAuth } from "../Context";
 import Typography from "@material-ui/core/Typography";
 import { Container, Row, Col } from "react-grid-system";
+import classNames from "classnames";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -15,6 +17,7 @@ import {
 } from "react-share";
 import logo from "../img/ischool_log.png";
 
+const drawerWidth = 240;
 const styles = theme => ({
   root: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -45,50 +48,44 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.primary.text,
     marginTop: theme.spacing.unit * 8,
-    marginLeft: 70,
     padding: `${theme.spacing.unit * 6}px 0`
+  },
+  footerShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    padding: `${theme.spacing.unit * 6}px 0`
+  },
+  marginLeft: {
+    marginLeft: theme.spacing.unit * 7 + 10
   }
 });
 
 const Footer = props => {
-  // const { theme } = prosps;
-  // const primaryColor = theme.palette.primary.dark;
-  // const textColor = theme.palette.secondary.contrastText;
-
-  // const styles = {
-  //   footer: {
-  //     background: primaryColor,
-  //     height: "200px",
-  //     position: "fixed",
-  //     bottom: 0,
-  //     left: 0,
-  //     marginBottom: 0,
-  //     width: "100%",
-  //     paddingTop: theme.spacing.unit * 2,
-  //     paddingBottom: theme.spacing.unit * 2
-  //   },
-  //   text: {
-  //     color: `${textColor} !important`
-  //   }
-  // };
   const { classes } = props;
+  const footerStyle = props.drawerOpen
+    ? [classes.footerShift, classes.footer].join(" ")
+    : props.iconSpace
+    ? [classes.footer, classes.marginLeft].join(" ")
+    : classes.footer;
 
   return (
-    <footer className={classes.footer}>
+    <footer className={footerStyle}>
       <Container fluid>
         <Row>
           <Col sm={3} className="Clique">
             <Typography variant="h4" color="inherit">
-              {" "}
-              CLIQUE{" "}
-            </Typography>{" "}
+              CLIQUE
+            </Typography>
           </Col>
 
           <Col sm={3} className="Contact">
             <Typography variant="h6" color="inherit">
-              {" "}
-              Contact{" "}
-            </Typography>{" "}
+              Contact
+            </Typography>
             <Row>
               <FacebookShareButton url="">
                 <FacebookIcon size={32} round />
@@ -104,16 +101,13 @@ const Footer = props => {
 
           <Col sm={3} className="Legal">
             <Typography color="inherit" variant="h6">
-              {" "}
-              Legal{" "}
-            </Typography>{" "}
-            <Typography color="inherit" variant="subtitle1">
-              {" "}
-              T&C{" "}
+              Legal
             </Typography>
             <Typography color="inherit" variant="subtitle1">
-              {" "}
-              Privacy{" "}
+              T&C
+            </Typography>
+            <Typography color="inherit" variant="subtitle1">
+              Privacy
             </Typography>
           </Col>
 
@@ -126,7 +120,7 @@ const Footer = props => {
               alt="Informatics Logo"
             />
           </Col>
-        </Row>{" "}
+        </Row>
       </Container>
     </footer>
   );
@@ -136,4 +130,4 @@ Footer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Footer);
+export default withAuth(withStyles(styles)(Footer));
