@@ -4,12 +4,13 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/go-redis/redis"
-	_ "github.com/go-sql-driver/mysql"
+
 	"github.com/KOMA-UW/ahod/servers/gateway/handlers"
 	"github.com/KOMA-UW/ahod/servers/gateway/indexes"
 	"github.com/KOMA-UW/ahod/servers/gateway/models/users"
 	"github.com/KOMA-UW/ahod/servers/gateway/sessions"
+	"github.com/go-redis/redis"
+	_ "github.com/go-sql-driver/mysql"
 
 	"log"
 	"net/http"
@@ -99,7 +100,7 @@ func NewServiceProxy(addrs string, ctx handlers.HandlerContext) *httputil.Revers
 
 //HelloHandler handles requests for the `/hello` resource
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-    w.Write([]byte("Hello, Web!\n"))
+	w.Write([]byte("Hello, Web!\n"))
 }
 
 //main is the main entry point for the server
@@ -162,7 +163,7 @@ func main() {
 	sessionStore := sessions.NewRedisStore(redisClient, time.Hour)
 	userStore := users.NewMySQLStore(db)
 
-	trieTree := indexes.NewTrie() //userStore.Trie() //setUpTrie(userStore) 
+	trieTree := indexes.NewTrie() //userStore.Trie() //setUpTrie(userStore)
 
 	defer db.Close()
 
@@ -178,22 +179,20 @@ func main() {
 		Trie:         trieTree,
 	} //*handlers.NewHandlerContext(sessionKey, sessionStore, userStore, trieTree)
 
-
 	messagingProxy := NewServiceProxy(messagingServiceAddr, hctx)
 
 	groupsAddr := reqEnv("GROUPADDR")
 	groupsProxy := NewServiceProxy(groupsAddr, hctx)
 
-
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", HomeHandler)
-	
+	// mux.HandleFunc("/", HomeHandler)
+
 	mux.Handle("/v1/channels", messagingProxy)
 	mux.Handle("/v1/channels/", messagingProxy)
 
-	mux.Handle("v1/groups", groupsProxy)
-	
+	mux.Handle("/v1/groups", groupsProxy)
+
 	mux.Handle("/v1/messages/", messagingProxy)
 
 	mux.HandleFunc("/v1/users", hctx.UsersHandler)
@@ -201,10 +200,8 @@ func main() {
 	mux.HandleFunc("/v1/sessions", hctx.SessionsHandler)
 	mux.HandleFunc("/v1/sessions/", hctx.SpecificSessionHandler)
 
-
 	corsMux := handlers.NewCorsHandler(mux)
 
 	log.Printf("server is listening at %s...", addr)
 	log.Fatal(http.ListenAndServeTLS(addr, tlsCertPath, tlsKeyPath, corsMux))
 }
-
