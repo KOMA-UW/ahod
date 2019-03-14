@@ -74,7 +74,6 @@ class OnBoardingView extends React.Component {
 
                   {join && (
                     <div>
-                      <Divider style={{ margin: 20 }} />
                       <JoinGroup />
                     </div>
                   )}
