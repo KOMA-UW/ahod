@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { withAuth } from "../Context";
 import Typography from "@material-ui/core/Typography";
 import { Container, Row, Col } from "react-grid-system";
-import classNames from "classnames";
+
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -18,6 +18,7 @@ import {
 import logo from "../img/ischool_log.png";
 
 const drawerWidth = 240;
+
 const styles = theme => ({
   root: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
