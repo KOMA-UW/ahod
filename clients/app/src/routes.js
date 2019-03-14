@@ -10,8 +10,6 @@ import SignUpView from "./components/auth/SignUp";
 import OnBoardingView from "./components/onboarding/OnBoarding";
 import GroupView from "./components/dashboards/Group";
 import GroupsView from "./components/dashboards/Groups";
-// import CreateGroup from "./components/forms/create_group";
-// import JoinGroup from "./components/forms/join_group";
 
 import Dashboard from "./components/dashboards/Dashboard";
 import Calendar from "./components/dashboards/calendar/Calendar";
@@ -29,8 +27,6 @@ class Routes extends Component {
           <Route path={ROUTES.dashboard} component={Dashboard} />
           <Route path={ROUTES.group} component={GroupView} />
           <Route path={ROUTES.groups} component={GroupsView} />
-          {/* <Route path={ROUTES.create_group} component={CreateGroup} />
-          <Route path={ROUTES.join_group} component={JoinGroup} /> */}
           <Route path={ROUTES.calendar} component={Calendar} />
         </Switch>
       </React.Fragment>
