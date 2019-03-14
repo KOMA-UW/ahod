@@ -18,7 +18,8 @@
     "react-share": "^2.4.0",
     "react-swipeable-views": "^0.13.1",
     "react-with-direction": "^1.3.0",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "node-sass": "^4.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
