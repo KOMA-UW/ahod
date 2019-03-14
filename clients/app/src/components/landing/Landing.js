@@ -2,14 +2,17 @@ import React from "react";
 import { withAuth } from "../../Context";
 import { Row, Col } from "react-grid-system";
 import Hero from "./Hero";
-
+import Steps from "./Steps";
+import Testimonials from "./Testimonials";
+import StepExplain from "./StepExplain";
 const Landing = props => {
   return (
-    <Row>
-      <Col sm={4}>
-        <Hero />
-      </Col>
-    </Row>
+    <div>
+      <Hero />
+      <Steps />
+      <Testimonials />
+      <StepExplain />
+    </div>
   );
 };
 

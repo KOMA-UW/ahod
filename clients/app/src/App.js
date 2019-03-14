@@ -3,30 +3,41 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import Routes from "./Routes";
 import { AuthContext } from "./Context";
 import { API_URL, ROUTES } from "./constants";
-
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import CssBaseline from "@material-ui/core/CssBaseline"; //normalize.css
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
       main: "#1D65A6",
-      dark: "#192E5B",
-      light: "#72A2C0"
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      light: "#5b92d8",
+      dark: "#003b77",
+      contrastText: "#ffffff",
+      text: "#fff"
     },
     secondary: {
-      light: "#0066ff",
-      main: "#0044ff",
-      // dark: will be calculated from palette.secondary.main,
-      contrastText: "#000"
-    },
-    text: {
-      primary: "#FFF"
+      main: "#a7503a",
+      dark: "#732413",
+      contrastText: "#ffffff",
+      text: "#fff"
     }
-    // error: will use the default color
+  },
+  typography: {
+    useNextVariants: true
+  }
+});
+
+const styles = theme => ({
+  layout: {
+    display: "flex",
+    minHeight: "100vh",
+    flexDirection: "column"
+  },
+  content: {
+    flex: 1
   }
 });
 class App extends Component {
@@ -34,7 +45,9 @@ class App extends Component {
     super(props);
     this.state = {
       token: window.localStorage.getItem("auth"),
-      currentUser: {}
+      currentUser: {},
+      showLoginButton: true,
+      groupJoined: false
     };
   }
 
@@ -47,34 +60,68 @@ class App extends Component {
       currentUser
     });
 
+  handleLogin = () => {
+    this.props.history.push("/login");
+  };
+
+  goToLogin = () => {
+    this.setState({ showLoginButton: false });
+  };
   handleLogout = () => {
     window.localStorage.removeItem("auth");
     this.setState({ token: null });
   };
 
+  beginOnboarding = () => {
+    this.setState({
+      onboarding: true
+    });
+  };
+  joinGroup = e => {
+    e.preventDefault();
+    console.log("Group joined");
+    this.setState({ groupJoined: true });
+  };
+
   render() {
-    const { currentUser, token } = this.state;
+    const { classes } = this.props;
+    const {
+      currentUser,
+      token,
+      onboarding,
+      showLoginButton,
+      groupJoined
+    } = this.state;
     return (
-      <React.Fragment>
+      <div className={classes.layout}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <AuthContext.Provider
-            value={{
-              setUser: this.setUser,
-              currentUser: currentUser,
-              token: token,
-              setToken: this.setToken,
-              handleLogout: this.handleLogout
-            }}
-          >
-            <Router>
-              <Routes />
-            </Router>{" "}
-          </AuthContext.Provider>{" "}
-        </MuiThemeProvider>{" "}
-      </React.Fragment>
+          <div className={classes.content}>
+            <AuthContext.Provider
+              value={{
+                setUser: this.setUser,
+                currentUser: currentUser,
+                token: token,
+                setToken: this.setToken,
+                showLoginButton: showLoginButton,
+                goToLogin: this.goToLogin,
+                handleLogout: this.handleLogout,
+                onboarding: onboarding,
+                beginOnboarding: this.beginOnboarding,
+                groupJoined: groupJoined,
+                joinGroup: this.joinGroup
+              }}
+            >
+              <Router>
+                <Routes />
+              </Router>
+            </AuthContext.Provider>
+          </div>
+          <Footer />
+        </MuiThemeProvider>
+      </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

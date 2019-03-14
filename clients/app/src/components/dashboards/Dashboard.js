@@ -1,18 +1,20 @@
 import React from "react";
 import SimpleCard from "../SimpleCard";
 import { Container, Row, Col } from "react-grid-system";
-import MembersTable from "./Members";
+import Groups from "./Groups";
 
-export default class GroupView extends React.Component {
-  render() {
-    return (
+const Dashboard = props => {
+  return (
+    <div>
       <Container>
         <Row>
           <Col>
-            <MembersTable />
+            <Groups />
           </Col>
         </Row>
       </Container>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default Dashboard;

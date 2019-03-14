@@ -14,7 +14,9 @@ export const ROUTES = {
   signUp: "/signup",
   onboarding: "/onboarding",
   dashboard: "/dashboard",
+  calendar: "/calendar",
   group: "/groups:id",
+  groups: "/groups",
   create_group: "/create_group",
   join_group: "/join_group"
 };

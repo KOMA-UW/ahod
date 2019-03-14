@@ -3,6 +3,7 @@ import { withAuth } from "../Context";
 import { Container, Row, Col } from "react-grid-system";
 import Loader from "./Loader";
 import Landing from "./landing/Landing";
+import Dashboard from "./dashboards/Dashboard";
 
 class MainView extends React.Component {
   constructor(props) {
@@ -17,15 +18,7 @@ class MainView extends React.Component {
     const authenticated = token != null;
     return (
       <div>
-        <Container>
-          {!authenticated ? (
-            <Landing />
-          ) : (
-            <Row>
-              <Col sm={4}>One of three columns</Col>
-            </Row>
-          )}
-        </Container>
+        <Container>{!authenticated ? <Landing /> : <Dashboard />}</Container>
       </div>
     );
   }

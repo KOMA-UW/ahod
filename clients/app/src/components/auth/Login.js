@@ -28,15 +28,12 @@ const styles = theme => ({
     marginBottom: 10
   },
   error: {
-    color: "#f44336",
-    fontFamily: "Roboto, sans-serif"
+    color: "#f44336"
   },
   buttonContainer: {
     display: "flex",
-    justifyContent: "flex-end"
-  },
-  button: {
-    marginTop: 20,
+    justifyContent: "space-between",
+    marginTop: 50,
     marginBottom: 20
   }
 });
@@ -52,7 +49,8 @@ class LoginView extends Component {
       },
       error: false,
       errorMessage: "",
-      loading: false
+      loading: false,
+      showLoginButton: false
     };
   }
 
@@ -108,6 +106,14 @@ class LoginView extends Component {
       });
   }
 
+  componentDidMount() {
+    this.setState({
+      showLoginButton: false
+    });
+
+    this.props.goToLogin();
+  }
+
   render() {
     const { classes } = this.props;
     const { error, errorMessage, loading } = this.state;
@@ -160,20 +166,20 @@ class LoginView extends Component {
                           variant="contained"
                           color="primary"
                           type="submit"
-                          className={classes.button}
                         >
                           Login
                         </Button>
+
+                        <Button
+                          component={Link}
+                          to={ROUTES.signUp}
+                          variant="outlined"
+                          color="secondary"
+                        >
+                          Create an account
+                        </Button>
                       </div>
                     </form>
-                    <Button
-                      component={Link}
-                      to={ROUTES.signUp}
-                      variant="outlined"
-                      color="secondary"
-                    >
-                      Create an account
-                    </Button>
                   </div>
                 )}
               </SimpleCard>

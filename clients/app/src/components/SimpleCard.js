@@ -27,7 +27,7 @@ function SimpleCard(props) {
       <Card className={classes.card}>
         <CardContent>
           <Typography
-            variant="headline"
+            variant="h5"
             component="h2"
             color="textSecondary"
             style={{ marginBottom: 20 }}
