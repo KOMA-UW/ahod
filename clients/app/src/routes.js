@@ -14,6 +14,7 @@ import CreateGroup from "./components/forms/create_group";
 import JoinGroup from "./components/forms/join_group";
 
 import PrivateRoutes from "./PrivateRoutes";
+import Dashboard from "./components/dashboards/Dashboard";
 
 class Routes extends Component {
   render() {
@@ -25,6 +26,7 @@ class Routes extends Component {
           <Route path={ROUTES.login} component={LoginView} />
           <Route path={ROUTES.signUp} component={SignUpView} />
           <Route path={ROUTES.onboarding} component={OnBoardingView} />
+          <Route path={ROUTES.dashboard} component={Dashboard} />
           <Route path={ROUTES.group} component={GroupView} />
           <Route path={ROUTES.groups} component={GroupsView} />
           <Route path={ROUTES.create_group} component={CreateGroup} />

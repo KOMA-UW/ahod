@@ -1,9 +1,18 @@
 import React from "react";
+import SimpleCard from "../SimpleCard";
+import { Container, Row, Col } from "react-grid-system";
+import Groups from "./Groups";
 
 const Dashboard = props => {
   return (
     <div>
-      <h2>Dashboard</h2>
+      <Container>
+        <Row>
+          <Col>
+            <Groups />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
