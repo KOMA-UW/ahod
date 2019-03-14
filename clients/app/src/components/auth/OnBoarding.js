@@ -50,7 +50,7 @@ class OnBoardingView extends React.Component {
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <Button fullWidth size="large" variant="contained" color="default" className={classes.button}>
-                        <AddIcon className={(classes.iconSmall,classes.margin)} />Join
+                        <AddIcon className={(classes.iconSmall,classes.margin)} />Create
                     </Button>
                 </Grid>
                 </Grid>

@@ -1,5 +1,6 @@
 import React from 'react'; 
 import Fab from '@material-ui/core/Fab';
+import MultipleValueTextInput from 'react-multivalue-text-input';
 
 const styles = theme => ({
     margin: {
@@ -59,13 +60,16 @@ export default class JoinGroup extends React.Component {
                 <input type="text" value={this.state.name} onChange={this.handleChange} />
                 </label>
                 <label>
+
+
         
         <input type="submit" value="Submit" aria-label="Create"/> 
         </label>
-                </form>
-                <Fab variant="round" color="secondary" aria-label="Join" className={styles.margin}>
-                Back
-                </Fab>
+        
+        </form>
+            <Fab variant="round" color="secondary" aria-label="Join" className={styles.margin}>
+            Back
+        </Fab>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React from 'react'; 
 import Fab from '@material-ui/core/Fab';
+import MultipleValueTextInput from 'react-multivalue-text-input';
 
 const styles = theme => ({
     margin: {
@@ -40,36 +41,41 @@ export default class CreateGroup extends React.Component {
       handleSubmit(event) {
         alert('A name was submitted: ' + this.state.name +  " " + this.state.bio);
         event.preventDefault();
-        console.log(this.state);
       }
 
     render() {
         return (
             <div >
-                <h1>Onboarding</h1> 
+                <h1>Create</h1> 
                 <form onSubmit={this.handleSubmit} >
 
-                <label>
-                Name:
-                <input type="text" value={this.state.name} onChange={this.handleChange} />
-                </label>
-               
-                <label>
-                    Bio:
-                    <textarea value={this.state.bio} onChange={this.handleChange}>
-        
-                    </textarea>
-                </label>
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.name} onChange={this.handleChange} />
+                    </label>
+                
+                    <label>
+                        Bio:
+                        <textarea value={this.state.bio} onChange={this.handleChange}>
+            
+                        </textarea>
+                    </label>
 
-                <label>
-                    Invite trusted members:
-                    <input type="text" value={this.state.name} onChange={this.handleChange} />
-                </label>
-        
+                    <label>
+                        Invite trusted members:
+                        <input type="text" value={this.state.name} onChange={this.handleChange} />
+                    </label>
+                    <MultipleValueTextInput 
+            onItemAdded={(item, allItems) => console.log(`Item added: ${item}`)}
+            onItemDeleted={(item, allItems) => console.log(`Item removed: ${item}`)}   
+            label="Items"
+            name="Item-input"
+            placeholder="Enter Email address to Invite members"
+        />
                     <input type="submit" value="Submit" aria-label="Create"/> 
                 </form>
                 <Fab variant="round" color="secondary" aria-label="Join" className={styles.margin}>
-                Back
+                    Back
                 </Fab>
             </div>
         )

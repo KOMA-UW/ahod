@@ -1,6 +1,7 @@
 #!/bin/bash
 ./build.sh
 ../db/build.sh
+../../groups/build.sh
 
 export TLSCERT=/etc/letsencrypt/live/api.payinpayout.tech/fullchain.pem
 export TLSKEY=/etc/letsencrypt/live/api.payinpayout.tech/privkey.pem
@@ -12,7 +13,7 @@ export DSN="root:$MYSQL_ROOT_PASSWORD@tcp\(messagesMYSQLDB:3306\)/messagesDB"
 
 export SESSIONKEY="sessionkey"
 export REDISSVR=redisServer:6379
-
+export GROUPADDR=groups:80
 export MESSAGESADDR=messaging:80
 
 
@@ -25,11 +26,18 @@ ssh -i ~/.ssh/aws-capstone-2019.pem ec2-user@54.191.200.168 'bash -s'<< EOF
     docker rm -f messaging
     docker rm -f mongo
 
+    docker rm -f groups_api || true
+    docker rm -f groupdb || true
+
+
+
     docker network rm ahod-net
 
     docker network create ahod-net
     
     docker pull uwkoma/koma-mysql
+
+    docker pull uwkoma/groups_api
 
     
 
@@ -59,6 +67,16 @@ ssh -i ~/.ssh/aws-capstone-2019.pem ec2-user@54.191.200.168 'bash -s'<< EOF
     -e MYSQL_DATABASE=$MYSQL_DATABASE \
     -v /my/own/datadir:/var/lib/mysql \
     uwkoma/koma-mysql
+
+    docker run -d \
+    --name groupdb \
+    --network ahod-net \
+    mongo
+
+    docker run -d \
+    --network ahod-net \
+    --name groups_api \
+    uwkoma/groups_api
 
     sleep 20
 
