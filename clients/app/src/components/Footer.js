@@ -20,7 +20,7 @@ const Footer = props => {
   const styles = {
     background: primaryColor,
     textColor: "white",
-    height: "200px",
+    height: "150px",
     position: "fixed",
     bottom: 0,
     left: 0,
