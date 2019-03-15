@@ -53,29 +53,39 @@ const icons = [
   {
     name: "fas fa-user-circle",
     primary: "My Profile",
-    link: "/profile"
+    link: "/profile",
+    protected: false
   },
   {
     name: "fas fa-users",
     primary: "My Cliques",
-    link: "/groups"
+    link: "/groups",
+    protected: false
   },
   {
     name: "fas fa-home",
-    primary: "Dashboard",
-    link: "/"
+    primary: "Admin Dashboard",
+    link: "/",
+    protected: true
   },
 
   {
     name: "fas fa-money-bill-alt",
     primary: "Make A Payment",
-    link: "/payment"
+    link: "/payment",
+    protected: false
+  },
+  {
+    name: "fas fa-calendar-alt",
+    primary: "Calendar",
+    link: "/calendar",
+    protected: false
   }
 ];
 
 class SideNav extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, isAdmin } = this.props;
 
     return (
       <Drawer
@@ -100,19 +110,45 @@ class SideNav extends Component {
         <Divider />
 
         <List>
-          {icons.map((icon, index) => {
-            return (
-              <ListItem button key={icon.name} component={Link} to={icon.link}>
-                <ListItemIcon>
-                  <Icon
-                    className={classNames(classes.icon, icon.name)}
-                    color="action"
-                  />
-                </ListItemIcon>
-                <ListItemText primary={icon.primary} />
-              </ListItem>
-            );
-          })}
+          {isAdmin
+            ? icons.map((icon, index) => {
+                return (
+                  <ListItem
+                    button
+                    key={icon.name}
+                    component={Link}
+                    to={icon.link}
+                  >
+                    <ListItemIcon>
+                      <Icon
+                        className={classNames(classes.icon, icon.name)}
+                        color="action"
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={icon.primary} />
+                  </ListItem>
+                );
+              })
+            : icons.map((icon, index) => {
+                return (
+                  !icon.protected && (
+                    <ListItem
+                      button
+                      key={icon.name}
+                      component={Link}
+                      to={icon.link}
+                    >
+                      <ListItemIcon>
+                        <Icon
+                          className={classNames(classes.icon, icon.name)}
+                          color="action"
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={icon.primary} />
+                    </ListItem>
+                  )
+                );
+              })}
         </List>
       </Drawer>
     );

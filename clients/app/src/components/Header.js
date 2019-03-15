@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import { withAuth } from "../Context";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -87,6 +89,12 @@ class Header extends React.Component {
             </Typography>
             {authenticated && (
               <React.Fragment>
+                <IconButton color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+
                 <Button color="inherit" onClick={this.props.handleLogout}>
                   Logout
                 </Button>
