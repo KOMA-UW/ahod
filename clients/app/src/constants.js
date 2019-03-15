@@ -18,5 +18,6 @@ export const ROUTES = {
   group: "/groups:id",
   groups: "/groups",
   create_group: "/create_group",
-  join_group: "/join_group"
+  join_group: "/join_group",
+  payment: "/payment"
 };

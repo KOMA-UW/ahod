@@ -46,7 +46,7 @@ class App extends Component {
     this.state = {
       token: window.localStorage.getItem("auth"),
       currentUser: {},
-      isAdmin: true,
+      isAdmin: false,
       isEdit: false,
       showLoginButton: true,
       groupJoined: false,

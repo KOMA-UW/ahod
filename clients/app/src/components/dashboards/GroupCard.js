@@ -21,7 +21,8 @@ import { Link } from "react-router-dom";
 
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    maxWidth: 400,
+    paddingBottom: 10
   },
   media: {
     height: 0,
@@ -34,7 +35,7 @@ const styles = theme => ({
     marginLeft: "auto"
   },
   avatar: {
-    backgroundColor: red[500]
+    //backgroundColor: red[500]
   }
 });
 

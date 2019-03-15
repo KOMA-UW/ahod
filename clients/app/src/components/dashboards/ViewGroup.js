@@ -6,7 +6,25 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Feed from "./Feed";
 import MembersTable from "./Members";
+import MakePayment from "../payment/MakePayment";
+import GroupDetais from "./GroupDetais";
 
+const feeds = [
+  {
+    title: "Requesting Early Payment",
+    description: "I need to get paid this month for...",
+    time: "25 min ago",
+    author: "John Smith",
+    authorImg: "https://v3-0-0.material-ui.com/static/images/remy.jpg"
+  },
+  {
+    title: "Requesting Early Payment",
+    description: "I need to get paid this month for...",
+    time: "50 min ago",
+    author: "Sam Lou",
+    authorImg: "https://v3-0-0.material-ui.com/static/images/uxceo-128.jpg"
+  }
+];
 const styles = theme => ({
   btnContainer: {
     display: "flex"
@@ -41,21 +59,47 @@ class ViewGroup extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Container>
+        <Container style={{ marginTop: 10 }}>
+          <Row>
+            <Col>
+              <SimpleCard title="Make Payment" style={{ display: "flex" }}>
+                <MakePayment />
+              </SimpleCard>
+            </Col>
+          </Row>
           <Row>
             <Col sm={8}>
+              <SimpleCard title="Group Details">
+                <GroupDetais />
+              </SimpleCard>
+
               <MembersTable />
             </Col>
 
-            <Col sm={4}>
+            <Col sm={4} style={{ paddingTop: 0, marginTop: 0 }}>
+              <Row style={{ paddingTop: 0, marginTop: 0 }}>
+                <Col style={{ paddingTop: 0, marginTop: 0 }}>
+                  {feeds.map((feed, index) => {
+                    return (
+                      <Feed
+                        title={feed.title}
+                        description={feed.description}
+                        author={feed.author}
+                        time={feed.time}
+                        authorImg={feed.authorImg}
+                      />
+                    );
+                  })}
+                </Col>
+              </Row>
               <Row>
                 <Col>
-                  <SimpleCard title="Make a plea">
-                    <p>Make a plea to get paid this month!</p>
+                  <SimpleCard title="Make a request">
+                    <p>Make a request to get paid this month!</p>
                     <form onSubmit={this.handleSubmit}>
                       <TextField
                         id="standard-full-width"
-                        label="Plea"
+                        label="Request"
                         style={{ margin: 8 }}
                         placeholder="Enter your plea here!"
                         fullWidth
@@ -69,7 +113,7 @@ class ViewGroup extends Component {
                       <div className={classes.btnContainer}>
                         <Button
                           variant="contained"
-                          color="secondary"
+                          color="primary"
                           className={classes.button}
                           type="submit"
                         >
@@ -77,13 +121,6 @@ class ViewGroup extends Component {
                         </Button>
                       </div>
                     </form>
-                  </SimpleCard>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <SimpleCard title="Feed">
-                    <Feed />
                   </SimpleCard>
                 </Col>
               </Row>
