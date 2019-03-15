@@ -63,7 +63,7 @@ const icons = [
   {
     name: "fas fa-home",
     primary: "Dashboard",
-    link: "/dashboard"
+    link: "/"
   },
 
   {

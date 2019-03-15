@@ -24,7 +24,6 @@ class Routes extends Component {
           <Route path={ROUTES.login} component={LoginView} />
           <Route path={ROUTES.signUp} component={SignUpView} />
           <Route path={ROUTES.onboarding} component={OnBoardingView} />
-          <Route path={ROUTES.dashboard} component={Dashboard} />
           <Route path={ROUTES.group} component={GroupView} />
           <Route path={ROUTES.groups} component={GroupsView} />
           <Route path={ROUTES.calendar} component={Calendar} />

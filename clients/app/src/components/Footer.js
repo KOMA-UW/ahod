@@ -72,7 +72,6 @@ const Footer = props => {
     : props.iconSpace
     ? [classes.footer, classes.marginLeft].join(" ")
     : classes.footer;
-
   return (
     <footer className={footerStyle}>
       <Container fluid>

@@ -46,6 +46,8 @@ class App extends Component {
     this.state = {
       token: window.localStorage.getItem("auth"),
       currentUser: {},
+      isAdmin: true,
+      isEdit: false,
       showLoginButton: true,
       groupJoined: false,
       iconSpace: false,
@@ -94,10 +96,17 @@ class App extends Component {
     this.setState({ drawerOpen: false, iconSpace: true });
   };
 
+  handleEdit = val => {
+    this.setState({
+      isEdit: val
+    });
+  };
   render() {
     const { classes } = this.props;
     const {
       currentUser,
+      isAdmin,
+      isEdit,
       token,
       onboarding,
       showLoginButton,
@@ -106,6 +115,7 @@ class App extends Component {
     } = this.state;
 
     const iconSpace = token != null || this.state.iconSpace;
+
     return (
       <div className={classes.layout}>
         <MuiThemeProvider theme={theme}>
@@ -115,6 +125,9 @@ class App extends Component {
             value={{
               setUser: this.setUser,
               currentUser: currentUser,
+              isAdmin: isAdmin,
+              isEdit: isEdit,
+              handleEdit: this.handleEdit,
               token: token,
               setToken: this.setToken,
               showLoginButton: showLoginButton,

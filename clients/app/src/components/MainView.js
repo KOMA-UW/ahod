@@ -14,11 +14,21 @@ class MainView extends React.Component {
   }
   render() {
     const { loading } = this.state;
-    const { token } = this.props;
+    const { token, isAdmin, isEdit } = this.props;
     const authenticated = token != null;
     return (
       <div>
-        <Container>{!authenticated ? <Landing /> : <Dashboard />}</Container>
+        <Container>
+          {!authenticated ? (
+            <Landing />
+          ) : (
+            <Dashboard
+              isAdmin={isAdmin}
+              isEdit={isEdit}
+              handleEdit={this.props.handleEdit}
+            />
+          )}
+        </Container>
       </div>
     );
   }
