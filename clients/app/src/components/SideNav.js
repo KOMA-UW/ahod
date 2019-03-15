@@ -51,22 +51,16 @@ const styles = theme => ({
 
 const icons = [
   {
-    name: "fas fa-user-circle",
-    primary: "My Profile",
-    link: "/profile",
-    protected: false
-  },
-  {
-    name: "fas fa-users",
-    primary: "My Cliques",
-    link: "/groups",
-    protected: false
-  },
-  {
     name: "fas fa-home",
     primary: "Admin Dashboard",
     link: "/",
     protected: true
+  },
+  {
+    name: "fas fa-users",
+    primary: "My Cliques",
+    link: "/",
+    protected: false
   },
 
   {
@@ -79,6 +73,12 @@ const icons = [
     name: "fas fa-calendar-alt",
     primary: "Calendar",
     link: "/calendar",
+    protected: false
+  },
+  {
+    name: "fas fa-user-circle",
+    primary: "My Profile",
+    link: "/profile",
     protected: false
   }
 ];

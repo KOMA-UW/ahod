@@ -13,6 +13,7 @@ import GroupsView from "./components/dashboards/Groups";
 import Payment from "./components/payment/Payment";
 import Dashboard from "./components/dashboards/Dashboard";
 import Calendar from "./components/dashboards/calendar/Calendar";
+import Profile from "./components/profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 
 class Routes extends Component {
@@ -30,6 +31,7 @@ class Routes extends Component {
           <PrivateRoute path={ROUTES.groups} component={GroupsView} />
           <PrivateRoute path={ROUTES.calendar} component={Calendar} />
           <PrivateRoute path={ROUTES.payment} component={Payment} />
+          <PrivateRoute path={ROUTES.profile} component={Profile} />
           <PrivateRoute path={ROUTES.home} component={MainView} />
         </Switch>
       </React.Fragment>
