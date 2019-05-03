@@ -1,40 +1,39 @@
 //@ts-check
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { ROUTES, API_URL } from "../../constants";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { Container, Row, Col } from "react-grid-system";
-import SimpleCard from "../SimpleCard";
-import Button from "@material-ui/core/Button";
-import { FormControl, InputLabel, Input } from "@material-ui/core";
-import Loader from "../Loader";
-import { withAuth } from "../../Context";
+import React, { Component } from 'react';
+import { Link as RouterLink, Redirect } from 'react-router-dom';
+import { ROUTES, API_URL } from '../../constants';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  Typography,
+  Fab,
+  Link
+} from '@material-ui/core';
+
+import { withAuth } from '../../Context';
+import Auth from './Auth';
+import Loader from '../Loader';
 
 const styles = theme => ({
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3
-  },
-
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: 30
-  },
   formControl: {
     marginTop: 10,
     marginBottom: 10
   },
   error: {
-    color: "#f44336"
+    color: '#f44336'
   },
   buttonContainer: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
     marginTop: 50,
     marginBottom: 20
+  },
+  flexContainer: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 });
 class LoginView extends Component {
@@ -44,11 +43,11 @@ class LoginView extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       data: {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
       },
       error: false,
-      errorMessage: "",
+      errorMessage: '',
       loading: false,
       showLoginButton: false
     };
@@ -72,17 +71,17 @@ class LoginView extends Component {
     const { data } = this.state;
 
     fetch(`${API_URL}/sessions`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       }
     })
       .then(res => {
         if (res.status < 300) {
-          const sessionToken = res.headers.get("Authorization");
+          const sessionToken = res.headers.get('Authorization');
           if (sessionToken != null) {
-            window.localStorage.setItem("auth", sessionToken);
+            window.localStorage.setItem('auth', sessionToken);
             this.props.setToken(sessionToken);
           }
           return res.json();
@@ -93,7 +92,7 @@ class LoginView extends Component {
       })
       .then(data => {
         this.setState({ loading: false });
-        if (typeof data === "string") {
+        if (typeof data === 'string') {
           throw Error(data);
         }
         this.props.setUser({ ...data });
@@ -120,73 +119,69 @@ class LoginView extends Component {
     if (this.props.token) {
       return <Redirect to={ROUTES.home} />;
     }
+    const SignupLink = props => <RouterLink to={ROUTES.signUp} {...props} />;
     return (
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Container>
-          <Row style={{ justifyContent: "center" }}>
-            <Col sm={6}>
-              <SimpleCard title="Login">
-                {loading ? (
-                  <Loader />
-                ) : (
-                  <div>
-                    <span className={classes.error}>
-                      {error ? errorMessage : ""}
-                    </span>
-                    <form onSubmit={this.handleLogin}>
-                      <FormControl
-                        fullWidth
-                        error={error}
-                        className={classes.formControl}
-                      >
-                        <InputLabel htmlFor="component-email">Email</InputLabel>
-                        <Input
-                          id="component-email"
-                          value={this.state.data.email}
-                          onChange={this.handleChange("email")}
-                        />
-                      </FormControl>
+      <Auth
+        {...this.props}
+        link={SignupLink}
+        title="Login"
+        titleColor="primary"
+      >
+        {loading ? (
+          <Loader />
+        ) : (
+          <div>
+            <span style={styles.error}>{error ? errorMessage : ''}</span>
+            <form onSubmit={this.handleLogin}>
+              <FormControl
+                fullWidth
+                error={error}
+                className={classes.formControl}
+              >
+                <InputLabel htmlFor="component-email">Email</InputLabel>
+                <Input
+                  id="component-email"
+                  value={this.state.data.email}
+                  onChange={this.handleChange('email')}
+                />
+              </FormControl>
 
-                      <FormControl fullWidth error={error}>
-                        <InputLabel htmlFor="component-password">
-                          Password
-                        </InputLabel>
-                        <Input
-                          id="component-password"
-                          value={this.state.data.password}
-                          onChange={this.handleChange("password")}
-                          type="password"
-                        />
-                      </FormControl>
-                      <div className={classes.buttonContainer}>
-                        <Button
-                          onClick={this.handleLogin}
-                          size="large"
-                          variant="contained"
-                          color="primary"
-                          type="submit"
-                        >
-                          Login
-                        </Button>
-
-                        <Button
-                          component={Link}
-                          to={ROUTES.signUp}
-                          variant="outlined"
-                          color="secondary"
-                        >
-                          Create an account
-                        </Button>
-                      </div>
-                    </form>
-                  </div>
-                )}
-              </SimpleCard>
-            </Col>
-          </Row>
-        </Container>
-      </main>
+              <FormControl fullWidth error={error}>
+                <InputLabel htmlFor="component-password">Password</InputLabel>
+                <Input
+                  id="component-password"
+                  value={this.state.data.password}
+                  onChange={this.handleChange('password')}
+                  type="password"
+                />
+              </FormControl>
+              <div className={classes.buttonContainer}>
+                <Fab
+                  size="large"
+                  variant="extended"
+                  type="submit"
+                  color="primary"
+                  style={{ flex: 1 }}
+                >
+                  Login
+                </Fab>
+              </div>
+            </form>
+            <div className={classes.flexContainer}>
+              <Typography variant="body1">
+                Don't have an account?
+                <Link
+                  color="secondary"
+                  style={{ marginLeft: 10 }}
+                  component={SignupLink}
+                >
+                  Register
+                </Link>
+              </Typography>
+            </div>
+          </div>
+        )}
+      </Auth>
     );
   }
 }
