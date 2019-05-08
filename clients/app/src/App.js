@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import Routes from "./Routes";
+import Routes from "./routes";
 import { AuthContext } from "./Context";
 import { API_URL, ROUTES } from "./constants";
 import Footer from "./components/Footer";
