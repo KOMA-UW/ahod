@@ -6,6 +6,9 @@ import Link from "@material-ui/core/Link";
 import LayoutBody from "./LayoutBody";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Group from "../../img/team.png";
+import Saving from "../../img/piggy-bank.png";
+import Win from "../../img/team-leader.png";
 
 const styles = theme => ({
   root: {
@@ -72,13 +75,14 @@ function Steps(props) {
               <div className={classes.item}>
                 <div className={classes.number}>1.</div>
                 <img
-                  src="https://images.unsplash.com/photo-1518136247453-74e7b5265980?auto=format&fit=crop&w=400&q=80"
-                  alt="suitcase"
+                  src={Group}
+                  alt="Create a group"
                   className={classes.image}
+                  style={{ height: 100 }}
                 />
                 <Typography variant="h5" align="center">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum.
+                  Create a group with your close friends and family that will
+                  accompany you on this financialy journey.
                 </Typography>
               </div>
             </Grid>
@@ -86,13 +90,14 @@ function Steps(props) {
               <div className={classes.item}>
                 <div className={classes.number}>2.</div>
                 <img
-                  src="https://images.unsplash.com/photo-1518136247453-74e7b5265980?auto=format&fit=crop&w=400&q=80"
-                  alt="graph"
+                  src={Saving}
+                  alt="Give money to the pool"
                   className={classes.image}
+                  style={{ height: 100 }}
                 />
                 <Typography variant="h5" align="center">
-                  Ac turpis egestas integer eget aliquet nibh praesent tristique
-                  magna. Gravida arcu ac tortor dignissim.
+                  Pay your share, every month, of the total money pool, helping
+                  your friends and family.
                 </Typography>
               </div>
             </Grid>
@@ -100,12 +105,13 @@ function Steps(props) {
               <div className={classes.item}>
                 <div className={classes.number}>3.</div>
                 <img
-                  src="https://images.unsplash.com/photo-1518136247453-74e7b5265980?auto=format&fit=crop&w=400&q=80"
-                  alt="clock"
+                  src={Win}
+                  alt="Win sharings"
                   className={classes.image}
+                  style={{ height: 100 }}
                 />
                 <Typography variant="h5" align="center">
-                  {"Sit amet tellus cras adipiscing enim eu turpis egestas. "}
+                  {"Collect your share of the circle, and repeat!"}
                 </Typography>
               </div>
             </Grid>
