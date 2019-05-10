@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { withAuth } from '../Context';
@@ -11,18 +10,20 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import classNames from 'classnames';
 import SideNav from './SideNav';
+import Logo from './Logo';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    marginBottom: 100
+    display: 'flex'
   },
   appBar: {
+    background: theme.palette.primary.dark
+  },
+  appBarUnshift: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -50,26 +51,19 @@ const styles = theme => ({
 });
 
 class Header extends React.Component {
-  componentDidMount() {
-    loadCSS(
-      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
-      document.querySelector('#insertion-point-jss')
-    );
-  }
-
-  state = {};
-
   render() {
-    const { classes, token, theme } = this.props;
+    const { classes, token, drawerOpen } = this.props;
     const authenticated = token != null;
+    const appBarClass = !drawerOpen
+      ? classes.appBarUnshift
+      : classes.appBarShift;
 
     return (
       <div className={classes.root}>
         <AppBar
+          elevation={1}
           position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.props.drawerOpen
-          })}
+          className={classNames(classes.appBar, appBarClass)}
         >
           <Toolbar disableGutters={this.props.iconSpace}>
             {authenticated && (
@@ -84,9 +78,17 @@ class Header extends React.Component {
                 {authenticated && <MenuIcon />}
               </IconButton>
             )}
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              CLIQUE
-            </Typography>
+            {!this.props.drawerOpen ? (
+              <Logo />
+            ) : (
+              // empty to keep logout to the right
+              <Typography
+                variant="h6"
+                color="inherit"
+                className={classNames(classes.grow, classes.menuButton)}
+              />
+            )}
+
             {authenticated && (
               <React.Fragment>
                 <IconButton color="inherit">
