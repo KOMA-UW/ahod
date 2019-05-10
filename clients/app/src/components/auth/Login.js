@@ -95,6 +95,8 @@ class LoginView extends Component {
         if (typeof data === 'string') {
           throw Error(data);
         }
+        console.clear();
+        window.localStorage.setItem('userFirstname', data.firstName);
         this.props.setUser({ ...data });
       })
       .catch(err => {
@@ -117,7 +119,7 @@ class LoginView extends Component {
     const { classes } = this.props;
     const { error, errorMessage, loading } = this.state;
     if (this.props.token) {
-      return <Redirect to={ROUTES.home} />;
+      return <Redirect to={ROUTES.onboarding} />;
     }
     const SignupLink = props => <RouterLink to={ROUTES.signUp} {...props} />;
     return (

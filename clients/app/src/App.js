@@ -45,7 +45,7 @@ class App extends Component {
     super(props);
     this.state = {
       token: window.localStorage.getItem('auth'),
-      currentUser: {},
+      currentUser: window.localStorage.getItem('userFirstname'),
       isAdmin: true,
       isEdit: false,
       showLoginButton: true,
@@ -61,7 +61,7 @@ class App extends Component {
       iconSpace: true
     });
   setUser = currentUser =>
-    this.setUser({
+    this.setState({
       currentUser
     });
 
