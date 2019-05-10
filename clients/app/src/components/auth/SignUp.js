@@ -1,43 +1,52 @@
 //@ts-check
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { ROUTES, API_URL } from "../../constants";
-import { Container, Row, Col } from "react-grid-system";
-import SimpleCard from "../SimpleCard";
-import Button from "@material-ui/core/Button";
-import { FormControl, InputLabel, Input } from "@material-ui/core";
-import Loader from "../Loader";
-import { withAuth } from "../../Context";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import { Link as RouterLink, Redirect } from 'react-router-dom';
+import { ROUTES, API_URL } from '../../constants';
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  Typography,
+  Fab
+} from '@material-ui/core';
+import Loader from '../Loader';
+import Link from '@material-ui/core/Link';
+import { withAuth } from '../../Context';
+import { withStyles } from '@material-ui/core/styles';
+import Auth from './Auth';
 
 const styles = theme => ({
   container: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: 30
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 80
   },
   formControl: {
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 5,
+    marginBottom: 5
   },
   loader: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   error: {
-    color: "#f44336",
-    fontFamily: "Roboto, sans-serif"
+    color: '#f44336',
+    fontFamily: 'Roboto, sans-serif'
   },
   button: {
-    display: "flex",
-    justifyContent: "flex-end"
+    display: 'flex',
+    justifyContent: 'flex-end'
   },
   buttonContainer: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
     marginTop: 50,
     marginBottom: 20
+  },
+  flexContainer: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 });
 class SignUpView extends Component {
@@ -45,15 +54,15 @@ class SignUpView extends Component {
     super(props);
     this.state = {
       data: {
-        username: "",
-        email: "",
-        firstname: "",
-        lastname: "",
-        password: "",
-        passwordConf: ""
+        username: '',
+        email: '',
+        firstname: '',
+        lastname: '',
+        password: '',
+        passwordConf: ''
       },
       error: false,
-      errorMessage: "",
+      errorMessage: '',
       loading: false
     };
 
@@ -79,17 +88,17 @@ class SignUpView extends Component {
     const { data } = this.state;
 
     fetch(`${API_URL}/users`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       }
     })
       .then(res => {
         if (res.status < 300) {
-          const sessionToken = res.headers.get("Authorization");
+          const sessionToken = res.headers.get('Authorization');
           if (sessionToken != null) {
-            window.localStorage.setItem("auth", sessionToken);
+            window.localStorage.setItem('auth', sessionToken);
             this.props.setToken(sessionToken);
           }
           return res.json();
@@ -100,7 +109,7 @@ class SignUpView extends Component {
       })
       .then(data => {
         this.setState({ loading: false });
-        if (typeof data === "string") {
+        if (typeof data === 'string') {
           throw Error(data);
         }
         this.props.setUser({ ...data });
@@ -121,128 +130,83 @@ class SignUpView extends Component {
     if (this.props.token) {
       return <Redirect to={ROUTES.onboarding} />;
     }
+
+    const LoginLink = props => <RouterLink to={ROUTES.login} {...props} />;
+    const fields = ['username', 'email', 'firstname', 'lastname', 'password'];
     return (
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Container>
-          <Row style={{ justifyContent: "center" }}>
-            <Col sm={6}>
-              <SimpleCard title="Sign Up">
-                {loading ? (
-                  <Loader />
-                ) : (
-                  <div>
-                    <span style={styles.error}>
-                      {error ? errorMessage : ""}
-                    </span>
-                    <form onSubmit={this.handleSignUp}>
-                      <FormControl
-                        fullWidth
-                        error={error}
-                        style={styles.formControl}
-                      >
-                        <InputLabel htmlFor="component-username">
-                          Username
-                        </InputLabel>
-                        <Input
-                          id="component-username"
-                          value={this.state.data.username}
-                          onChange={this.handleChange("username")}
-                        />
-                      </FormControl>
+      <Auth
+        link={LoginLink}
+        {...this.props}
+        title="Create New Account"
+        titleColor="secondary"
+      >
+        {loading ? (
+          <Loader />
+        ) : (
+          <div>
+            <span style={styles.error}>{error ? errorMessage : ''}</span>
 
-                      <FormControl
-                        fullWidth
-                        error={error}
-                        style={styles.formControl}
-                      >
-                        <InputLabel htmlFor="component-email">Email</InputLabel>
-                        <Input
-                          id="component-email"
-                          value={this.state.data.email}
-                          onChange={this.handleChange("email")}
-                        />
-                      </FormControl>
+            <form onSubmit={this.handleSignUp}>
+              {fields.map((name, index) => {
+                return (
+                  <FormControl
+                    key={index}
+                    fullWidth
+                    error={error}
+                    className={classes.formControl}
+                  >
+                    <InputLabel htmlFor={`component-${name}`}>
+                      {name.charAt(0).toUpperCase() + name.slice(1)}
+                    </InputLabel>
+                    <Input
+                      id="component-username"
+                      value={this.state.data[name]}
+                      onChange={this.handleChange(`${name}`)}
+                      type={name.includes('password') ? 'password' : 'text'}
+                    />
+                  </FormControl>
+                );
+              })}
+              <FormControl fullWidth error={error}>
+                <InputLabel htmlFor="component-password-confirm">
+                  Confirm Password
+                </InputLabel>
+                <Input
+                  id="component-password-confirm"
+                  value={this.state.data.passwordConf}
+                  onChange={this.handleChange('passwordConf')}
+                  type="password"
+                />
+              </FormControl>
 
-                      <FormControl
-                        fullWidth
-                        error={error}
-                        style={styles.formControl}
-                      >
-                        <InputLabel htmlFor="component-firstname">
-                          First Name
-                        </InputLabel>
-                        <Input
-                          id="component-firstname"
-                          value={this.state.data.firstname}
-                          onChange={this.handleChange("firstname")}
-                        />
-                      </FormControl>
+              <div className={classes.buttonContainer}>
+                <Fab
+                  size="large"
+                  variant="extended"
+                  type="submit"
+                  color="secondary"
+                  style={{ flex: 1 }}
+                >
+                  Create Account
+                </Fab>
+              </div>
+            </form>
 
-                      <FormControl
-                        fullWidth
-                        error={error}
-                        style={styles.formControl}
-                      >
-                        <InputLabel htmlFor="component-lastname">
-                          Last Name
-                        </InputLabel>
-                        <Input
-                          id="component-lastname"
-                          value={this.state.data.lastname}
-                          onChange={this.handleChange("lastname")}
-                        />
-                      </FormControl>
-
-                      <FormControl fullWidth error={error}>
-                        <InputLabel htmlFor="component-password">
-                          Password
-                        </InputLabel>
-                        <Input
-                          id="component-password"
-                          value={this.state.data.password}
-                          onChange={this.handleChange("password")}
-                          type="password"
-                        />
-                      </FormControl>
-
-                      <FormControl fullWidth error={error}>
-                        <InputLabel htmlFor="component-password-confirm">
-                          Confirm Password
-                        </InputLabel>
-                        <Input
-                          id="component-password-confirm"
-                          value={this.state.data.passwordConf}
-                          onChange={this.handleChange("passwordConf")}
-                          type="password"
-                        />
-                      </FormControl>
-
-                      <div className={classes.buttonContainer}>
-                        <Button
-                          component={Link}
-                          to={ROUTES.login}
-                          variant="outlined"
-                        >
-                          Login
-                        </Button>
-                        <Button
-                          size="large"
-                          variant="contained"
-                          type="submit"
-                          color="secondary"
-                        >
-                          Register
-                        </Button>
-                      </div>
-                    </form>
-                  </div>
-                )}
-              </SimpleCard>
-            </Col>
-          </Row>
-        </Container>
-      </main>
+            <div className={classes.flexContainer}>
+              <Typography variant="body1">
+                Already have an account?
+                <Link
+                  color="primary"
+                  style={{ marginLeft: 10 }}
+                  component={LoginLink}
+                >
+                  Login
+                </Link>
+              </Typography>
+            </div>
+          </div>
+        )}
+      </Auth>
     );
   }
 }

@@ -1,14 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
-import Typography from "@material-ui/core/Typography";
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    margin: "20px 0"
+    margin: '20px 0',
+    padding: 20
   },
   title: {
     marginBottom: 16,
@@ -29,7 +30,7 @@ function SimpleCard(props) {
           <Typography
             variant="h5"
             component="h2"
-            color="textSecondary"
+            color={props.titleColor ? props.titleColor : 'primary'}
             style={{ marginBottom: 20 }}
           >
             {props.title}

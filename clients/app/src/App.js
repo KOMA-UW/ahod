@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
-import Routes from "./routes";
-import { AuthContext } from "./Context";
-import { API_URL, ROUTES } from "./constants";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import CssBaseline from "@material-ui/core/CssBaseline"; //normalize.css
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import Routes from './routes';
+import { AuthContext } from './Context';
+import { API_URL, ROUTES } from './constants';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import CssBaseline from '@material-ui/core/CssBaseline'; //normalize.css
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#1D65A6",
-      light: "#5b92d8",
-      dark: "#003b77",
-      contrastText: "#ffffff",
-      text: "#fff"
+      main: '#37517e',
+      light: '#5b92d8',
+      dark: '#214788',
+      contrastText: '#ffffff',
+      text: '#fff'
     },
     secondary: {
-      main: "#a7503a",
-      dark: "#732413",
-      contrastText: "#ffffff",
-      text: "#fff"
+      main: '#a7503a',
+      dark: '#732413',
+      contrastText: '#ffffff',
+      text: '#fff'
     }
   },
   typography: {
@@ -32,9 +32,9 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   layout: {
-    display: "flex",
-    minHeight: "100vh",
-    flexDirection: "column"
+    display: 'flex',
+    minHeight: '100vh',
+    flexDirection: 'column'
   },
   content: {
     flex: 1
@@ -44,8 +44,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: window.localStorage.getItem("auth"),
-      currentUser: {},
+      token: window.localStorage.getItem('auth'),
+      currentUser: window.localStorage.getItem('userFirstname'),
       isAdmin: true,
       isEdit: false,
       showLoginButton: true,
@@ -61,19 +61,19 @@ class App extends Component {
       iconSpace: true
     });
   setUser = currentUser =>
-    this.setUser({
+    this.setState({
       currentUser
     });
 
   handleLogin = () => {
-    this.props.history.push("/login");
+    this.props.history.push('/login');
   };
 
   goToLogin = () => {
     this.setState({ showLoginButton: false });
   };
   handleLogout = () => {
-    window.localStorage.removeItem("auth");
+    window.localStorage.removeItem('auth');
     this.setState({ token: null, drawerOpen: false });
   };
 
@@ -84,7 +84,7 @@ class App extends Component {
   };
   joinGroup = e => {
     e.preventDefault();
-    console.log("Group joined");
+    console.log('Group joined');
     this.setState({ groupJoined: true });
   };
 

@@ -1,11 +1,11 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { withTheme } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { withAuth } from "../Context";
-import Typography from "@material-ui/core/Typography";
-import { Container, Row, Col } from "react-grid-system";
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import { withTheme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { withAuth } from '../Context';
+import Typography from '@material-ui/core/Typography';
+import { Container, Row, Col } from 'react-grid-system';
 
 import {
   FacebookShareButton,
@@ -14,39 +14,39 @@ import {
   FacebookIcon,
   TwitterIcon,
   EmailIcon
-} from "react-share";
-import logo from "../img/ischool_log.png";
+} from 'react-share';
+import logo from '../img/ischool_log.png';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
     border: 0,
-    color: "white",
+    color: 'white',
     height: 48,
-    padding: "0 30px",
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
   },
   label: {
-    textTransform: "capitalize"
+    textTransform: 'capitalize'
   },
   footers: {
-    background: "#003b77",
-    height: "200px",
-    position: "fixed",
+    background: '#37517e',
+    height: '200px',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     marginBottom: 0,
-    width: "100%",
-    color: "#FFF",
+    width: '100%',
+    color: '#FFF',
     padding: 15
     // paddingTop: theme.spacing.unit * 2,
     // paddingBottom: theme.spacing.unit * 2
   },
   footer: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.text,
     marginTop: theme.spacing.unit * 8,
     padding: `${theme.spacing.unit * 6}px 0`
@@ -54,7 +54,7 @@ const styles = theme => ({
   footerShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     }),
@@ -68,9 +68,9 @@ const styles = theme => ({
 const Footer = props => {
   const { classes } = props;
   const footerStyle = props.drawerOpen
-    ? [classes.footerShift, classes.footer].join(" ")
+    ? [classes.footerShift, classes.footer].join(' ')
     : props.iconSpace
-    ? [classes.footer, classes.marginLeft].join(" ")
+    ? [classes.footer, classes.marginLeft].join(' ')
     : classes.footer;
   return (
     <footer className={footerStyle}>
