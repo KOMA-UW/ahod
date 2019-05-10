@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './routes';
 import { AuthContext } from './Context';
-import { API_URL, ROUTES } from './constants';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import CssBaseline from '@material-ui/core/CssBaseline'; //normalize.css
@@ -12,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#37517e',
+      main: '#3f51b5',
       light: '#5b92d8',
       dark: '#214788',
       contrastText: '#ffffff',
