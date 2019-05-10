@@ -93,7 +93,6 @@ class CircleView extends Component {
   }
 
   render() {
-    console.log(this);
     const { classes } = this.props;
 
     const cliqueMembers = members.map((member, i) => {
@@ -121,19 +120,6 @@ class CircleView extends Component {
           <Row>
             <Col md={7}>
               <div className={classes.root}>{cliqueMembers}</div>
-            </Col>
-            <Col md={5}>
-              {this.state.text && (
-                <div>
-                  <Typography className={classes.text} variant="h5">
-                    {this.state.text}
-                  </Typography>
-                  <Divider />
-                  <Typography className={classes.text} variant="body2">
-                    {this.state.text}
-                  </Typography>
-                </div>
-              )}
             </Col>
           </Row>
         </Container>

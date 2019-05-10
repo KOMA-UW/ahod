@@ -29,7 +29,7 @@ const items = [
 ];
 const styles = theme => ({
   background: {
-    backgroundColor: 'white'
+    backgroundColor: '#f2f8fc'
   },
 
   image: {

@@ -26,8 +26,10 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 5
   },
   number: {
-    widht: 2,
-    margin: 20
+    width: 30,
+    height: 30,
+    margin: 20,
+    background: theme.palette.primary.dark
   }
 });
 class Explainers extends React.Component {

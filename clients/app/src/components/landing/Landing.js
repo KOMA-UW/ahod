@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Container } from 'react-grid-system';
+import { withStyles } from '@material-ui/core/styles';
 import Questions from './Questions';
 import History from './History';
 import Steps from './Steps';
@@ -10,14 +11,19 @@ const styles = {
   root: {
     margin: 0,
     padding: 0
+  },
+  row: {
+    paddingLeft: '0px !important',
+    paddingRight: 0
   }
 };
 
 const Landing = props => {
+  const { classes } = props;
   return (
     <div>
       <Container fluid style={styles.root}>
-        <Row>
+        <Row style={styles.row} debug>
           <Col md={12}>
             <Hero />
           </Col>
@@ -37,4 +43,4 @@ const Landing = props => {
   );
 };
 
-export default Landing;
+export default withStyles(styles)(Landing);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import fastForward from '../../img/fastforward.svg';
 import lock from '../../img/lock.svg';
 import friends from '../../img/friends.svg';
@@ -20,14 +21,29 @@ const items = [
   }
 ];
 
+const styles = theme => ({
+  background: {
+    backgroundColor: 'white'
+  },
+  iconClass: {
+    color: '#d44f27'
+  }
+});
+
 class History extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <Explainers title="Why use Clique" items={items} />
+        <Explainers
+          title="Why use Clique"
+          items={items}
+          background={classes.background}
+          color={classes.iconClass}
+        />
       </div>
     );
   }
 }
 
-export default History;
+export default withStyles(styles)(History);
