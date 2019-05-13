@@ -58,10 +58,11 @@ class Circle extends Component {
     });
     this.props.handleImageHover(text);
   };
-  handleMouseLeave = () => {
+  handleMouseLeave = text => {
     this.setState({
       mouseIn: false
     });
+    this.props.handleMouseLeave(text);
   };
   render() {
     const { classes } = this.props;
