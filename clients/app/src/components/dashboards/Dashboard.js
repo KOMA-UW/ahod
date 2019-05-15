@@ -1,6 +1,5 @@
 import React from 'react';
 import { withAuth } from '../../Context';
-import SimpleCard from '../SimpleCard';
 import { Container, Row, Col } from 'react-grid-system';
 import Groups from './Groups';
 
@@ -10,8 +9,7 @@ const Dashboard = props => {
   console.log(isAdmin);
   return (
     <div>
-      <Container>
-        {/* <SimpleCard title={`Welcome ${currentUser}`} /> */}
+      <Container fluid style={{ margin: 60 }}>
         <Row>
           <Col>
             <Groups

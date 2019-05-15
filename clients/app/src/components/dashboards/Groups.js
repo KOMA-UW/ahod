@@ -10,7 +10,9 @@ import group_4 from '../../img/group_4.jpg';
 
 const styles = theme => ({
   root: {
-    marginTop: 40
+    marginTop: 40,
+
+    background: 'purple'
   },
   card: {
     margin: 20
@@ -55,7 +57,7 @@ const groups = [
 const Groups = props => {
   const { classes, isAdmin } = props;
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} fluid>
       <Row>
         {groups.map((group, index) => (
           <Col key={index} sm={4} style={{ marginBottom: 25 }}>

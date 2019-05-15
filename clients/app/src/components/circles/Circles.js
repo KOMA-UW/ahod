@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Circle from './Circle';
-import classNames from 'classnames';
 import aMember from '../../img/group_1.jpg';
 import { Container, Row, Col } from 'react-grid-system';
-import { Typography, Divider } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import classNames from 'classnames';
 
 const members = [
   {
@@ -146,6 +146,7 @@ class CircleView extends Component {
           handleImageHover={this.handleHover}
           handleMouseLeave={this.handleMouseLeave}
           text={member.name}
+          className='hvr-grow'
         />
       );
       return item;
@@ -153,65 +154,63 @@ class CircleView extends Component {
 
     return (
       <div>
-        <Container>
-          <Row justify="center">
-            <Col md={8}>
-              <div className={classes.root}>
-                <div className={classes.bigCircle}>
-                  <div className={classes.circleInner}>
-                    <div className={classes.centerWrapper}>
-                      <div className={classes.center}>
-                        {this.state.userDetails ? (
-                          <p>{this.state.text}</p>
-                        ) : (
-                          <React.Fragment>
-                            <Typography
-                              variant="title"
-                              inline
-                              color="textSecondary"
-                              className={classes.titles}
-                            >
-                              Capital:
-                            </Typography>
-                            <Typography variant="body1" inline>
-                              {groupDetails.capital}
-                            </Typography>
-                            <div />
-                            <Typography
-                              variant="title"
-                              inline
-                              color="textSecondary"
-                              className={classes.titles}
-                            >
-                              Contribution:
-                            </Typography>
-                            <Typography variant="body1" inline>
-                              {groupDetails.individualMonthly}
-                            </Typography>
-                            <div />
-                            <Typography
-                              variant="title"
-                              inline
-                              color="textSecondary"
-                              className={classes.titles}
-                            >
-                              Winnings:
-                            </Typography>
-                            <Typography variant="body1" inline>
-                              {groupDetails.winnerPotential}
-                            </Typography>
-                          </React.Fragment>
-                        )}
-                      </div>
+        <Row justify="center">
+          <Col md={8}>
+            <div className={classes.root}>
+              <div className={classNames(classes.bigCircle)}>
+                <div className={classNames(classes.circleInner, 'hvr-grow')}>
+                  <div className={classes.centerWrapper}>
+                    <div className={classNames(classes.center)}>
+                      {this.state.userDetails ? (
+                        <p>{this.state.text}</p>
+                      ) : (
+                        <React.Fragment>
+                          <Typography
+                            variant="h6"
+                            inline
+                            color="textSecondary"
+                            className={classes.titles}
+                          >
+                            Capital:
+                          </Typography>
+                          <Typography variant="body1" inline>
+                            {groupDetails.capital}
+                          </Typography>
+                          <div />
+                          <Typography
+                            variant="h6"
+                            inline
+                            color="textSecondary"
+                            className={classes.titles}
+                          >
+                            Contribution:
+                          </Typography>
+                          <Typography variant="body1" inline>
+                            {groupDetails.individualMonthly}
+                          </Typography>
+                          <div />
+                          <Typography
+                            variant="h6"
+                            inline
+                            color="textSecondary"
+                            className={classes.titles}
+                          >
+                            Winnings:
+                          </Typography>
+                          <Typography variant="body1" inline>
+                            {groupDetails.winnerPotential}
+                          </Typography>
+                        </React.Fragment>
+                      )}
                     </div>
                   </div>
-
-                  {cliqueMembers}
                 </div>
+
+                {cliqueMembers}
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }

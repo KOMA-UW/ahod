@@ -15,7 +15,7 @@ const styles = {
     height: 60,
 
     borderRadius: 100,
-    border: '2px solid #2d3644',
+    border: '1px solid #7d7272a6',
     '&::after': {
       content: `''`,
       position: 'absolute',
@@ -72,7 +72,7 @@ class Circle extends Component {
       <div>
         <Avatar
           src={this.props.image}
-          className={classNames(classes.circ, mouseClass)}
+          className={classNames(classes.circ, mouseClass, 'hvr-grow')}
           style={{ top: this.props.top, left: this.props.left }}
           data={this.props.text}
           onMouseEnter={() => this.handleMouseEnter(text)}

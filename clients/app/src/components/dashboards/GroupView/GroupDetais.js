@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import Icon from "@material-ui/core/Icon";
-import classNames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import { Container, Row, Col } from "react-grid-system";
-import Divider from "@material-ui/core/Divider";
+import React, { Component } from 'react';
+import Icon from '@material-ui/core/Icon';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { Container, Row, Col } from 'react-grid-system';
+import SimpleCard from '../../SimpleCard';
 const styles = theme => ({
   root: {},
   //   container: {
   //     display: "flex"
   //   },
   icon: {
-    color: "#000"
+    color: '#000'
   },
   typography: {
     marginBottom: 20
@@ -25,7 +25,7 @@ class GroupDetais extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <div>
+        <SimpleCard title="Group Details">
           <Container>
             <Row>
               <Col sm={12}>
@@ -35,7 +35,7 @@ class GroupDetais extends Component {
                   className={classes.typography}
                 >
                   <Icon
-                    className={classNames(classes.icon, "fas fa-dollar-sign")}
+                    className={classNames(classes.icon, 'fas fa-dollar-sign')}
                     color="action"
                   />
                   Capital: <span className={classes.text}> $10,000</span>
@@ -47,7 +47,7 @@ class GroupDetais extends Component {
                   className={classes.typography}
                 >
                   <Icon
-                    className={classNames(classes.icon, "fas fa-dollar-sign")}
+                    className={classNames(classes.icon, 'fas fa-dollar-sign')}
                     color="action"
                   />
                   Individual Monthly Contribution:
@@ -60,17 +60,17 @@ class GroupDetais extends Component {
                   className={classes.typography}
                 >
                   <Icon
-                    className={classNames(classes.icon, "fas fa-dollar-sign")}
+                    className={classNames(classes.icon, 'fas fa-dollar-sign')}
                     color="action"
                   />
-                  Winner Potential:{" "}
+                  Winner Potential:{' '}
                   <span className={classes.text}> $10,000 / month</span>
                 </Typography>
               </Col>
               <Col sm={4} />
             </Row>
           </Container>
-        </div>
+        </SimpleCard>
       </div>
     );
   }
