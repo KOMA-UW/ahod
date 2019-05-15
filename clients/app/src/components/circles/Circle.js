@@ -11,11 +11,11 @@ const styles = {
   },
   circ: {
     position: 'absolute',
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
 
     borderRadius: 100,
-    border: '1px solid #7d7272a6',
+    // border: '1px solid #7d7272a6',
     '&::after': {
       content: `''`,
       position: 'absolute',
@@ -72,19 +72,13 @@ class Circle extends Component {
       <div>
         <Avatar
           src={this.props.image}
-          className={classNames(classes.circ, mouseClass, 'hvr-grow')}
+          className={classNames(classes.circ, mouseClass, 'hvr-bounce-in', 'pulse')}
           style={{ top: this.props.top, left: this.props.left }}
           data={this.props.text}
           onMouseEnter={() => this.handleMouseEnter(text)}
           onMouseLeave={this.handleMouseLeave}
         />
 
-        {/* <Typography
-          className={classes.month}
-          style={{ top: this.props.top, left: this.props.left }}
-        >
-          Month
-        </Typography> */}
       </div>
     );
   }
