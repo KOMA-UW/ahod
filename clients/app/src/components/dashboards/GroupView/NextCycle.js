@@ -6,13 +6,18 @@ import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {},
+  iconContainer: {
+    width: 80,
+    height: 80,
+    background: theme.palette.secondary.light, //'#d2d2d29e',
+
+    borderRadius: 10
+  },
   icon: {
-    width: 100,
-    height: 100,
-    background: '#d2d2d29e',
+    width: 80,
+    height: 80,
     padding: 5,
-    borderRadius: 10,
-    color: theme.palette.primary.dark
+    color: '#fff'
   },
   text: {
     color: '#fff'
@@ -26,7 +31,9 @@ class NextCycle extends Component {
       <div>
         <Row>
           <Col sm={3}>
-            <DateRange className={classes.icon} />
+            <div className={classes.iconContainer}>
+              <DateRange className={classes.icon} />
+            </div>
           </Col>
           <Col sm={9}>
             <Typography variant="h4" className={classes.text}>

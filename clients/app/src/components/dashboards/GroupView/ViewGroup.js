@@ -44,14 +44,14 @@ class ViewGroup extends Component {
         <Row>
           <Col md={8}>
             <TopButtons />
-            <CardHeading title="Some title" subTitle="Some subTitle" />
+            <CardHeading title="Next Draw" subTitle="" />
             <CardPairs />
-            <CardHeading title="Your Clique" subTitle="Some subTitle" />
+            <CardHeading title="Your Clique" subTitle="" />
             <YourClique />
-            <CardHeading title="Group Details" subTitle="Some subTitle" />
-            <GroupDetais />
-            <CardHeading title="Group Members" subTitle="Some subTitle" />
-            <MembersList />
+            {/* <CardHeading title="Group Details" subTitle="" />
+            <GroupDetais /> */}
+            {/* <CardHeading title="Group Members" subTitle="" />
+            <MembersList /> */}
           </Col>
 
           <Col md={4}>

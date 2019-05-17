@@ -27,7 +27,7 @@ class Member extends Component {
             <Avatar style={styles.avatar} src={this.props.authorImg} />
           </Col>
           <Col sm={6} style={styles.padding}>
-            <Typography variant="h5">{this.props.author}</Typography>
+            <Typography variant="h6">{this.props.author}</Typography>
             <Typography variant="body2">{this.props.description}</Typography>
           </Col>
 

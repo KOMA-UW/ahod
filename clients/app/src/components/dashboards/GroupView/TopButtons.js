@@ -21,12 +21,12 @@ class TopButtons extends Component {
           Make Payment
         </Button>
 
-        <Button className={classes.button} variant="contained" color="primary">
-          Make Payment
+        <Button className={classes.button} variant="contained" color="secondary">
+          Make a Plea
         </Button>
 
         <Button className={classes.button} variant="contained">
-          Make Payment
+         Post Message
         </Button>
       </div>
     );

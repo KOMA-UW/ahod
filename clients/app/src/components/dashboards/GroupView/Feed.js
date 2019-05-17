@@ -12,7 +12,7 @@ const styles = {
     height: 60
   },
   padding: {
-    padding: '20px 40px',
+    padding: '10px 25px',
     margin: 0
   }
 };
@@ -25,7 +25,7 @@ class Feed extends Component {
             <Avatar style={styles.avatar} src={this.props.authorImg} />
           </Col>
           <Col sm={8} style={styles.padding}>
-            <Typography variant="h5">{this.props.author}</Typography>
+            <Typography variant="h6">{this.props.author}</Typography>
             <Typography variant="body1">{this.props.time}</Typography>
             <Typography variant="body2">{this.props.description}</Typography>
           </Col>

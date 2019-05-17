@@ -6,7 +6,6 @@ import { Container, Row, Col } from 'react-grid-system';
 import { Typography } from '@material-ui/core';
 import classNames from 'classnames';
 
-
 let members = [
   {
     name: 'John',
@@ -184,13 +183,13 @@ const styles = theme => ({
   },
   titles: {
     padding: 5
-  },
+  }
 });
 
 const mainCircle = 360 / members.length;
-const radius = circleWidth * 1.5 / 2;
+const radius = (circleWidth * 1.5) / 2;
 const offsetToParentCenter = circleWidth / 2.0;
-const offsetToChildren = circleWidth * 1.5 / members.length;
+const offsetToChildren = (circleWidth * 1.5) / members.length;
 
 const totalOffset = offsetToParentCenter - offsetToChildren;
 class CircleView extends Component {
@@ -219,7 +218,7 @@ class CircleView extends Component {
   }
 
   render() {
-    console.log("members", members.length)
+    console.log('members', members.length);
     const { classes } = this.props;
 
     const cliqueMembers = members.map((member, i) => {
@@ -237,7 +236,7 @@ class CircleView extends Component {
           handleImageHover={this.handleHover}
           handleMouseLeave={this.handleMouseLeave}
           text={member.name}
-          className='hvr-bounce-in'
+          className="hvr-bounce-in"
         />
       );
       return item;
@@ -249,11 +248,30 @@ class CircleView extends Component {
           <Col md={8}>
             <div className={classes.root}>
               <div className={classNames(classes.bigCircle)}>
-                <div className={classNames(classes.circleInner, 'hvr-bounce-in', 'pulse')}>
+                <div
+                  className={classNames(
+                    classes.circleInner,
+                    'hvr-bounce-in',
+                    'pulse'
+                  )}
+                >
                   <div className={classes.centerWrapper}>
                     <div className={classNames(classes.center)}>
                       {this.state.userDetails ? (
-                        <p>{this.state.text}</p>
+                        <React.Fragment>
+                          <Typography
+                            variant="h6"
+                            inline
+                            color="textSecondary"
+                            className={classes.titles}
+                          >
+                            {this.state.text}
+                          </Typography>
+
+                          <Typography variant="body1" inline>
+                            : Paid
+                          </Typography>
+                        </React.Fragment>
                       ) : (
                         <React.Fragment>
                           <Typography

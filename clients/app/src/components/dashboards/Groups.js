@@ -10,9 +10,7 @@ import group_4 from '../../img/group_4.jpg';
 
 const styles = theme => ({
   root: {
-    marginTop: 40,
-
-    background: 'purple'
+    marginTop: 40
   },
   card: {
     margin: 20
