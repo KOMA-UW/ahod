@@ -130,7 +130,7 @@ class SideNav extends Component {
             </Row>
             <Row>
               <IconButton onClick={this.props.handleDrawerClose}>
-                {/* <ChevronLeftIcon /> */}
+                <ChevronLeftIcon />
               </IconButton>
             </Row>
           </Container>

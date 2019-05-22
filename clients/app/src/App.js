@@ -161,7 +161,7 @@ class App extends Component {
           >
             <div className={classes.content}>
               <Router>
-                <Routes />
+                <Routes drawerOpen={drawerOpen} />
               </Router>
             </div>
             <Footer />
