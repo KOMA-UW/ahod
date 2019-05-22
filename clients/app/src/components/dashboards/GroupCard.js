@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Col } from 'react-grid-system';
+import { Container, Row, Col } from 'react-grid-system';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,8 +10,31 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { Paper, Typography, Divider } from '@material-ui/core';
+import VerticallDivider from '../../VerticallDivider';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import GroupIcon from '@material-ui/icons/Group';
+import AttachMoney from '@material-ui/icons/AttachMoney';
+import PeopleOutline from '@material-ui/icons/PeopleOutline';
+import AccessTime from '@material-ui/icons/AccessTime';
+import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
+  root: {
+    // padding: 15
+    color: theme.palette.grey.text
+  },
+  text: {
+    color: theme.palette.grey.text
+  },
+  padding: {
+    padding: 8
+  },
+  paddingTopBottom: {
+    paddingTop: 25,
+    paddingBottom: 25
+  },
   card: {
     // maxWidth: 400,
     paddingBottom: 10
@@ -27,7 +50,44 @@ const styles = theme => ({
     marginLeft: 'auto'
   },
   avatar: {
-    //backgroundColor: red[500]
+    width: 100,
+    height: 100,
+    marginBottom: 10
+  },
+  members: {
+    display: 'flex',
+    paddingLeft: 15,
+    paddingRight: 15
+  },
+  member: {
+    padding: 5
+  },
+  button: {
+    margin: theme.spacing.unit,
+    color: theme.palette.grey.text
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  iconWithText: {
+    padding: 15
+  },
+  noPadding: {
+    paddingLeft: 0,
+    paddingRight: 0
+  },
+  flexContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly'
+  },
+  borderVertical: {
+    height: 'inherit',
+    width: 1,
+    borderRight: '1px solid rgba(0, 0, 0, 0.12)'
+  },
+  user: {
+    paddingTop: 10,
+    paddingBottom: 10
   }
 });
 
@@ -42,52 +102,91 @@ class GroupCard extends React.Component {
     const { classes, isAdmin } = this.props;
 
     return (
-      <Col sm={10}>
-        <Card className={classes.card}>
-          <CardHeader
-            avatar={
-              <Avatar
-                aria-label="Administered By"
-                className={classes.avatar}
-                alt=""
-                src={this.props.adminAvatar}
-              >
-                R
-              </Avatar>
-            }
-            title={this.props.title}
-            subheader={this.props.dateCreated}
-          />
-          <CardMedia
-            className={classes.media}
-            image={this.props.image}
-            title={this.props.imageTitle}
-          />
-          <CardContent>{this.props.children}</CardContent>
-          <CardActions className={classes.actions} disableActionSpacing>
+      <Paper className={classes.root} elevation={0}>
+        <div className={classes.flexContainer}>
+          <div className={classes.paddingTopBottom}>
+            <Avatar className={classes.avatar} src={this.props.adminAvatar} />
+            <div className={classes.user}>
+              <Typography variant="body1">Name of Admin</Typography>
+              <Typography variant="body2" className={classes.text}>
+                Name of Admin
+              </Typography>
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div className={classes.flexContainer}>
+          <div className={classes.iconWithText}>
+            <Icon>access_time</Icon>
+            <Typography variant="body2" className={classes.text}>
+              12 months
+            </Typography>
+          </div>
+          <div className={classes.borderVertical} />
+
+          <div className={classes.iconWithText}>
+            <Icon>attach_money</Icon>
+            <Typography variant="body2" className={classes.text}>
+              $100/mon
+            </Typography>
+          </div>
+
+          <div className={classes.borderVertical} />
+
+          <div className={classes.iconWithText}>
+            <Icon>people_outline</Icon>
+            <Typography variant="body2" className={classes.text}>
+              15 members
+            </Typography>
+          </div>
+        </div>
+        <Divider />
+        <div className={classes.padding}>
+          <div className={classes.flexContainer}>
+            {[1, 2, 3, 4].map((a, b) => {
+              return (
+                <div className={classes.member}>
+                  <Avatar src={this.props.adminAvatar} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <Divider />
+
+        <div className={classes.flexContainer}>
+          <div className={classes.padding}>
             <Button
               color="primary"
+              className={classes.button}
               component={Link}
               to={`/groups:${this.props.id}`}
               onClick={() => this.props.handleEdit(false)}
             >
+              <GroupIcon className={classes.leftIcon} />
               View
             </Button>
-            {isAdmin && (
-              <Button
-                variant="outlined"
-                color="secondary"
-                className={classes.btnRight}
-                component={Link}
-                to={`/groups:${this.props.id}`}
-                onClick={() => this.props.handleEdit(true)}
-              >
-                Edit
-              </Button>
-            )}
-          </CardActions>
-        </Card>
-      </Col>
+          </div>
+
+          <div className={classes.borderVertical} />
+          <div className={classes.padding}>
+            <div className={classes.padding}>
+              {isAdmin && (
+                <Button
+                  color="primary"
+                  className={classes.button}
+                  component={Link}
+                  to={`/groups:${this.props.id}`}
+                  onClick={() => this.props.handleEdit(true)}
+                >
+                  <EditIcon className={classes.leftIcon} />
+                  Edit
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </Paper>
     );
   }
 }

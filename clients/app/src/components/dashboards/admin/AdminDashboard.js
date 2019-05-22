@@ -15,7 +15,7 @@ class AdminDashboard extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Container className={classes.root}>
+        <Container className={classes.root} fluid>
           <Row align="center">
             <Col sm={8}>
               <CardHeading title="Admin Dashboard" />

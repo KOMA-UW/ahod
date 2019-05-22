@@ -1,28 +1,34 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { withAuth } from '../../Context';
 import { Container, Row, Col } from 'react-grid-system';
 import Groups from './Groups';
 
-const Dashboard = props => {
-  const { isAdmin, isEdit, currentUser } = props;
-  const { firstName, lastName } = currentUser | '';
-  console.log(isAdmin);
+const styles = theme => ({
+  root: {
+    marginLeft: '100px !important',
+    marginRight: '100px !important',
+    paddingLeft: '100px !important'
+  }
+});
 
-  return (
-    <div>
-      <Container fluid align="center">
-        <Row>
-          <Col>
-            <Groups
-              isAdmin={true}
-              isEdit={true}
-              handleEdit={props.handleEdit}
-            />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
-};
+class Dashboard extends React.Component {
+  render() {
+    const { isAdmin, isEdit, currentUser, classes } = this.props;
+    const { firstName, lastName } = currentUser | '';
 
-export default Dashboard;
+    return (
+      <div>
+        <Container fluid className={classes.root}>
+          <Groups
+            isAdmin={isAdmin}
+            isEdit={isEdit}
+            handleEdit={this.props.handleEdit}
+          />
+        </Container>
+      </div>
+    );
+  }
+}
+
+export default withStyles(styles)(Dashboard);

@@ -9,7 +9,9 @@ class CardHeading extends Component {
       <div>
         <Row style={{ marginTop: 25 }}>
           <Col sm={12}>
-            <Typography variant="h6">{title}</Typography>
+            <Typography alignLeft variant="h6">
+              {title}
+            </Typography>
             <Typography variant="body1" style={{ color: '#a6a5a5' }}>
               {subTitle}
             </Typography>
