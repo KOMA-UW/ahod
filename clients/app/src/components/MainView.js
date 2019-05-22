@@ -33,7 +33,6 @@ class MainView extends React.Component {
             handleEdit={this.props.handleEdit}
           />
         )}
-        )
       </div>
     );
   }

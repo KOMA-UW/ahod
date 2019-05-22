@@ -30,7 +30,7 @@ class CurrentUser extends Component {
                 src="https://material-ui.com/static/images/avatar/2.jpg"
                 className={classes.avatar}
               />
-              <Typography variant="title" className={classes.text}>
+              <Typography variant="h5" className={classes.text}>
                 Username
               </Typography>
             </Col>

@@ -10,7 +10,7 @@ const Dashboard = props => {
 
   return (
     <div>
-      <Container fluid style={{ margin: 60 }}>
+      <Container fluid align="center">
         <Row>
           <Col>
             <Groups

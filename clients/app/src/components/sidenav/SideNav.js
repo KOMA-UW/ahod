@@ -49,10 +49,20 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: '0 8px',
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
+    color: '#8ca4b0'
+  },
+  toolbarIconsOnly: {
+    marginTop: 100
   },
   logo: {
-    marginTop: 40
+    marginTop: 10
+  },
+  icon: {
+    color: '#8ca4b0'
+  },
+  text: {
+    color: '#8ca4b0 !important'
   }
 });
 
@@ -116,27 +126,31 @@ class SideNav extends Component {
         }}
         open={this.props.drawerOpen}
       >
-        <div className={classes.toolbarIcon}>
-          <Container className={classes.logo}>
-            <Row align="center">
-              <Col align="center">
-                <Logo />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <CurrentUser />
-              </Col>
-            </Row>
-            <Row>
-              <IconButton onClick={this.props.handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </Row>
-          </Container>
-        </div>
+        {this.props.drawerOpen && (
+          <div>
+            <Container className={classes.logo}>
+              <Row justify="center" align="center">
+                <Col sm={8} align="center">
+                  <Logo />
+                </Col>
+                <Col sm={4}>
+                  <IconButton onClick={this.props.handleDrawerClose}>
+                    <ChevronLeftIcon />
+                  </IconButton>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <CurrentUser />
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        )}
 
-        <List>
+        <List
+          className={!this.props.drawerOpen ? classes.toolbarIconsOnly : ''}
+        >
           {isAdmin
             ? icons.map((icon, index) => {
                 return (
@@ -152,7 +166,10 @@ class SideNav extends Component {
                         color="action"
                       />
                     </ListItemIcon>
-                    <ListItemText primary={icon.primary} />
+                    <ListItemText
+                      className={classes.text}
+                      primary={icon.primary}
+                    />
                   </ListItem>
                 );
               })
@@ -171,7 +188,10 @@ class SideNav extends Component {
                           color="action"
                         />
                       </ListItemIcon>
-                      <ListItemText primary={icon.primary} />
+                      <ListItemText
+                        primary={icon.primary}
+                        className={classes.text}
+                      />
                     </ListItem>
                   )
                 );

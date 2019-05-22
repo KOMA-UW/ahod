@@ -29,7 +29,7 @@ const styles = theme => ({
     marginLeft: 240
   },
   marginNone: {
-    margin: 0
+    margin: 73
   }
 });
 class Routes extends Component {
