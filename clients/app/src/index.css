@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #fafafa !important; /*#e7e7e7 !important;*/
+  background: #f3f5f7 !important; /*#fafafa !important; /*#e7e7e7 !important;*/
   color: #2c2c2c;
   line-height: 1.5;
 }
@@ -73,7 +73,6 @@ h5 {
 }
 /* courtesy of https://codepen.io/olam/pen/zcqea */
 .pulse {
-
   box-shadow: 0 0 0 0 rgba(32, 70, 136, 0.61);
   animation: pulse 2s infinite;
 }
@@ -86,23 +85,23 @@ h5 {
     -webkit-box-shadow: 0 0 0 0 rgba(32, 70, 136, 0.6);
   }
   70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
   }
   100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }
 @keyframes pulse {
   0% {
     -moz-box-shadow: 0 0 0 0 rgba(32, 70, 136, 0.6);
-    box-shadow:0 0 0 0 rgba(32, 70, 136, 0.6);
+    box-shadow: 0 0 0 0 rgba(32, 70, 136, 0.6);
   }
   70% {
-      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
   }
   100% {
-      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }

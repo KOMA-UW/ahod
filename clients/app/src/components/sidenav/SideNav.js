@@ -4,7 +4,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { withAuth } from '../Context';
+import { withAuth } from '../../Context';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -13,7 +13,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import Logo from './Logo';
+import Logo from '../Logo';
+import CurrentUser from './CurrentUser';
+import { Container, Row, Col } from 'react-grid-system';
 
 const drawerWidth = 240;
 
@@ -48,6 +50,9 @@ const styles = theme => ({
     justifyContent: 'center',
     padding: '0 8px',
     ...theme.mixins.toolbar
+  },
+  logo: {
+    marginTop: 40
   }
 });
 
@@ -97,6 +102,7 @@ class SideNav extends Component {
 
     return (
       <Drawer
+        elevation={20}
         variant="permanent"
         className={classNames(classes.drawer, {
           [classes.drawerOpen]: this.props.drawerOpen,
@@ -111,12 +117,24 @@ class SideNav extends Component {
         open={this.props.drawerOpen}
       >
         <div className={classes.toolbarIcon}>
-          <Logo />
-          <IconButton onClick={this.props.handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
+          <Container className={classes.logo}>
+            <Row align="center">
+              <Col align="center">
+                <Logo />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <CurrentUser />
+              </Col>
+            </Row>
+            <Row>
+              <IconButton onClick={this.props.handleDrawerClose}>
+                {/* <ChevronLeftIcon /> */}
+              </IconButton>
+            </Row>
+          </Container>
         </div>
-        <Divider />
 
         <List>
           {isAdmin

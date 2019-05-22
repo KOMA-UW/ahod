@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import SimpleCard from '../../SimpleCard';
 import Member from './Member';
 
@@ -46,28 +47,35 @@ const members = [
     authorImg: 'https://v3-0-0.material-ui.com/static/images/uxceo-128.jpg'
   }
 ];
+
+const styles = theme => ({
+  // card: {
+  //   padding: 25
+  // }
+});
+
 class MembersList extends Component {
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <SimpleCard noPadding={true}>
-          {members.map((member, index) => {
-            return (
+        {members.map((member, index) => {
+          return (
+            <SimpleCard key={index}>
               <Member
                 key={index}
                 elemNum={index < members.length - 1}
                 title={member.title}
-                description={member.description}
                 author={member.author}
                 time={member.time}
                 authorImg={member.authorImg}
               />
-            );
-          })}
-        </SimpleCard>
+            </SimpleCard>
+          );
+        })}
       </div>
     );
   }
 }
 
-export default MembersList;
+export default withStyles(styles)(MembersList);

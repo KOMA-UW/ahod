@@ -18,9 +18,9 @@ const theme = createMuiTheme({
       text: '#fff'
     },
     secondary: {
-      main: '#a7503a', //'#ffa820'
-      dark: '#732413', //#c67900',//
-      light: '#c5593c',
+      main: '#fe782d', //'#a7503a', //'#ffa820'
+      dark: '#f19104', //#c67900',//
+      light: '#ff9800',
       contrastText: '#ffffff',
       text: '#fff'
     },
@@ -30,6 +30,19 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: '25px'
+      },
+      contained: {
+        boxShadow: 'none'
+      }
+    },
+    MuiTypography: {
+      h6: {}
+    }
   }
 });
 
@@ -54,7 +67,7 @@ class App extends Component {
       showLoginButton: true,
       groupJoined: false,
       iconSpace: false,
-      drawerOpen: false
+      drawerOpen: true
     };
   }
 

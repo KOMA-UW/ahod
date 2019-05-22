@@ -5,11 +5,11 @@ import { Container, Row, Col } from 'react-grid-system';
 import GroupDetais from './GroupDetais';
 import { Typography, Divider } from '@material-ui/core';
 import TopButtons from './TopButtons';
-import CardHeading from './CardHeading';
+import CardHeading from '../CardHeading';
 import CardPairs from './CardPairs';
 import YourClique from './YourClique';
 import FeedList from './FeedList';
-import MembersList from './MembersList';
+import MembersList from '../admin/MembersList';
 import SmallCalendar from './SmallCalendar';
 import Plea from './Plea';
 

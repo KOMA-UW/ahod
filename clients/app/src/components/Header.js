@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
-import SideNav from './SideNav';
+import SideNav from './sidenav/SideNav';
 import Logo from './Logo';
 
 const drawerWidth = 240;

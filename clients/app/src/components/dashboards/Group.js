@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-grid-system';
-import MembersTable from './Members';
+import AdminDashoard from './admin/AdminDashboard';
 import ViewGroup from './GroupView/ViewGroup';
 import { withAuth } from '../../Context';
 
@@ -10,7 +10,7 @@ class GroupView extends React.Component {
 
     return (
       <Row style={{ margin: 80 }}>
-        <Col>{this.props.isEdit ? <MembersTable /> : <ViewGroup />}</Col>
+        <Col>{this.props.isEdit ? <AdminDashoard /> : <ViewGroup />}</Col>
       </Row>
     );
   }

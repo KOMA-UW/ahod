@@ -7,14 +7,15 @@ const Dashboard = props => {
   const { isAdmin, isEdit, currentUser } = props;
   const { firstName, lastName } = currentUser | '';
   console.log(isAdmin);
+
   return (
     <div>
       <Container fluid style={{ margin: 60 }}>
         <Row>
           <Col>
             <Groups
-              isAdmin={isAdmin}
-              isEdit={isEdit}
+              isAdmin={true}
+              isEdit={true}
               handleEdit={props.handleEdit}
             />
           </Col>

@@ -15,6 +15,7 @@ import Dashboard from './components/dashboards/Dashboard';
 import Calendar from './components/dashboards/calendar/Calendar';
 import Profile from './components/profile/Profile';
 import PrivateRoute from './PrivateRoute';
+import AdminDashboard from './components/dashboards/admin/AdminDashboard';
 
 class Routes extends Component {
   render() {
@@ -22,7 +23,7 @@ class Routes extends Component {
       <React.Fragment>
         <Header />
         <Switch>
-          <Route exact path={ROUTES.home} component={MainView} />
+          <Route exact path={ROUTES.home} component={AdminDashboard} />
           <Route path={ROUTES.login} component={LoginView} />
           <Route path={ROUTES.signUp} component={SignUpView} />
           <PrivateRoute path={ROUTES.onboarding} component={OnBoardingView} />

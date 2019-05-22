@@ -5,18 +5,20 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
-    marginBottom: 20,
-    marginTop: 20
+    marginBottom: 10,
+    marginTop: 10
   },
   card: {
     margin: '0 0',
-    // padding: 20,
+    padding: 15,
     borderRadius: 5,
-    boxShadow:
-      '0 1px 1px 0 rgba(60,64,67,.02), 0 1px 3px 1px rgba(60,64,67,.1)',
+
+    // boxShadow:
+    //   '0 1px 1px 0 rgba(60,64,67,.02), 0 1px 3px 1px rgba(60,64,67,.1)',
     border: 0
   },
   title: {
@@ -27,11 +29,11 @@ const styles = theme => ({
     marginBottom: 12
   },
   padding: {
-    padding: 20
+    padding: 15
   },
   noPadding: {
     padding: 0,
-    paddingBottom: '0px !important'
+    paddingBottom: 0
   },
   colored: {
     background: theme.palette.primary.dark,
@@ -44,27 +46,21 @@ function SimpleCard(props) {
 
   return (
     <div className={classes.root}>
-      <Card
+      <Paper
         className={classNames(classes.card, noPadding ? '' : classes.padding)}
         elevation={0}
-        raised
       >
-        <CardContent
-          className={noPadding ? classes.noPadding : classes.padding}
-        >
-          {title && (
-            <Typography
-              variant="h5"
-              component="h2"
-              color={props.titleColor ? props.titleColor : 'primary'}
-              style={{ marginBottom: 20, color: props.color }}
-            >
-              {props.title}
-            </Typography>
-          )}
-          {props.children}
-        </CardContent>
-      </Card>
+        {title && (
+          <Typography
+            variant="h5"
+            color={props.titleColor ? props.titleColor : 'primary'}
+            style={{ marginBottom: 20, color: props.color }}
+          >
+            {props.title}
+          </Typography>
+        )}
+        {props.children}
+      </Paper>
     </div>
   );
 }
