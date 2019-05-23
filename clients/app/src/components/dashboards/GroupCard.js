@@ -56,14 +56,22 @@ const styles = theme => ({
   },
   members: {
     display: 'flex',
+    flexDirection: 'row-reverse',
+    padding: 15,
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   member: {
-    padding: 5
+    padding: 0,
+    marginLeft: -15,
+    marginRight: 10
+    // position: 'absolute'
   },
   button: {
     margin: theme.spacing.unit,
+    padding: '8px 15px',
     color: theme.palette.grey.text
   },
   leftIcon: {
@@ -78,7 +86,8 @@ const styles = theme => ({
   },
   flexContainer: {
     display: 'flex',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    textAlign: 'center'
   },
   borderVertical: {
     height: 'inherit',
@@ -88,6 +97,9 @@ const styles = theme => ({
   user: {
     paddingTop: 10,
     paddingBottom: 10
+  },
+  participants: {
+    color: theme.palette.grey.text
   }
 });
 
@@ -141,50 +153,48 @@ class GroupCard extends React.Component {
           </div>
         </div>
         <Divider />
-        <div className={classes.padding}>
-          <div className={classes.flexContainer}>
-            {[1, 2, 3, 4].map((a, b) => {
-              return (
-                <div className={classes.member}>
-                  <Avatar src={this.props.adminAvatar} />
-                </div>
-              );
-            })}
+        <div className={classes.members}>
+          <div className={classes.participants}>
+            <Typography className={classes.participants}>
+              +12 Participants
+            </Typography>
           </div>
+          {[1, 2, 3, 4].map((a, b) => {
+            return (
+              <div key={b} className={classes.member}>
+                <Avatar className="shadow" src={this.props.adminAvatar} />
+              </div>
+            );
+          })}
         </div>
         <Divider />
 
         <div className={classes.flexContainer}>
-          <div className={classes.padding}>
+          <Button
+            color="primary"
+            className={classes.button}
+            component={Link}
+            to={`/groups:${this.props.id}`}
+            onClick={() => this.props.handleEdit(false)}
+          >
+            <GroupIcon className={classes.leftIcon} />
+            View
+          </Button>
+
+          <div className={classes.borderVertical} />
+
+          {isAdmin && (
             <Button
               color="primary"
               className={classes.button}
               component={Link}
               to={`/groups:${this.props.id}`}
-              onClick={() => this.props.handleEdit(false)}
+              onClick={() => this.props.handleEdit(true)}
             >
-              <GroupIcon className={classes.leftIcon} />
-              View
+              <EditIcon className={classes.leftIcon} />
+              Edit
             </Button>
-          </div>
-
-          <div className={classes.borderVertical} />
-          <div className={classes.padding}>
-            <div className={classes.padding}>
-              {isAdmin && (
-                <Button
-                  color="primary"
-                  className={classes.button}
-                  component={Link}
-                  to={`/groups:${this.props.id}`}
-                  onClick={() => this.props.handleEdit(true)}
-                >
-                  <EditIcon className={classes.leftIcon} />
-                  Edit
-                </Button>
-              )}
-            </div>
-          </div>
+          )}
         </div>
       </Paper>
     );

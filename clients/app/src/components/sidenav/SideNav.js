@@ -59,7 +59,7 @@ const styles = theme => ({
     marginTop: 10
   },
   icon: {
-    color: '#8ca4b0'
+    color: theme.palette.grey.text
   },
   text: {
     color: '#8ca4b0 !important'
@@ -68,35 +68,25 @@ const styles = theme => ({
 
 const icons = [
   {
-    name: 'fas fa-home',
-    primary: 'Admin Dashboard',
-    link: '/',
-    protected: true
-  },
-  {
-    name: 'fas fa-users',
+    icon: 'group',
     primary: 'My Cliques',
-    link: '/',
-    protected: false
+    link: '/'
   },
 
   {
-    name: 'fas fa-money-bill-alt',
+    icon: 'payment',
     primary: 'Make A Payment',
-    link: '/payment',
-    protected: false
+    link: '/payment'
   },
   {
-    name: 'fas fa-calendar-alt',
+    icon: 'date_range',
     primary: 'Calendar',
-    link: '/calendar',
-    protected: false
+    link: '/calendar'
   },
   {
-    name: 'fas fa-user-circle',
+    icon: 'person',
     primary: 'My Profile',
-    link: '/profile',
-    protected: false
+    link: '/profile'
   }
 ];
 
@@ -151,51 +141,21 @@ class SideNav extends Component {
         <List
           className={!this.props.drawerOpen ? classes.toolbarIconsOnly : ''}
         >
-          {isAdmin
-            ? icons.map((icon, index) => {
-                return (
-                  <ListItem
-                    button
-                    key={icon.name}
-                    component={Link}
-                    to={icon.link}
-                  >
-                    <ListItemIcon>
-                      <Icon
-                        className={classNames(classes.icon, icon.name)}
-                        color="action"
-                      />
-                    </ListItemIcon>
-                    <ListItemText
-                      className={classes.text}
-                      primary={icon.primary}
-                    />
-                  </ListItem>
-                );
-              })
-            : icons.map((icon, index) => {
-                return (
-                  !icon.protected && (
-                    <ListItem
-                      button
-                      key={icon.name}
-                      component={Link}
-                      to={icon.link}
-                    >
-                      <ListItemIcon>
-                        <Icon
-                          className={classNames(classes.icon, icon.name)}
-                          color="action"
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={icon.primary}
-                        className={classes.text}
-                      />
-                    </ListItem>
-                  )
-                );
-              })}
+          {icons.map((item, index) => {
+            return (
+              <ListItem button key={item.name} component={Link} to={item.link}>
+                <ListItemIcon className={classes.icon}>
+                  <Icon>{item.icon}</Icon>
+                </ListItemIcon>
+                <ListItemText
+                  className={classes.icon}
+                  primary={item.primary}
+                  color="textSecondary"
+                  disableTypography={true}
+                />
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
     );

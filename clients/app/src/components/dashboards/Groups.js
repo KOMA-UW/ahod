@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'react-grid-system';
 
 import CardHeading from './CardHeading';
 import GroupsList from './GroupsList';
+import AddMemberDialog from '../members/AddMember';
 
 const styles = theme => ({
   root: {
@@ -32,26 +33,50 @@ const styles = theme => ({
   }
 });
 
-const Groups = props => {
-  const { classes, isAdmin } = props;
-  return (
-    <React.Fragment>
-      <Row align="center" className={classes.root}>
-        <Col sm={8}>
-          <CardHeading title="Your Cliques" />
-        </Col>
+class Groups extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
 
-        <Col sm={4} align="right">
-          <Button variant="contained" color="secondary">
-            Add Member
-          </Button>
-        </Col>
-      </Row>
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
 
-      <GroupsList isAdmin={isAdmin} handleEdit={props.handleEdit} />
-    </React.Fragment>
-  );
-};
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+  render() {
+    const { classes, isAdmin } = this.props;
+    return (
+      <React.Fragment>
+        <Row align="center" className={classes.root}>
+          <Col sm={8}>
+            <CardHeading title="Your Cliques" />
+          </Col>
+
+          <Col sm={4} align="right">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.handleClickOpen}
+            >
+              Add Member
+            </Button>
+          </Col>
+        </Row>
+
+        <GroupsList isAdmin={isAdmin} handleEdit={this.props.handleEdit} />
+        <AddMemberDialog
+          open={this.state.open}
+          handleClose={this.handleClose}
+        />
+      </React.Fragment>
+    );
+  }
+}
 
 Groups.propTypes = {
   classes: PropTypes.object.isRequired

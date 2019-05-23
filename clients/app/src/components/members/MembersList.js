@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import SimpleCard from '../../SimpleCard';
+import SimpleCard from '../SimpleCard';
 import Member from './Member';
 
 const members = [

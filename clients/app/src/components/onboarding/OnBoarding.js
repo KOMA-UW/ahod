@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react';
 // import PropTypes from 'prop-types';
 
-import { withStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
+import { withStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
 // import DeleteIcon from '@material-ui/icons/Delete';
-import NavigationIcon from "@material-ui/icons/Navigation";
-import Button from "@material-ui/core/Button";
-import { Container, Row, Col } from "react-grid-system";
-import SimpleCard from "../SimpleCard";
-import StepperOnBoard from "./StepperOnBoard";
-import JoinGroup from "./JoinGroup";
-import Divider from "@material-ui/core/Divider";
+import NavigationIcon from '@material-ui/icons/Navigation';
+import Button from '@material-ui/core/Button';
+import { Container, Row, Col } from 'react-grid-system';
+import SimpleCard from '../SimpleCard';
+import StepperOnBoard from './StepperOnBoard';
+import JoinGroup from './JoinGroup';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
   },
   input: {
-    display: "none"
+    display: 'none'
   },
   iconSmall: {
     fontSize: 15
@@ -52,7 +52,7 @@ class OnBoardingView extends React.Component {
                   <Button
                     variant="contained"
                     className={classes.button}
-                    onClick={() => this.handleClick("join", "create")}
+                    onClick={() => this.handleClick('join', 'create')}
                   >
                     Join a Group
                   </Button>
@@ -60,7 +60,7 @@ class OnBoardingView extends React.Component {
                     variant="contained"
                     color="primary"
                     className={classes.button}
-                    onClick={() => this.handleClick("create", "join")}
+                    onClick={() => this.handleClick('create', 'join')}
                   >
                     Create a Group
                   </Button>

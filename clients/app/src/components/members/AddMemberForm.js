@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
+import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
 class AddMemberForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ""
+      email: ''
     };
   }
 
@@ -26,7 +26,6 @@ class AddMemberForm extends Component {
         margin="normal"
         value={this.state.email}
         onChange={this.handleChange}
-        onBlur={() => this.props.addMember(this.state.email)}
         InputLabelProps={{
           shrink: true
         }}

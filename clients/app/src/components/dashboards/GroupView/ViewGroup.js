@@ -9,7 +9,7 @@ import CardHeading from '../CardHeading';
 import CardPairs from './CardPairs';
 import YourClique from './YourClique';
 import FeedList from './FeedList';
-import MembersList from '../admin/MembersList';
+import MembersList from '../../members/MembersList';
 import SmallCalendar from './SmallCalendar';
 import Plea from './Plea';
 

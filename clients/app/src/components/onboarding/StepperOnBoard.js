@@ -1,19 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import CreateGroup from "./CreateGroup";
-import AddMembers from "./AddMembers";
-import FinalizeGroupCreation from "./FinalizeGroupCreation";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CreateGroup from './CreateGroup';
+import AddMembers from '../members/AddMembers';
+import FinalizeGroupCreation from './FinalizeGroupCreation';
 
 const styles = theme => ({
   root: {
-    width: "90%"
+    width: '90%'
   },
   button: {
     marginTop: 20,
@@ -26,7 +26,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ["Select a group name", "Add Members", "Submit"];
+  return ['Select a group name', 'Add Members', 'Submit'];
 }
 
 function getStepContent(step) {
@@ -38,7 +38,7 @@ function getStepContent(step) {
     case 2:
       return <FinalizeGroupCreation />;
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
@@ -166,7 +166,7 @@ class StepperOnBoard extends React.Component {
                   onClick={this.handleNext}
                   className={classes.button}
                 >
-                  {activeStep === steps.length - 1 ? "Submit" : "Next"}
+                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                 </Button>
               </div>
             </div>
