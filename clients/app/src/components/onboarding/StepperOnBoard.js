@@ -10,10 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import CreateGroup from './CreateGroup';
 import AddMembers from '../members/AddMembers';
 import FinalizeGroupCreation from './FinalizeGroupCreation';
+import AddFinancialInfo from './AddFinancialInfo';
+import { Container, Row, Col } from 'react-grid-system';
 
 const styles = theme => ({
   root: {
-    width: '90%'
+    marginTop: 100
   },
   button: {
     marginTop: 20,
@@ -26,16 +28,23 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Select a group name', 'Add Members', 'Submit'];
+  return ['Select a group name', 'Add Members', 'Add Financial Info', 'Submit'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, props) {
+  console.log(props);
   switch (step) {
     case 0:
-      return <CreateGroup />;
+      return (
+        <CreateGroup
+          handleNumberOfParticipants={props.handleNumberOfParticipants}
+        />
+      );
     case 1:
-      return <AddMembers />;
+      return <AddMembers numberOfParticipants={props.numberOfParticipants} />;
     case 2:
+      return <AddFinancialInfo />;
+    case 3:
       return <FinalizeGroupCreation />;
     default:
       return 'Unknown step';
@@ -104,53 +113,56 @@ class StepperOnBoard extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const props = {};
-            const labelProps = {};
-            // if (this.isStepOptional(index)) {
-            //   labelProps.optional = (
-            //     <Typography variant="caption">Optional</Typography>
-            //   );
-            // }
-            if (this.isStepSkipped(index)) {
-              props.completed = false;
-            }
-            return (
-              <Step key={label} {...props}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        <div>
-          {activeStep === steps.length ? (
-            <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Button
-                variant="contained"
-                color="secondary"
-                component={Link}
-                to="/dashboard"
-                className={classes.button}
-              >
-                Go to Admin Dashboard
-              </Button>
-            </div>
-          ) : (
-            <div>
-              {getStepContent(activeStep)}
+        <Container>
+          <Row>
+            <Col>
+              <Stepper activeStep={activeStep}>
+                {steps.map((label, index) => {
+                  const props = {};
+                  const labelProps = {};
+                  // if (this.isStepOptional(index)) {
+                  //   labelProps.optional = (
+                  //     <Typography variant="caption">Optional</Typography>
+                  //   );
+                  // }
+                  if (this.isStepSkipped(index)) {
+                    props.completed = false;
+                  }
+                  return (
+                    <Step key={label} {...props}>
+                      <StepLabel {...labelProps}>{label}</StepLabel>
+                    </Step>
+                  );
+                })}
+              </Stepper>
               <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                {/* {this.isStepOptional(activeStep) && (
+                {activeStep === steps.length ? (
+                  <div>
+                    <Typography className={classes.instructions}>
+                      All steps completed - you&apos;re finished
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      component={Link}
+                      to="/dashboard"
+                      className={classes.button}
+                    >
+                      Go to Admin Dashboard
+                    </Button>
+                  </div>
+                ) : (
+                  <div>
+                    {getStepContent(activeStep, this.props)}
+                    <div>
+                      <Button
+                        disabled={activeStep === 0}
+                        onClick={this.handleBack}
+                        className={classes.button}
+                      >
+                        Back
+                      </Button>
+                      {/* {this.isStepOptional(activeStep) && (
                   <Button
                     variant="contained"
                     color="primary"
@@ -160,18 +172,21 @@ class StepperOnBoard extends React.Component {
                     Skip
                   </Button>
                 )} */}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
-                </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={this.handleNext}
+                        className={classes.button}
+                      >
+                        {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

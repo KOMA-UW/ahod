@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-
-import SimpleCard from "../SimpleCard";
-import AddMemberForm from "./AddMemberForm";
-const members = [1, 2, 3, 4, 5];
+import React, { Component } from 'react';
+import AddMemberForm from './AddMemberForm';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class AddMembers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      members: []
+      members: Array.from({ length: this.props.numberOfParticipants }, () => 0)
     };
   }
 
@@ -23,12 +22,25 @@ class AddMembers extends Component {
     }
   };
 
+  handleEmailAdd = member => {
+    this.addMember(member);
+  };
+
   render() {
     return (
       <div>
-        {members.map((member, index) => (
-          <AddMemberForm key={index} index={index} addMember={this.addMember} />
+        {this.state.members.map((member, index) => (
+          <AddMemberForm key={index} index={index} />
         ))}
+
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="Add"
+          onClick={this.handleEmailAdd}
+        >
+          <AddIcon />
+        </Fab>
       </div>
     );
   }

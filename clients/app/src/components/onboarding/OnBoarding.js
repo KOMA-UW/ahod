@@ -32,15 +32,22 @@ class OnBoardingView extends React.Component {
     super(props);
     this.state = {
       join: false,
-      create: false
+      create: true,
+      numberOfParticipants: 0
     };
   }
   handleClick = (a, b) => {
     this.setState({ [a]: true, [b]: false });
   };
+
+  handleNumberOfParticipants = num => {
+    this.setState({
+      numberOfParticipants: Number.parseInt(num)
+    });
+  };
   render() {
     const { classes } = this.props;
-    const { join, create } = this.state;
+    const { join, create, numberOfParticipants } = this.state;
 
     return (
       <div>
@@ -58,7 +65,7 @@ class OnBoardingView extends React.Component {
                   </Button>
                   <Button
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     className={classes.button}
                     onClick={() => this.handleClick('create', 'join')}
                   >
@@ -68,7 +75,12 @@ class OnBoardingView extends React.Component {
                   {create && (
                     <div>
                       <Divider style={{ margin: 20 }} />
-                      <StepperOnBoard />
+                      <StepperOnBoard
+                        numberOfParticipants={numberOfParticipants}
+                        handleNumberOfParticipants={
+                          this.handleNumberOfParticipants
+                        }
+                      />
                     </div>
                   )}
 
@@ -82,7 +94,6 @@ class OnBoardingView extends React.Component {
             </Col>
           </Row>
         </Container>
-        }
       </div>
     );
   }
