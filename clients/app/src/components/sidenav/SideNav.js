@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Logo from '../Logo';
 import CurrentUser from './CurrentUser';
 import { Container, Row, Col } from 'react-grid-system';
+import { ROUTES } from '../../constants';
 
 const drawerWidth = 240;
 
@@ -70,23 +71,22 @@ const icons = [
   {
     icon: 'group',
     primary: 'My Cliques',
-    link: '/'
+    link: ROUTES.home
   },
-
   {
     icon: 'payment',
     primary: 'Make A Payment',
-    link: '/payment'
+    link: ROUTES.payment
   },
   {
     icon: 'date_range',
     primary: 'Calendar',
-    link: '/calendar'
+    link: ROUTES.calendar
   },
   {
     icon: 'person',
     primary: 'My Profile',
-    link: '/profile'
+    link: ROUTES.profile
   }
 ];
 
@@ -143,7 +143,7 @@ class SideNav extends Component {
         >
           {icons.map((item, index) => {
             return (
-              <ListItem button key={item.name} component={Link} to={item.link}>
+              <ListItem button key={index} component={Link} to={item.link}>
                 <ListItemIcon className={classes.icon}>
                   <Icon>{item.icon}</Icon>
                 </ListItemIcon>

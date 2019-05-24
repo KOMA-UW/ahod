@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import SimpleCard from '../SimpleCard';
 import Member from './Member';
+import { ROUTES } from '../../constants';
 
 const members = [
   {
@@ -57,6 +59,9 @@ const styles = theme => ({
 class MembersList extends Component {
   render() {
     const { classes } = this.props;
+    const AdminViewMemberLink = props => (
+      <Link to={ROUTES.adminMemberView} {...props} />
+    );
     return (
       <div>
         {members.map((member, index) => {
@@ -69,6 +74,7 @@ class MembersList extends Component {
                 author={member.author}
                 time={member.time}
                 authorImg={member.authorImg}
+                viewBtnLin={AdminViewMemberLink}
               />
             </SimpleCard>
           );

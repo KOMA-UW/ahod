@@ -14,8 +14,9 @@ export const ROUTES = {
   dashboard: '/dashboard',
   calendar: '/calendar',
   group: '/groups:id',
-  groups: '/groups',
-  create_group: '/create_group',
-  join_group: '/join_group',
-  payment: '/payment'
+  createGroup: '/createGroup',
+  joinGroup: '/joingroup',
+  payment: '/payment',
+  profile: '/member',
+  adminMemberView: '/members:id'
 };

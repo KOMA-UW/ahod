@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import { Container, Row, Col } from 'react-grid-system';
 import SimpleCard from '../SimpleCard';
 import StepperOnBoard from './StepperOnBoard';
-import JoinGroup from './JoinGroup';
+import JoinGroup from './JoinGroupForm';
 import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
@@ -31,8 +31,8 @@ class OnBoardingView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      join: false,
-      create: true,
+      join: true,
+      create: false,
       numberOfParticipants: 0
     };
   }

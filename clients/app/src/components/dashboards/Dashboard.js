@@ -6,9 +6,7 @@ import Groups from './Groups';
 
 const styles = theme => ({
   root: {
-    marginLeft: '100px !important',
-    marginRight: '100px !important',
-    paddingLeft: '100px !important'
+    marginTop: 100
   }
 });
 

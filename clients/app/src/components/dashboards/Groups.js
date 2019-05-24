@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import GroupCard from './GroupCard';
@@ -50,30 +51,20 @@ class Groups extends React.Component {
   };
   render() {
     const { classes, isAdmin } = this.props;
-    return (
-      <React.Fragment>
-        <Row align="center" className={classes.root}>
-          <Col sm={8}>
-            <CardHeading title="Your Cliques" />
-          </Col>
 
-          <Col sm={4} align="right">
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={this.handleClickOpen}
-            >
-              Add Member
-            </Button>
-          </Col>
-        </Row>
+    const JoinGroupLink = props => <Link to="/joingroup" {...props} />;
+    return (
+      <div>
+        <CardHeading
+          title="Your Cliques"
+          btnText="Join Group"
+          subTitle=""
+          extraInfo=""
+          btnLinkComponent={JoinGroupLink}
+        />
 
         <GroupsList isAdmin={isAdmin} handleEdit={this.props.handleEdit} />
-        <AddMemberDialog
-          open={this.state.open}
-          handleClose={this.handleClose}
-        />
-      </React.Fragment>
+      </div>
     );
   }
 }

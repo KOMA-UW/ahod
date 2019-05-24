@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { withStyles } from '@material-ui/core/styles';
 import { Container, Row, Col } from 'react-grid-system';
 import { Avatar, Typography, Button, Fab } from '@material-ui/core';
@@ -21,7 +22,8 @@ const styles = theme => ({
 });
 class Member extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, viewBtnLin } = this.props;
+
     return (
       <div>
         <Row align="center">
@@ -38,6 +40,7 @@ class Member extends Component {
               variant="contained"
               color="default"
               className={classes.button}
+              component={viewBtnLin}
             >
               View
             </Button>
