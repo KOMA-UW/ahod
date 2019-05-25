@@ -1,23 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import { withStyles } from "@material-ui/core/styles";
-import LayoutBody from "./LayoutBody";
-import Typography from "@material-ui/core/Typography";
-import logo from "../../img/CliqueLogo.png";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import LayoutBody from './LayoutBody';
+import Typography from '@material-ui/core/Typography';
+import logo from '../../img/CliqueLogo.png';
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     marginTop: theme.spacing.unit * 9,
     marginBottom: theme.spacing.unit * 9
   },
   button: {
-    border: "4px solid currentColor",
+    border: '4px solid currentColor',
     borderRadius: 0,
-    height: "auto",
+    height: 'auto',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 5}px`
   },
   link: {

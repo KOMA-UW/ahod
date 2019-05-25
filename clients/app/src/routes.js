@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { Container } from 'react-grid-system';
 import classNames from 'classnames';
 import { Route, Switch } from 'react-router';
 import { ROUTES } from './constants';
@@ -24,20 +25,20 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
-    transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)'
+    // transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)'
   },
   marginLeft: {
-    marginLeft: 240
-  },
-  marginNone: {
-    margin: 73
+    // marginLeft: 240
   }
+  // marginNone: {
+  //   margin: 73
+  // }
 });
 class Routes extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
+      <div>
         <Header />
         <div
           className={classNames(classes.content, {
@@ -62,7 +63,7 @@ class Routes extends Component {
             />
           </Switch>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

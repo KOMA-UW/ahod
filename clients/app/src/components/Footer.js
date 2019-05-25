@@ -44,32 +44,16 @@ const styles = theme => ({
     // paddingBottom: theme.spacing.unit * 2
   },
   footer: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.dark.main,
     color: theme.palette.primary.text,
     marginTop: theme.spacing.unit * 8,
     padding: `${theme.spacing.unit * 6}px 0`
-  },
-  footerShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    padding: `${theme.spacing.unit * 6}px 0`
-  },
-  marginLeft: {
-    marginLeft: theme.spacing.unit * 7 + 10
   }
 });
 
 const Footer = props => {
   const { classes } = props;
-  const footerStyle = props.drawerOpen
-    ? [classes.footerShift, classes.footer].join(' ')
-    : props.iconSpace
-    ? [classes.footer, classes.marginLeft].join(' ')
-    : classes.footer;
+  const footerStyle = classes.footer;
   return (
     <footer className={footerStyle}>
       <Container fluid>

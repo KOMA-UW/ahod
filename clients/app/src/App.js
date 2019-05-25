@@ -11,9 +11,9 @@ import { withStyles } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#3f51b5', //'#ffa820', //
+      main: '#2496ed', //'#ffa820', //
       light: '#5b92d8',
-      dark: '#214788',
+      dark: '#007bff',
       contrastText: '#ffffff',
       text: '#fff'
     },
@@ -24,11 +24,17 @@ const theme = createMuiTheme({
       contrastText: '#ffffff',
       text: '#fff'
     },
+    dark: {
+      main: '#022144'
+    },
     text: {
       secondary: '#000'
     },
     grey: {
       text: '#7ba6b7'
+    },
+    background: {
+      color: '#f3f5f7'
     }
   },
   typography: {
@@ -70,7 +76,7 @@ class App extends Component {
       showLoginButton: true,
       groupJoined: false,
       iconSpace: false,
-      drawerOpen: true
+      drawerOpen: false
     };
   }
 
@@ -167,7 +173,8 @@ class App extends Component {
                 <Routes drawerOpen={drawerOpen} />
               </Router>
             </div>
-            <Footer />
+
+            {!token && <Footer />}
           </AuthContext.Provider>
         </MuiThemeProvider>
       </div>

@@ -24,6 +24,7 @@ const styles = theme => ({
   appBar: {
     background: theme.palette.primary.dark
   },
+
   appBarUnshift: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
