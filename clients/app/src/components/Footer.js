@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { withAuth } from '../Context';
 import Typography from '@material-ui/core/Typography';
 import { Container, Row, Col } from 'react-grid-system';
+import LogoSVG from './LogoSVG';
+import logo from '../img/ischool_log.png';
 
 import {
   FacebookShareButton,
@@ -13,7 +15,17 @@ import {
   TwitterIcon,
   EmailIcon
 } from 'react-share';
-import logo from '../img/ischool_log.png';
+
+const black = '#000';
+// const logoClass = css`
+//   height: 24px;
+//   width: 24px;
+
+//   @media (min-width: 800px) {
+//     height: 48px;
+//     width: 48px;
+//   }
+// `;
 
 const drawerWidth = 240;
 
@@ -48,6 +60,16 @@ const styles = theme => ({
     color: theme.palette.primary.text,
     marginTop: theme.spacing.unit * 8,
     padding: `${theme.spacing.unit * 6}px 0`
+  },
+  logo: {
+    height: 24,
+    width: 24
+  },
+  flexContainer: {
+    display: 'flex'
+  },
+  social: {
+    paddingRight: 10
   }
 });
 
@@ -56,39 +78,80 @@ const Footer = props => {
   const footerStyle = classes.footer;
   return (
     <footer className={footerStyle}>
-      <Container fluid>
+      <Container>
         <Row>
           <Col sm={3} className="Clique">
-            <Typography variant="h4" color="inherit">
+            {/* <LogoSVG fill={black} className={classes.logo} /> */}
+            <Typography variant="h5" color="inherit">
               CLIQUE
             </Typography>
           </Col>
 
           <Col sm={3} className="Contact">
-            <Typography variant="h6" color="inherit">
+            <Typography variant="body1" color="inherit">
               Contact
             </Typography>
-            <Row>
+
+            <div>
               <FacebookShareButton url="">
-                <FacebookIcon size={32} round />
+                <div className={classes.flexContainer}>
+                  <FacebookIcon className={classes.social} size={25} round />
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    style={{ color: '#697A89' }}
+                  >
+                    Facebook
+                  </Typography>
+                </div>
               </FacebookShareButton>
+            </div>
+            <div>
               <TwitterShareButton url="">
-                <TwitterIcon size={32} round />
+                <div className={classes.flexContainer}>
+                  <TwitterIcon className={classes.social} size={25} round />
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    style={{ color: '#697A89' }}
+                  >
+                    Twitter
+                  </Typography>
+                </div>
               </TwitterShareButton>
+            </div>
+            <div>
               <EmailShareButton url="">
-                <EmailIcon size={32} round />
+                <div className={classes.flexContainer}>
+                  <EmailIcon className={classes.social} size={25} round />
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    style={{ color: '#697A89' }}
+                  >
+                    Email
+                  </Typography>
+                </div>
               </EmailShareButton>
-            </Row>
+            </div>
           </Col>
 
           <Col sm={3} className="Legal">
-            <Typography color="inherit" variant="h6">
+            <Typography color="inherit" variant="body1">
               Legal
             </Typography>
-            <Typography color="inherit" variant="subtitle1">
+            <Typography
+              color="inherit"
+              variant="body2"
+              style={{ color: '#697A89' }}
+            >
               T&C
             </Typography>
-            <Typography color="inherit" variant="subtitle1">
+            <Typography
+              color="inherit"
+              variant="body2"
+              style={{ color: '#697A89' }}
+            >
               Privacy
             </Typography>
           </Col>

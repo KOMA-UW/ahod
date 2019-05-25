@@ -26,7 +26,7 @@ const styles = theme => ({
     backgroundColor: 'white'
   },
   iconClass: {
-    color: '#d44f27'
+    color: theme.palette.secondary.light
   }
 });
 
