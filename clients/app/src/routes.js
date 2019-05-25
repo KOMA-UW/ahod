@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Container } from 'react-grid-system';
-import classNames from 'classnames';
+
 import { Route, Switch } from 'react-router';
 import { ROUTES } from './constants';
 
@@ -25,14 +25,14 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
-    // transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)'
+    transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)'
   },
   marginLeft: {
-    // marginLeft: 240
+    marginLeft: 240
+  },
+  marginNone: {
+    // margin: 73
   }
-  // marginNone: {
-  //   margin: 73
-  // }
 });
 class Routes extends Component {
   render() {
@@ -40,29 +40,22 @@ class Routes extends Component {
     return (
       <div>
         <Header />
-        <div
-          className={classNames(classes.content, {
-            [classes.marginLeft]: this.props.drawerOpen,
-            [classes.marginNone]: !this.props.drawerOpen
-          })}
-        >
-          <Switch>
-            <Route exact path={ROUTES.home} component={MainView} />
-            <Route path={ROUTES.login} component={LoginView} />
-            <Route path={ROUTES.signUp} component={SignUpView} />
-            <PrivateRoute path={ROUTES.joinGroup} component={JoinGroup} />
-            <PrivateRoute path={ROUTES.onboarding} component={OnBoardingView} />
-            <PrivateRoute path={ROUTES.dashboard} component={Dashboard} />
-            <PrivateRoute path={ROUTES.group} component={GroupView} />
-            <PrivateRoute path={ROUTES.calendar} component={Calendar} />
-            <PrivateRoute path={ROUTES.payment} component={Payment} />
-            <PrivateRoute path={ROUTES.profile} component={Profile} />
-            <PrivateRoute
-              path={ROUTES.adminMemberView}
-              component={AdminMemberView}
-            />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={ROUTES.home} component={MainView} />
+          <Route path={ROUTES.login} component={LoginView} />
+          <Route path={ROUTES.signUp} component={SignUpView} />
+          <PrivateRoute path={ROUTES.joinGroup} component={JoinGroup} />
+          <PrivateRoute path={ROUTES.onboarding} component={OnBoardingView} />
+          <PrivateRoute path={ROUTES.dashboard} component={Dashboard} />
+          <PrivateRoute path={ROUTES.group} component={GroupView} />
+          <PrivateRoute path={ROUTES.calendar} component={Calendar} />
+          <PrivateRoute path={ROUTES.payment} component={Payment} />
+          <PrivateRoute path={ROUTES.profile} component={Profile} />
+          <PrivateRoute
+            path={ROUTES.adminMemberView}
+            component={AdminMemberView}
+          />
+        </Switch>
       </div>
     );
   }
