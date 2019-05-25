@@ -72,7 +72,7 @@ class GroupsList extends Component {
           >
             <GroupCard
               title={group.name}
-              image={group.image}
+              groupImage={group.image}
               adminAvatar={`https://material-ui.com/static/images/avatar/${index +
                 1}.jpg`}
               className={classes.card}
