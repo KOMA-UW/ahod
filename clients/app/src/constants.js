@@ -13,10 +13,10 @@ export const ROUTES = {
   onboarding: '/onboarding',
   dashboard: '/dashboard',
   calendar: '/calendar',
-  group: '/groups:id',
+  group: '/group/:id',
   createGroup: '/createGroup',
-  joinGroup: '/joingroup',
   payment: '/payment',
   profile: '/member',
-  adminMemberView: '/members:id'
+  adminGroupView: '/members/:id',
+  adminViewMember: '/members/member/:id'
 };

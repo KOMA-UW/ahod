@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Container, Row, Col } from 'react-grid-system';
 import { Avatar, Typography, Button, Fab } from '@material-ui/core';
@@ -22,7 +22,10 @@ const styles = theme => ({
 });
 class Member extends Component {
   render() {
-    const { classes, viewBtnLin } = this.props;
+    const { classes, memberID } = this.props;
+    const AdminViewMemberLink = props => (
+      <Link to={`/members/member/${memberID + 1}`} {...props} />
+    );
 
     return (
       <div>
@@ -40,13 +43,13 @@ class Member extends Component {
               variant="contained"
               color="default"
               className={classes.button}
-              component={viewBtnLin}
+              component={AdminViewMemberLink}
             >
               View
             </Button>
-            <IconButton>
+            {/* <IconButton>
               <MoreVertIcon />
-            </IconButton>
+            </IconButton> */}
           </Col>
         </Row>
       </div>

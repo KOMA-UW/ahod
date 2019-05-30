@@ -5,6 +5,7 @@ import Loader from './Loader';
 import Landing from './landing/Landing';
 import Dashboard from './dashboards/Dashboard';
 import classNames from 'classnames';
+import CenteredLeftPadding from './CenteredLeftPadding';
 
 const styles = theme => ({
   content: {
@@ -31,7 +32,7 @@ class MainView extends React.Component {
   render() {
     const { classes } = this.props;
     const { loading } = this.state;
-    const { token, isAdmin, isEdit, currentUser } = this.props;
+    const { token, isAdmin, isEdit, currentUser, drawerOpen } = this.props;
     const authenticated = token != null;
     return (
       <div>
@@ -40,19 +41,15 @@ class MainView extends React.Component {
         ) : !authenticated ? (
           <Landing />
         ) : (
-          <div
-            className={classNames(classes.content, {
-              [classes.marginLeft]: this.props.drawerOpen,
-              [classes.marginNone]: !this.props.drawerOpen
-            })}
-          >
+          <CenteredLeftPadding drawerOpen={drawerOpen}>
             <Dashboard
               isAdmin={isAdmin}
               isEdit={isEdit}
               currentUser={currentUser}
+              drawerOpen={drawerOpen}
               handleEdit={this.props.handleEdit}
             />
-          </div>
+          </CenteredLeftPadding>
         )}
       </div>
     );

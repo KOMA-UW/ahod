@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink, Redirect } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import { ROUTES, API_URL } from '../../constants';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Avatar,
@@ -75,6 +77,11 @@ const styles = theme => ({
 
 class GroupCard extends React.Component {
   render() {
+    const EditLink = props => (
+      <RouterLink to={ROUTES.adminMemberView} {...props} />
+    );
+
+    const ViewLink = props => <RouterLink to={ROUTES.group} {...props} />;
     const { classes, isAdmin, title, groupImage } = this.props;
 
     return (
@@ -132,9 +139,8 @@ class GroupCard extends React.Component {
             <Button
               color="primary"
               className={classes.button}
-              component={Link}
-              to={`/groups:${this.props.id}`}
-              onClick={() => this.props.handleEdit(false)}
+              component={RouterLink}
+              to={`/group/${this.props.id}`}
             >
               <GroupIcon className={classes.leftIcon} />
               View
@@ -146,9 +152,8 @@ class GroupCard extends React.Component {
               <Button
                 color="primary"
                 className={classes.button}
-                component={Link}
-                to={`/groups:${this.props.id}`}
-                onClick={() => this.props.handleEdit(true)}
+                component={RouterLink}
+                to={`/members/${this.props.id}`}
               >
                 <EditIcon className={classes.leftIcon} />
                 Edit

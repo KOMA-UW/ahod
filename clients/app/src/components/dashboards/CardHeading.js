@@ -30,6 +30,7 @@ class CardHeading extends Component {
                 variant="contained"
                 color="secondary"
                 component={btnLinkComponent}
+                onClick={this.props.showNeWComponent}
               >
                 {btnText}
               </Button>

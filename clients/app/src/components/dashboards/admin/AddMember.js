@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-grid-system';
-import SimpleCard from '../SimpleCard';
-import JoinGroupForm from './JoinGroupForm';
+import SimpleCard from '../../SimpleCard';
+import AddMemberForm from '../../members/AddMemberForm';
+import AddMembers from '../../members/AddMembers';
 
-class JoinGroup extends Component {
+class AddMember extends Component {
   render() {
     return (
       <div>
         <Row>
           <Col>
             <SimpleCard>
-              <JoinGroupForm />
+              <AddMembers numberOfParticipants={1} />
             </SimpleCard>
           </Col>
         </Row>
@@ -19,4 +20,4 @@ class JoinGroup extends Component {
   }
 }
 
-export default JoinGroup;
+export default AddMember;

@@ -58,7 +58,7 @@ const styles = theme => ({
 
 class GroupsList extends Component {
   render() {
-    const { classes, isAdmin } = this.props;
+    const { classes, isAdmin, drawerOpen } = this.props;
     return (
       <Row>
         {groups.map((group, index) => (
@@ -79,6 +79,7 @@ class GroupsList extends Component {
               dateCreated={`Member since: ${group.dateJoined}`}
               id={index + 1}
               isAdmin={isAdmin}
+              drawerOpen={drawerOpen}
               handleEdit={this.props.handleEdit}
             />
           </Col>

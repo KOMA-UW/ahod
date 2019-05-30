@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-grid-system';
 
 import CardHeading from './CardHeading';
 import GroupsList from './GroupsList';
-import AddMemberDialog from '../members/AddMember';
+import JoinGroup from '../onboarding/JoinGroup';
 
 const styles = theme => ({
   root: {
@@ -31,6 +31,9 @@ const styles = theme => ({
   },
   editBtn: {
     marginLeft: 'auto'
+  },
+  form: {
+    marginBottom: 10
   }
 });
 
@@ -38,20 +41,16 @@ class Groups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      showGroupJoin: false
     };
   }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
+  handleJoinGroup = () => {
+    this.setState({ showGroupJoin: true });
   };
   render() {
     const { classes, isAdmin } = this.props;
-
+    const { showGroupJoin } = this.state;
     const JoinGroupLink = props => <Link to="/joingroup" {...props} />;
     return (
       <div>
@@ -60,9 +59,13 @@ class Groups extends React.Component {
           btnText="Join Group"
           subTitle=""
           extraInfo=""
-          btnLinkComponent={JoinGroupLink}
+          showNeWComponent={this.handleJoinGroup}
         />
-
+        {showGroupJoin && (
+          <div className={classes.form}>
+            <JoinGroup />
+          </div>
+        )}
         <GroupsList isAdmin={isAdmin} handleEdit={this.props.handleEdit} />
       </div>
     );

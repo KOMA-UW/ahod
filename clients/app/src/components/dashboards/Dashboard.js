@@ -12,18 +12,17 @@ const styles = theme => ({
 
 class Dashboard extends React.Component {
   render() {
-    const { isAdmin, isEdit, currentUser, classes } = this.props;
+    const { isAdmin, isEdit, currentUser, drawerOpen, classes } = this.props;
     const { firstName, lastName } = currentUser | '';
 
     return (
       <div>
-        <Container fluid className={classes.root}>
-          <Groups
-            isAdmin={isAdmin}
-            isEdit={isEdit}
-            handleEdit={this.props.handleEdit}
-          />
-        </Container>
+        <Groups
+          isAdmin={isAdmin}
+          isEdit={isEdit}
+          drawerOpen={drawerOpen}
+          handleEdit={this.props.handleEdit}
+        />
       </div>
     );
   }

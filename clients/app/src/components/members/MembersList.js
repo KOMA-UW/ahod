@@ -59,9 +59,7 @@ const styles = theme => ({
 class MembersList extends Component {
   render() {
     const { classes } = this.props;
-    const AdminViewMemberLink = props => (
-      <Link to={ROUTES.adminMemberView} {...props} />
-    );
+
     return (
       <div>
         {members.map((member, index) => {
@@ -69,12 +67,12 @@ class MembersList extends Component {
             <SimpleCard key={index}>
               <Member
                 key={index}
+                memberID={index}
                 elemNum={index < members.length - 1}
                 title={member.title}
                 author={member.author}
                 time={member.time}
                 authorImg={member.authorImg}
-                viewBtnLin={AdminViewMemberLink}
               />
             </SimpleCard>
           );

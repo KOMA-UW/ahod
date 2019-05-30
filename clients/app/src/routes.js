@@ -20,7 +20,7 @@ import PrivateRoute from './PrivateRoute';
 import AdminDashboard from './components/dashboards/admin/AdminDashboard';
 import JoinGroup from './components/onboarding/JoinGroup';
 import AdminMemberView from './components/dashboards/admin/AdminMemberView';
-
+import AddMember from './components/dashboards/admin/AddMember';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -44,7 +44,7 @@ class Routes extends Component {
           <Route exact path={ROUTES.home} component={MainView} />
           <Route path={ROUTES.login} component={LoginView} />
           <Route path={ROUTES.signUp} component={SignUpView} />
-          <PrivateRoute path={ROUTES.joinGroup} component={JoinGroup} />
+          {/* <PrivateRoute path={ROUTES.joinGroup} component={JoinGroup} /> */}
           <PrivateRoute path={ROUTES.onboarding} component={OnBoardingView} />
           <PrivateRoute path={ROUTES.dashboard} component={Dashboard} />
           <PrivateRoute path={ROUTES.group} component={GroupView} />
@@ -52,7 +52,12 @@ class Routes extends Component {
           <PrivateRoute path={ROUTES.payment} component={Payment} />
           <PrivateRoute path={ROUTES.profile} component={Profile} />
           <PrivateRoute
-            path={ROUTES.adminMemberView}
+            exact
+            path={ROUTES.adminGroupView}
+            component={AdminDashboard}
+          />
+          <PrivateRoute
+            path={ROUTES.adminViewMember}
             component={AdminMemberView}
           />
         </Switch>

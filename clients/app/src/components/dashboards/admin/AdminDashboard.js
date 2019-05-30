@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { withAuth } from '../../../Context';
 import CardHeading from '../CardHeading';
 import MembersList from '../../members/MembersList';
-import { Container, Row, Col } from 'react-grid-system';
+import CenteredLeftPadding from '../../CenteredLeftPadding';
+import AddMember from './AddMember';
 
 const styles = theme => ({
   root: {
@@ -14,33 +17,36 @@ class AdminDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      showMemberAdd: false
     };
   }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  handleMemberAdd = () => {
+    this.setState({ showMemberAdd: true });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
   render() {
-    const { classes } = this.props;
+    const { classes, drawerOpen } = this.props;
+    const { showMemberAdd } = this.state;
     const AddMemberLink = props => <Link to="/add-member" {...props} />;
+    // const JoinGroupLink = props => <Link to="/joingroup" {...props} />;
+
     return (
-      <div>
+      <CenteredLeftPadding drawerOpen={drawerOpen}>
         <CardHeading
           title="Participants: 6"
           btnText="Add Member"
           subTitle="Group ID: 2592952"
           extraInfo="Location: Seattle, WA"
-          btnLinkComponent={AddMemberLink}
+          showNeWComponent={this.handleMemberAdd}
         />
+        {showMemberAdd && <AddMember />}
         <MembersList />
-      </div>
+      </CenteredLeftPadding>
     );
   }
 }
-
-export default withStyles(styles)(AdminDashboard);
+AdminDashboard.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+export default withAuth(withStyles(styles)(AdminDashboard));
