@@ -13,6 +13,7 @@ import MembersList from '../../members/MembersList';
 import SmallCalendar from './SmallCalendar';
 import Plea from './Plea';
 import Payment from './Payment';
+import PaymentStatus from './PaymentStatus';
 
 const styles = theme => ({
   btnContainer: {
@@ -77,7 +78,9 @@ class ViewGroup extends Component {
         </Row>
         <Row>
           <Col xs={12} sm={12} md={12} lg={8}>
-            <CardPairs />
+            <CardPairs>
+              <PaymentStatus />
+            </CardPairs>
             <CardHeading title="Your Clique" subTitle="" />
             <YourClique />
           </Col>

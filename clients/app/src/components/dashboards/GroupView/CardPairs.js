@@ -27,9 +27,9 @@ class CardPairs extends Component {
     return (
       <SimpleCard noPadding={true}>
         <Row style={{ margin: 0 }}>
-          <Col sm={6} style={{ padding: 0, minHeight: 80 }}>
+          <Col sm={6} style={{ padding: 0 }}>
             <SimpleCard noMargin={true} square={true}>
-              <PaymentStatus />
+              {this.props.children}
             </SimpleCard>
           </Col>
           <Col sm={6} style={{ padding: 0 }}>

@@ -29,7 +29,7 @@ let members = [
     name: 'Wendy',
     photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg',
     won: true,
-    winningRound: 'February',
+    winningRound: 'May',
     winningAmount: '$1,000'
   },
   {
@@ -228,7 +228,7 @@ class CircleView extends Component {
 
   render() {
     console.log('members', members.length);
-    const { classes } = this.props;
+    const { classes, rotate } = this.props;
 
     const cliqueMembers = members.map((member, i) => {
       const y = Math.sin(mainCircle * i * (Math.PI / 180)) * radius;
@@ -244,7 +244,7 @@ class CircleView extends Component {
           left={left}
           handleImageHover={this.handleHover}
           handleMouseLeave={this.handleMouseLeave}
-          className="hvr-bounce-in"
+          className="hvr-bounce-in "
         />
       );
       return item;
@@ -254,26 +254,40 @@ class CircleView extends Component {
       <Row>
         <Col align="center">
           <div className={classes.root}>
-            <div className={classNames(classes.bigCircle)}>
+            <div
+              className={classNames(
+                classes.bigCircle,
+                rotate ? 'outerCircle' : ''
+              )}
+            >
               <div
                 className={classNames(
                   classes.circleInner,
                   this.state.userDetails ? '' : 'pulse',
-                  'hvr-bounce-in'
+                  'hvr-bounce-in',
+                  this.props.winner ? 'grow' : ''
                 )}
               >
                 <div className={classes.centerWrapper}>
                   <div className={classNames(classes.center)}>
-                    {this.state.showUserDetails ? (
-                      <MemberDetails userDetails={this.state.userDetails} />
-                    ) : (
+                    {this.state.showUserDetails || this.props.winner ? (
+                      <MemberDetails
+                        winner={this.props.winner}
+                        userDetails={
+                          this.props.winner
+                            ? members[this.props.winner]
+                            : this.state.userDetails
+                        }
+                      />
+                    ) : !rotate ? (
                       <GroupDetails groupDetails={groupDetails} />
+                    ) : (
+                      ''
                     )}
                   </div>
                 </div>
               </div>
-
-              {cliqueMembers}
+              <div className="">{cliqueMembers}</div>
             </div>
           </div>
         </Col>

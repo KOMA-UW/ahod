@@ -23,9 +23,10 @@ const styles = theme => ({
     color: '#fff'
   },
   card: {
-    padding: '10px 25px',
+    padding: '20px 25px',
     marginTop: 0,
-    marginBottom: 0
+    marginBottom: 0,
+    minHeight: 100
   }
 });
 

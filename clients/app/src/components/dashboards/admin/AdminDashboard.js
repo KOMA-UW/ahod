@@ -8,6 +8,11 @@ import MembersList from '../../members/MembersList';
 import CenteredLeftPadding from '../../CenteredLeftPadding';
 import AddMember from './AddMember';
 import NextCycle from '../GroupView/NextCycle';
+import { Container, Row, Col } from 'react-grid-system';
+import SimpleCard from '../../SimpleCard';
+import CardPairs from '../GroupView/CardPairs';
+import Draw from './Draw';
+import DrawPanel from './DrawPanel';
 
 const styles = theme => ({
   root: {
@@ -18,7 +23,8 @@ class AdminDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMemberAdd: false
+      showMemberAdd: false,
+      showDraw: false
     };
   }
 
@@ -26,9 +32,13 @@ class AdminDashboard extends Component {
     this.setState({ showMemberAdd: true });
   };
 
+  handleDraw = () => {
+    this.setState({ showDraw: true });
+  };
+
   render() {
     const { classes, drawerOpen } = this.props;
-    const { showMemberAdd } = this.state;
+    const { showMemberAdd, showDraw } = this.state;
     const AddMemberLink = props => <Link to="/add-member" {...props} />;
     // const JoinGroupLink = props => <Link to="/joingroup" {...props} />;
 
@@ -43,6 +53,23 @@ class AdminDashboard extends Component {
         />
         {showMemberAdd && <AddMember />}
         {/* <NextCycle /> add a draw feature */}
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={12}>
+            <CardPairs>
+              <Draw handleDraw={this.handleDraw} showDraw={showDraw} />
+            </CardPairs>
+            {showDraw && <DrawPanel />}
+            <CardHeading title="Your Clique" subTitle="" />
+            {/* <YourClique /> */}
+          </Col>
+          <Col md={12} lg={4}>
+            <SimpleCard noPadding={true}>
+              {/* <SmallCalendar /> */}
+              {/* <Divider /> */}
+              {/* <FeedList /> */}
+            </SimpleCard>
+          </Col>
+        </Row>
         <MembersList />
       </CenteredLeftPadding>
     );

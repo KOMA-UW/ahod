@@ -44,7 +44,7 @@ const styles = theme => ({
 });
 class MemberDetails extends Component {
   render() {
-    const { classes, userDetails } = this.props;
+    const { classes, userDetails, winner } = this.props;
     const { name, photoUrl, winningRound, winningAmount } = userDetails;
 
     return (
@@ -52,7 +52,7 @@ class MemberDetails extends Component {
         <div className={classes.avatarOverlay}>
           <div className={classes.avatarTextOverlay}>
             <Typography variant="h6" className={classes.titles}>
-              {name}
+              {name} {winner ? ' is the winner' : ''}
             </Typography>
 
             {winningRound && (
