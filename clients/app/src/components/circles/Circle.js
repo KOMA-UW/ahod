@@ -53,6 +53,9 @@ const styles = theme => ({
   hover: {
     opacity: 0.5,
     cursor: 'pointer'
+  },
+  disable: {
+    opacity: 0.5
   }
 });
 
@@ -64,11 +67,11 @@ class Circle extends Component {
     };
   }
 
-  handleMouseEnter = text => {
+  handleMouseEnter = userDetails => {
     this.setState({
       mouseIn: true
     });
-    this.props.handleImageHover(text);
+    this.props.handleImageHover(userDetails);
   };
   handleMouseLeave = text => {
     this.setState({
@@ -77,22 +80,24 @@ class Circle extends Component {
     this.props.handleMouseLeave(text);
   };
   render() {
-    const { classes } = this.props;
-    const { text, image } = this.props;
+    const { classes, member } = this.props;
+
+    const userDetails = member;
+    const { won, photoUrl, text } = userDetails;
 
     const mouseClass = this.state.mouseIn ? classes.hover : '';
     return (
       <Avatar
-        src={this.props.image}
+        src={photoUrl}
         className={classNames(
           classes.circ,
           mouseClass,
           'hvr-bounce-in',
-          'pulse'
+          won ? classes.disable : `pulse`
         )}
         style={{ top: this.props.top, left: this.props.left }}
-        data={this.props.text}
-        onMouseEnter={() => this.handleMouseEnter(image)}
+        data={text}
+        onMouseEnter={() => this.handleMouseEnter(userDetails)}
         onMouseLeave={this.handleMouseLeave}
       />
     );

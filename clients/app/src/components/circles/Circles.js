@@ -5,12 +5,17 @@ import aMember from '../../img/group_1.jpg';
 import { Container, Row, Col } from 'react-grid-system';
 import classNames from 'classnames';
 import { Avatar, Typography } from '@material-ui/core';
+import MemberDetails from './MemberDetails';
+import GroupDetails from './GroupDetails';
 
 let members = [
   {
     name: 'John',
     photoUrl: 'https://material-ui.com/static/images/avatar/1.jpg',
-    details: 'Some details'
+    details: 'Some details',
+    won: true,
+    winningRound: 'January',
+    winningAmount: '$1,000'
   },
   {
     name: 'Sam',
@@ -22,7 +27,10 @@ let members = [
   },
   {
     name: 'Wendy',
-    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg'
+    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg',
+    won: true,
+    winningRound: 'February',
+    winningAmount: '$1,000'
   },
   {
     name: 'Melody',
@@ -34,7 +42,10 @@ let members = [
   },
   {
     name: 'Anita',
-    photoUrl: 'https://material-ui.com/static/images/avatar/7.jpg'
+    photoUrl: 'https://material-ui.com/static/images/avatar/7.jpg',
+    won: true,
+    winningRound: 'March',
+    winningAmount: '$1,000'
   },
   {
     name: 'Mary',
@@ -46,12 +57,15 @@ let members = [
   },
   {
     name: 'Ada',
-    photoUrl: aMember
+    photoUrl: 'https://material-ui.com/static/images/avatar/5.jpg'
   },
   {
     name: 'John',
     photoUrl: 'https://material-ui.com/static/images/avatar/1.jpg',
-    details: 'Some details'
+    details: 'Some details',
+    won: true,
+    winningRound: 'April',
+    winningAmount: '$1,000'
   },
   {
     name: 'Sam',
@@ -63,7 +77,10 @@ let members = [
   },
   {
     name: 'Wendy',
-    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg'
+    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg',
+    won: true,
+    winningRound: 'May',
+    winningAmount: '$1,000'
   },
   {
     name: 'Melody',
@@ -75,7 +92,10 @@ let members = [
   },
   {
     name: 'Anita',
-    photoUrl: 'https://material-ui.com/static/images/avatar/7.jpg'
+    photoUrl: 'https://material-ui.com/static/images/avatar/7.jpg',
+    won: true,
+    winningRound: 'June',
+    winningAmount: '$1,000'
   },
   {
     name: 'Mary',
@@ -169,11 +189,8 @@ const styles = theme => ({
     display: 'table-cell',
 
     textAlign: 'center',
-    padding: '1em',
+    // padding: '1em',
     verticalAlign: 'middle'
-  },
-  titles: {
-    padding: 5
   }
 });
 
@@ -188,25 +205,23 @@ class CircleView extends Component {
     super(props);
     this.state = {
       text: '',
-      userDetails: false,
-      userImage: ''
+      showUserDetails: false,
+      userImage: 'https://material-ui.com/static/images/avatar/7.jpg'
     };
     this.handleHover = this.handleHover.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
-  handleHover(image) {
-    console.log(image);
+  handleHover(userDetails) {
     this.setState({
-      text: 'event',
-      userDetails: true,
-      userImage: image
+      userDetails: userDetails,
+      showUserDetails: true
     });
   }
 
   handleMouseLeave(event) {
     this.setState({
-      userDetails: false,
+      showUserDetails: false,
       userImage: ''
     });
   }
@@ -224,12 +239,11 @@ class CircleView extends Component {
       const item = (
         <Circle
           key={i}
-          image={member.photoUrl}
+          member={member}
           top={top}
           left={left}
           handleImageHover={this.handleHover}
           handleMouseLeave={this.handleMouseLeave}
-          text={member.name}
           className="hvr-bounce-in"
         />
       );
@@ -244,71 +258,16 @@ class CircleView extends Component {
               <div
                 className={classNames(
                   classes.circleInner,
-                  'hvr-bounce-in',
-                  'pulse'
+                  this.state.userDetails ? '' : 'pulse',
+                  'hvr-bounce-in'
                 )}
               >
                 <div className={classes.centerWrapper}>
                   <div className={classNames(classes.center)}>
-                    {this.state.userDetails ? (
-                      <React.Fragment>
-                        <Avatar
-                          src={this.state.userImage}
-                          className={classNames(classes.centerWrapper)}
-                        />
-                        {/*                         
-
-                        <Typography
-                          variant="body2"
-                          display="inline"
-                          color="textSecondary"
-                          className={classes.titles}
-                        >
-                          {this.state.text}
-                        </Typography>
-
-                        <Typography variant="body1" display="inline">
-                          : Paid
-                        </Typography> */}
-                      </React.Fragment>
+                    {this.state.showUserDetails ? (
+                      <MemberDetails userDetails={this.state.userDetails} />
                     ) : (
-                      <React.Fragment>
-                        <Typography
-                          variant="body1"
-                          display="inline"
-                          color="primary"
-                          className={classes.titles}
-                        >
-                          Capital:
-                        </Typography>
-                        <Typography variant="body2" display="inline">
-                          {groupDetails.capital}
-                        </Typography>
-                        <div />
-                        <Typography
-                          variant="body1"
-                          display="inline"
-                          color="primary"
-                          className={classes.titles}
-                        >
-                          Contribution:
-                        </Typography>
-                        <Typography variant="body2" display="inline">
-                          {groupDetails.individualMonthly}
-                        </Typography>
-                        <div />
-                        <Typography
-                          variant="body1"
-                          display="inline"
-                          color="primary"
-                          className={classes.titles}
-                        >
-                          Winnings:
-                        </Typography>
-                        <Typography variant="body2" display="inline">
-                          {groupDetails.winnerPotential}
-                        </Typography>
-                      </React.Fragment>
+                      <GroupDetails groupDetails={groupDetails} />
                     )}
                   </div>
                 </div>

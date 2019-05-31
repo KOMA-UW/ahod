@@ -5,7 +5,7 @@ import { Button, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
-    marginTop: 50,
+    marginTop: 25,
     marginBottom: 10
   }
 });
