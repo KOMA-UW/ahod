@@ -14,7 +14,6 @@ const styles = theme => ({
   },
   card: {
     margin: '0 0',
-    padding: 15,
     borderRadius: 5,
 
     // boxShadow:
@@ -38,23 +37,41 @@ const styles = theme => ({
   colored: {
     background: theme.palette.primary.dark,
     color: '#fff'
+  },
+  margin: {
+    marginTop: '0px !important',
+    marginBottom: 0
   }
 });
 
 function SimpleCard(props) {
-  const { classes, title, noPadding, colored } = props;
+  const {
+    classes,
+    title,
+    noPadding,
+    noMargin,
+    colored,
+    backgroundClass
+  } = props;
 
   return (
-    <div className={classes.root}>
+    <div className={noMargin ? '' : classes.root}>
       <Paper
-        className={classNames(classes.card, noPadding ? '' : classes.padding)}
+        className={classNames(
+          classes.card,
+          backgroundClass,
+          noPadding ? '' : classes.padding
+        )}
         elevation={0}
       >
         {title && (
           <Typography
             variant="h5"
             color={props.titleColor ? props.titleColor : 'primary'}
-            style={{ marginBottom: 20, color: props.color }}
+            style={{
+              marginBottom: 20,
+              color: props.color
+            }}
           >
             {props.title}
           </Typography>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { withAuth } from '../Context';
+import { Hidden } from 'react-grid-system';
 import Loader from './Loader';
 import Landing from './landing/Landing';
 import Dashboard from './dashboards/Dashboard';
@@ -18,7 +19,11 @@ const styles = theme => ({
     marginLeft: 250
   },
   marginNone: {
-    margin: 75,
+    margin: 5,
+    marginLeft: 60
+  },
+  marginLgScreen: {
+    margin: 100,
     marginLeft: 150
   }
 });
@@ -28,14 +33,27 @@ class CenteredLeftPadding extends React.Component {
     const { classes } = this.props;
     return (
       <Container fluid className={classes.root}>
-        <div
-          className={classNames(classes.content, {
-            [classes.marginLeft]: this.props.drawerOpen,
-            [classes.marginNone]: !this.props.drawerOpen
-          })}
-        >
-          {this.props.children}
-        </div>
+        <Hidden xs sm md lg>
+          <div
+            className={classNames(classes.content, {
+              [classes.marginLeft]: this.props.drawerOpen,
+              [classes.marginLgScreen]: !this.props.drawerOpen
+            })}
+          >
+            {this.props.children}
+          </div>
+        </Hidden>
+
+        <Hidden xl>
+          <div
+            className={classNames(classes.content, {
+              [classes.marginLeft]: this.props.drawerOpen,
+              [classes.marginNone]: !this.props.drawerOpen
+            })}
+          >
+            {this.props.children}
+          </div>
+        </Hidden>
       </Container>
     );
   }

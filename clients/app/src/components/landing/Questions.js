@@ -11,18 +11,18 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: theme.spacing.unit * 9,
-    marginBottom: theme.spacing.unit * 9
+    marginTop: theme.spacing(1) * 9,
+    marginBottom: theme.spacing(1) * 9
   },
   button: {
     border: '4px solid currentColor',
     borderRadius: 0,
     height: 'auto',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 5}px`
+    padding: `${theme.spacing(1) * 2}px ${theme.spacing(1) * 5}px`
   },
   link: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3
+    marginTop: theme.spacing(1) * 3,
+    marginBottom: theme.spacing(1) * 3
   },
   buoy: {
     width: 60

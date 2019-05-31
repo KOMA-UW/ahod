@@ -17,16 +17,21 @@ class TopButtons extends Component {
 
     return (
       <div>
-        <Button className={classes.button} variant="contained">
+        <Button
+          className={classes.button}
+          variant="contained"
+          onClick={this.props.showPayment}
+        >
           Make Payment
         </Button>
 
-        <Button className={classes.button} variant="contained" color="secondary">
-          Make a Plea
-        </Button>
-
-        <Button className={classes.button} variant="contained">
-         Post Message
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="secondary"
+          onClick={this.props.showPlea}
+        >
+          Request Payment
         </Button>
       </div>
     );

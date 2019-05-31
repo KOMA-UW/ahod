@@ -17,42 +17,45 @@ const styles = theme => ({
   background: {
     background: theme.palette.primary.dark,
     color: '#fff',
-    margin: 0
+    margin: 0,
+    borderRadius: 0
   }
 });
 class CardPairs extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <Row>
-          <Col sm={12}>
-            <SimpleCard noPadding={true}>
-              <Row style={{ padding: 0 }}>
-                <Col sm={6} style={{ padding: 0 }}>
-                  <Paper
-                    elevation={0}
-                    rounded={0}
-                    color="primary"
-                    className={classes.padding}
-                  >
-                    <PaymentStatus />
-                  </Paper>
-                </Col>
-                <Col sm={6} style={{ padding: 0 }}>
-                  <Paper
-                    rounded={0}
-                    elevation={0}
-                    className={classNames(classes.padding, classes.background)}
-                  >
-                    <NextCycle />
-                  </Paper>
-                </Col>
-              </Row>
+      <SimpleCard noPadding={true}>
+        <Row style={{ margin: 0 }}>
+          <Col sm={6} style={{ padding: 0, minHeight: 80 }}>
+            <SimpleCard noMargin={true} square={true}>
+              <PaymentStatus />
+            </SimpleCard>
+          </Col>
+          <Col sm={6} style={{ padding: 0 }}>
+            <SimpleCard
+              noPadding={true}
+              noMargin={true}
+              backgroundClass={classes.background}
+            >
+              <NextCycle />
             </SimpleCard>
           </Col>
         </Row>
-      </div>
+
+        {/* <Col xs={12} sm={6} style={{ padding: 0 }}>
+            <SimpleCard noPadding={true} backgroundClass={classes.background}>
+              <NextCycle />
+            </SimpleCard>
+            <Paper
+              rounded={0}
+              elevation={0}
+              className={classNames(classes.padding, classes.background)}
+            >
+              <NextCycle />
+            </Paper>
+          </Col> */}
+      </SimpleCard>
     );
   }
 }

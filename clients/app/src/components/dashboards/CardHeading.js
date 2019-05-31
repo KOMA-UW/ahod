@@ -5,7 +5,8 @@ import { Button, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
-    marginBottom: 20
+    marginTop: 50,
+    marginBottom: 10
   }
 });
 class CardHeading extends Component {

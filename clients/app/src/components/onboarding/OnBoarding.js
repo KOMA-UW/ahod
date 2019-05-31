@@ -14,7 +14,7 @@ import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   },
   input: {
     display: 'none'
@@ -23,7 +23,7 @@ const styles = theme => ({
     fontSize: 15
   },
   margin: {
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   }
 });
 

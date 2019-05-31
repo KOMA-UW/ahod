@@ -55,10 +55,10 @@ const styles = theme => ({
     color: theme.palette.grey.text
   },
   leftIcon: {
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing(1)
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     padding: '8px 15px',
     color: theme.palette.grey.text
   },
@@ -156,7 +156,7 @@ class GroupCard extends React.Component {
                 to={`/members/${this.props.id}`}
               >
                 <EditIcon className={classes.leftIcon} />
-                Edit
+                Manage
               </Button>
             )}
           </div>

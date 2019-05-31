@@ -5,11 +5,9 @@ import SimpleCard from '../../SimpleCard';
 class YourClique extends Component {
   render() {
     return (
-      <div>
-        <SimpleCard>
-          <CircleView />
-        </SimpleCard>
-      </div>
+      <SimpleCard>
+        <CircleView />
+      </SimpleCard>
     );
   }
 }

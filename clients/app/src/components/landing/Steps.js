@@ -34,8 +34,8 @@ const styles = theme => ({
 
   image: {
     height: 150,
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 4
+    marginTop: theme.spacing(1) * 4,
+    marginBottom: theme.spacing(1) * 4
   }
 });
 

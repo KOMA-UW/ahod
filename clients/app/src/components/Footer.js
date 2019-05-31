@@ -52,14 +52,14 @@ const styles = theme => ({
     width: '100%',
     color: '#FFF',
     padding: 15
-    // paddingTop: theme.spacing.unit * 2,
-    // paddingBottom: theme.spacing.unit * 2
+    // paddingTop: theme.spacing(1) * 2,
+    // paddingBottom: theme.spacing(1) * 2
   },
   footer: {
     backgroundColor: theme.palette.dark.main,
     color: theme.palette.primary.text,
-    marginTop: theme.spacing.unit * 8,
-    padding: `${theme.spacing.unit * 6}px 0`
+    marginTop: theme.spacing(1) * 8,
+    padding: `${theme.spacing(1) * 6}px 0`
   },
   logo: {
     height: 24,

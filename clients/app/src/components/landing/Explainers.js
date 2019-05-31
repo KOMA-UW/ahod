@@ -16,14 +16,14 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
 
-    padding: `0px ${theme.spacing.unit * 5}px`
+    padding: `0px ${theme.spacing(1) * 5}px`
   },
   image: {
     height: 80
   },
   title: {
-    marginTop: theme.spacing.unit * 5,
-    marginBottom: theme.spacing.unit * 5
+    marginTop: theme.spacing(1) * 5,
+    marginBottom: theme.spacing(1) * 5
   },
   number: {
     width: 30,

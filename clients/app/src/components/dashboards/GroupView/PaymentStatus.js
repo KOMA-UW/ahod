@@ -8,7 +8,7 @@ class PaymentStatus extends Component {
     return (
       <div>
         {hasPaid ? (
-          <Typography variant="h6" style={{ textAlign: 'center' }}>
+          <Typography variant="body1" style={{ textAlign: 'center' }}>
             You have paid for this month!
           </Typography>
         ) : (

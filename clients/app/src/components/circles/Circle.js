@@ -3,18 +3,30 @@ import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Typography } from '@material-ui/core';
 import classNames from 'classnames';
 
-const styles = {
+const styles = theme => ({
   bigAvatar: {
     margin: 10,
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50
   },
   circ: {
     position: 'absolute',
-    width: 50,
-    height: 50,
+    [theme.breakpoints.down('sm')]: {
+      width: 40,
+      height: 40
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 40,
+      height: 40
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 40,
+      height: 40
+    },
+    margin: 0,
+    padding: 0,
 
-    borderRadius: 100,
+    borderRadius: '50%',
     // border: '1px solid #7d7272a6',
     '&::after': {
       content: `''`,
@@ -42,7 +54,7 @@ const styles = {
     opacity: 0.5,
     cursor: 'pointer'
   }
-};
+});
 
 class Circle extends Component {
   constructor(props) {
@@ -66,20 +78,23 @@ class Circle extends Component {
   };
   render() {
     const { classes } = this.props;
-    const { text } = this.props;
+    const { text, image } = this.props;
+
     const mouseClass = this.state.mouseIn ? classes.hover : '';
     return (
-      <div>
-        <Avatar
-          src={this.props.image}
-          className={classNames(classes.circ, mouseClass, 'hvr-bounce-in', 'pulse')}
-          style={{ top: this.props.top, left: this.props.left }}
-          data={this.props.text}
-          onMouseEnter={() => this.handleMouseEnter(text)}
-          onMouseLeave={this.handleMouseLeave}
-        />
-
-      </div>
+      <Avatar
+        src={this.props.image}
+        className={classNames(
+          classes.circ,
+          mouseClass,
+          'hvr-bounce-in',
+          'pulse'
+        )}
+        style={{ top: this.props.top, left: this.props.left }}
+        data={this.props.text}
+        onMouseEnter={() => this.handleMouseEnter(image)}
+        onMouseLeave={this.handleMouseLeave}
+      />
     );
   }
 }

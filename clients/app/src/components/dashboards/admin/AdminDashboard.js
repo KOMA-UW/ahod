@@ -7,6 +7,7 @@ import CardHeading from '../CardHeading';
 import MembersList from '../../members/MembersList';
 import CenteredLeftPadding from '../../CenteredLeftPadding';
 import AddMember from './AddMember';
+import NextCycle from '../GroupView/NextCycle';
 
 const styles = theme => ({
   root: {
@@ -41,6 +42,7 @@ class AdminDashboard extends Component {
           showNeWComponent={this.handleMemberAdd}
         />
         {showMemberAdd && <AddMember />}
+        {/* <NextCycle /> add a draw feature */}
         <MembersList />
       </CenteredLeftPadding>
     );

@@ -12,6 +12,7 @@ import FeedList from './FeedList';
 import MembersList from '../../members/MembersList';
 import SmallCalendar from './SmallCalendar';
 import Plea from './Plea';
+import Payment from './Payment';
 
 const styles = theme => ({
   btnContainer: {
@@ -25,6 +26,13 @@ const styles = theme => ({
 });
 
 class ViewGroup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPayment: false,
+      showPlea: false
+    };
+  }
   handleChange = e => {
     this.setState({
       plea: e.target.value
@@ -37,31 +45,48 @@ class ViewGroup extends Component {
       plea: ''
     });
   };
+
+  handlePleaShow = () =>
+    this.setState({
+      showPlea: true,
+      showPayment: false
+    });
+  handlePaymentShow = () =>
+    this.setState({
+      showPlea: false,
+      showPayment: true
+    });
   render() {
     const { classes } = this.props;
+    const { showPayment, showPlea } = this.state;
     return (
       <div>
         <Row>
-          <Col md={8}>
-            <TopButtons />
-            <CardHeading title="Next Draw" subTitle="" />
+          <Col xs={12} sm={12} md={12} lg={12}>
+            <TopButtons
+              showPayment={this.handlePaymentShow}
+              showPlea={this.handlePleaShow}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {showPayment && <Payment />}
+            {showPlea && <Plea />}
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={8}>
             <CardPairs />
             <CardHeading title="Your Clique" subTitle="" />
             <YourClique />
-            {/* <CardHeading title="Group Details" subTitle="" />
-            <GroupDetais /> */}
-            {/* <CardHeading title="Group Members" subTitle="" />
-            <MembersList /> */}
           </Col>
-
-          <Col md={4}>
+          <Col md={12} lg={4}>
             <SimpleCard noPadding={true}>
               <SmallCalendar />
               <Divider />
               <FeedList />
             </SimpleCard>
-
-            <Plea />
           </Col>
         </Row>
       </div>
