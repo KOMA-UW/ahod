@@ -60,16 +60,9 @@ class AdminDashboard extends Component {
             </CardPairs>
             {showDraw && <DrawPanel />}
             <CardHeading title="Your Clique" subTitle="" />
-            {/* <YourClique /> */}
-          </Col>
-          <Col md={12} lg={4}>
-            <SimpleCard noPadding={true}>
-              {/* <SmallCalendar /> */}
-              {/* <Divider /> */}
-              {/* <FeedList /> */}
-            </SimpleCard>
           </Col>
         </Row>
+
         <MembersList />
       </CenteredLeftPadding>
     );

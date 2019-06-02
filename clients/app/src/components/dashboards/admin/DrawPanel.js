@@ -4,6 +4,7 @@ import CircleView from '../../circles/Circles';
 import Button from '@material-ui/core/Button';
 import ReplayIcon from '@material-ui/icons/Replay';
 import { Typography } from '@material-ui/core';
+import _ from 'lodash';
 
 class DrawPanel extends Component {
   constructor(props) {
@@ -15,25 +16,38 @@ class DrawPanel extends Component {
   handleDraw = () => {
     this.setState({
       startDraw: true,
-      winner: undefined
+      winner: undefined,
+      centerText: 'Drawing'
     });
 
     setTimeout(() => {
       this.setState({
         startDraw: false,
-        winner: 3
+        winner: _.random(0, 15)
       });
     }, 4000);
   };
   render() {
     return (
-      <SimpleCard>
-        <Button variant="contained" color="primary" onClick={this.handleDraw}>
-          Draw
-          <ReplayIcon />
-        </Button>
-        <CircleView rotate={this.state.startDraw} winner={this.state.winner} />
-      </SimpleCard>
+      <div style={{ marginTop: 30, textAlign: 'center' }}>
+        <SimpleCard>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleDraw}
+            style={{ marginBottom: 20 }}
+            className={this.state.startDraw ? 'pulse' : ''}
+          >
+            Draw Winner
+            <ReplayIcon />
+          </Button>
+          <CircleView
+            rotate={this.state.startDraw}
+            winner={this.state.winner}
+            centerText={this.state.centerText}
+          />
+        </SimpleCard>
+      </div>
     );
   }
 }

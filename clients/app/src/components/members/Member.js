@@ -23,9 +23,9 @@ const styles = theme => ({
 class Member extends Component {
   render() {
     const { classes, memberID } = this.props;
-    const AdminViewMemberLink = props => (
-      <Link to={`/members/member/${memberID + 1}`} {...props} />
-    );
+    const AdminViewMemberLink = React.forwardRef((props, ref) => (
+      <Link innerRef={ref} to={`/members/member/${memberID + 1}`} {...props} />
+    ));
 
     return (
       <div>
