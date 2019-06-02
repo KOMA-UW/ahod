@@ -122,7 +122,7 @@ class SideNav extends Component {
             <Container className={classes.logo}>
               <Row justify="center" align="center">
                 <Col sm={8} align="center">
-                  <Logo />
+                  <Logo drawerOpen={this.props.drawerOpen} />
                 </Col>
                 <Col sm={4}>
                   <IconButton onClick={this.props.handleDrawerClose}>

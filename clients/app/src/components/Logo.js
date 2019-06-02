@@ -7,17 +7,24 @@ const styles = {
     flexGrow: 1
   },
   menuButton: {
-    marginLeft: 12,
-    marginRight: 36
+    // marginLeft: 12,
+    // marginRight: 36
+  },
+  alignRight: {
+    textAlign: 'right'
   }
 };
 const Logo = props => {
-  const { classes } = props;
+  const { classes, drawerOpen } = props;
   return (
     <Typography
       variant="h6"
       color="inherit"
-      className={classNames(classes.grow, classes.menuButton)}
+      className={classNames(
+        classes.grow,
+        classes.menuButton,
+        drawerOpen ? classes.alignRight : ''
+      )}
     >
       CLIQUE
     </Typography>
