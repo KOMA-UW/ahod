@@ -13,7 +13,7 @@ const theme = createMuiTheme({
     primary: {
       main: '#2496ed', //'#ffa820', //
       light: '#5b92d8',
-      dark: '#007bff',
+      dark: '#167df0',
       contrastText: '#ffffff',
       text: '#fff'
     },
@@ -70,7 +70,7 @@ class App extends Component {
     super(props);
     this.state = {
       token: window.localStorage.getItem('auth'),
-      currentUser: window.localStorage.getItem('userFirstname'),
+      currentUser: {},
       isAdmin: true,
       isEdit: false,
       showLoginButton: true,
@@ -78,6 +78,19 @@ class App extends Component {
       iconSpace: false,
       drawerOpen: false
     };
+  }
+
+  componentDidMount() {
+    const user = window.localStorage.getItem('id');
+    const currentUser = {};
+    if (user) {
+      const userKeys = ['id', 'firstName', 'lastName', 'photoURL'];
+
+      userKeys.forEach(
+        key => (currentUser[key] = window.localStorage.getItem(key))
+      );
+    }
+    this.setState({ currentUser });
   }
 
   setToken = token =>
@@ -99,7 +112,8 @@ class App extends Component {
   };
   handleLogout = () => {
     window.localStorage.removeItem('auth');
-    this.setState({ token: null, drawerOpen: false });
+    window.localStorage.clear();
+    this.setState({ token: null, drawerOpen: false, currentUser: {} });
   };
 
   beginOnboarding = () => {

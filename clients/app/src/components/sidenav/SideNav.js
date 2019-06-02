@@ -98,7 +98,8 @@ class SideNav extends Component {
     );
   }
   render() {
-    const { classes, isAdmin } = this.props;
+    const { classes, isAdmin, currentUser } = this.props;
+    const { photoURL } = currentUser;
 
     return (
       <Drawer
@@ -131,7 +132,7 @@ class SideNav extends Component {
               </Row>
               <Row>
                 <Col>
-                  <CurrentUser />
+                  <CurrentUser currentUser={currentUser} />
                 </Col>
               </Row>
             </Container>

@@ -19,7 +19,7 @@ const styles = theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: 80
+    marginTop: 100
   },
   formControl: {
     marginTop: 5,
@@ -112,6 +112,7 @@ class SignUpView extends Component {
         if (typeof data === 'string') {
           throw Error(data);
         }
+        this.onSetUser(data);
         this.props.setUser({ ...data });
         this.props.begingOnboarding();
       })
@@ -123,6 +124,13 @@ class SignUpView extends Component {
         console.log(err.message);
       });
   }
+
+  onSetUser = result => {
+    console.clear();
+    for (const [key, value] of Object.entries(result)) {
+      window.localStorage.setItem(key, value);
+    }
+  };
 
   render() {
     const { error, errorMessage, loading } = this.state;

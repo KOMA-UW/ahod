@@ -140,7 +140,7 @@ h5 {
 }
 
 .outerCircle {
-  animation: circle 5s linear infinite;
+  animation: circle 2s linear infinite;
 }
 
 @keyframes circle {

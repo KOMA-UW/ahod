@@ -22,9 +22,9 @@ class Auth extends Component {
     }
     return (
       <main>
-        <Container>
+        <Container style={{ marginTop: 100 }}>
           <Row style={{ justifyContent: 'center' }}>
-            <Col xs={10} sm={8} md={6} lg={5}>
+            <Col xs={10} sm={10} md={7} lg={5}>
               <SimpleCard
                 title={this.props.title}
                 titleColor={this.props.titleColor}

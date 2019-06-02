@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { withAuth } from '../Context';
@@ -54,6 +55,7 @@ const styles = theme => ({
 
 class Header extends React.Component {
   render() {
+    const LoginLink = props => <Link to="/login" {...props} />;
     const { classes, token, drawerOpen } = this.props;
     const authenticated = token != null;
     const appBarClass = !drawerOpen
@@ -91,7 +93,7 @@ class Header extends React.Component {
               />
             )}
 
-            {authenticated && (
+            {authenticated ? (
               <React.Fragment>
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="secondary">
@@ -103,6 +105,10 @@ class Header extends React.Component {
                   Logout
                 </Button>
               </React.Fragment>
+            ) : (
+              <Button color="inherit" component={LoginLink}>
+                Login
+              </Button>
             )}
           </Toolbar>
         </AppBar>

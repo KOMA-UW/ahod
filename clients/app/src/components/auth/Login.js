@@ -16,6 +16,7 @@ import {
 import { withAuth } from '../../Context';
 import Auth from './Auth';
 import Loader from '../Loader';
+import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 const styles = theme => ({
   formControl: {
@@ -95,8 +96,8 @@ class LoginView extends Component {
         if (typeof data === 'string') {
           throw Error(data);
         }
-        console.clear();
-        window.localStorage.setItem('userFirstname', data.firstName);
+
+        this.onSetUser(data);
         this.props.setUser({ ...data });
       })
       .catch(err => {
@@ -106,6 +107,13 @@ class LoginView extends Component {
         });
       });
   }
+
+  onSetUser = result => {
+    console.clear();
+    for (const [key, value] of Object.entries(result)) {
+      window.localStorage.setItem(key, value);
+    }
+  };
 
   componentDidMount() {
     this.setState({

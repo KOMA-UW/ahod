@@ -14,24 +14,24 @@ const styles = theme => ({
     height: 100
   },
   text: {
-    color: '#8ca4b0'
+    color: '#8ca4b0',
+    textTransform: 'capitalize'
   }
 });
 
 class CurrentUser extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, currentUser } = this.props;
+    const { firstName, lastName, photoURL } = currentUser;
+    const userFullName = firstName && firstName + ' ' + lastName;
     return (
       <div>
         <Container className={classes.root}>
           <Row align="center">
             <Col align="center">
-              <Avatar
-                src="https://material-ui.com/static/images/avatar/2.jpg"
-                className={classes.avatar}
-              />
+              <Avatar src={photoURL || ''} className={classes.avatar} />
               <Typography variant="h5" className={classes.text}>
-                Username
+                {userFullName}
               </Typography>
             </Col>
           </Row>
