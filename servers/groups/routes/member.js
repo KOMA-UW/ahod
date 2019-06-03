@@ -1,19 +1,9 @@
-// const express = require("express");
-// const checkAuth = require("../middleware/check-auth");
+const express = require("express");
+const router = express.Router();
+const memberController = require("../controllers/members");
 
-// const router = express.Router();
-// const memberController = require("../controllers/members");
+router.get("/:id/groups", memberController.getMembersGroups)   // get a specific member ** WORKS ** Add auth later
+router.get("/:id", memberController.getOneMember)      // get a specific member ** WORKS ** Add auth later
+router.put("/:id", memberController.updateMembersInfo)   // update Member's info **WORKS** add check authenthications
 
-// router.post("", checkAuth, memberController.addPost);
-
-// router.put("/:id", checkAuth, memberController.updatePost);
-
-// // fetching all of the posts,
-// router.get("", memberController.getAllPosts);
-
-// router.get("/:id", memberController.getOnePost);
-
-// // disabled for users who are not authenticated
-// router.delete("/:id", checkAuth, memberController.deletePost);
-
-// module.exports = router;
+module.exports = router;

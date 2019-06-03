@@ -5,7 +5,8 @@ const contentTypeText = "text/plain"
 const contentTypeJSON = "application/json"
 
 module.exports = (req, res, next) => {
-    var currUser = req.get("X-User");
+    
+    var currUser = req.get("X-User");  // get users
     if (currUser) {
         return JSON.parse(currUser)
     }
