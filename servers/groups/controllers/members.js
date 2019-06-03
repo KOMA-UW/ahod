@@ -60,7 +60,6 @@ exports.getMembersGroups = (req, res, next) => {
       Member.findById(req.params.id)
             .lean()
             .exec((err, result) => {
-            console.log("result ", result);
             if (err) {
                   res.status(500)
                   .send(err);

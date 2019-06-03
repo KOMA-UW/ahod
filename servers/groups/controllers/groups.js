@@ -5,22 +5,13 @@ const Plea = require("../models/plea");
 const Invitation = require("../models/invitation");
 const Round = require('../models/round');
 
-let ejs = require("ejs");
-var amqp = require('amqplib/callback_api');
-let faker = require('faker');
-
-
 const crypto = require('crypto');
-const flash = require('express-flash');
 
 const generator = require('generate-password');
 const sgMail = require('@sendgrid/mail')
 
 // for voting like/dislike
 let Pusher = require('pusher');
-
-console.log("VARIBLES ", process.env.PUSHER_APP_ID, process.env.PUSHER_APP_KEY,
-   process.env.PUSHER_APP_SECRET)
 
 let pusher = new Pusher({
    appId: process.env.PUSHER_APP_ID,
