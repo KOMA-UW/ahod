@@ -6,13 +6,13 @@ const error = require('util').error;
 // and calculate their social credit through their consistency and 
 // store it with members.
 
-let temp_user = {
-   id: 7,
-   userName: "some",
-   firstName: "some",
-   lastName: "some",
-   photoURL: "https://www.gravatar.com/avatar/ddf2d077f3e3aadc78a244cd08e169a7"
-};
+// let temp_user = {
+//    id: 7,
+//    userName: "some",
+//    firstName: "some",
+//    lastName: "some",
+//    photoURL: "https://www.gravatar.com/avatar/ddf2d077f3e3aadc78a244cd08e169a7"
+// };
 
 const contentTypeHeader = "Content-Type"
 const contentTypeText = "text/plain"

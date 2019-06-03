@@ -20,14 +20,13 @@ let pusher = new Pusher({
    cluster: 'us3'
 });
 
-
-let temp_user = { // for testing purposes
-   id: 43,
-   userName: "some",
-   firstName: "some",
-   lastName: "some",
-   photoURL: "https://www.gravatar.com/avatar/ddf2d077f3e3aadc78a244cd08e169a7"
-};
+// let temp_user = { // for testing purposes
+//    id: 43,
+//    userName: "some",
+//    firstName: "some",
+//    lastName: "some",
+//    photoURL: "https://www.gravatar.com/avatar/ddf2d077f3e3aadc78a244cd08e169a7"
+// };
 
 const contentTypeHeader = "Content-Type"
 const contentTypeText = "text/plain"
@@ -256,7 +255,7 @@ async function sendInvite(email, groupID, groupName, creatorName, host,
    });
 
   //  let url = 'https://' + host + '/group/' + groupID + '/join/' + temp_token;
-   let url = "https://"+host+'onboarding'
+   let url = "https://"+host+'onboarding' + 'https://payinpayout.tech/onboarding'
 
    const inviteMessage = {
       to: email,

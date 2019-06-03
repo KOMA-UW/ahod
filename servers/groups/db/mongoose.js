@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 async function connect() {   //{localhost = groupdb}
-    const mongoUrl ="mongodb://localhost:27017/gpdb";
+    const mongoUrl ="mongodb://groupdb:27017/gpdb";
     return mongoose.connect(mongoUrl, { useNewUrlParser: true})
 }
 
