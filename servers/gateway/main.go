@@ -187,13 +187,14 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", HomeHandler)
+	// mux.HandleFunc("/", HomeHandler)
 	
 	mux.Handle("/v1/channels", messagingProxy)
 	mux.Handle("/v1/channels/", messagingProxy)
 
-	mux.Handle("v1/groups", groupsProxy)
-	
+	mux.Handle("v1/groups/", groupsProxy)
+	mux.Handle("v1/members/", groupsProxy)
+
 	mux.Handle("/v1/messages/", messagingProxy)
 
 	mux.HandleFunc("/v1/users", hctx.UsersHandler)
