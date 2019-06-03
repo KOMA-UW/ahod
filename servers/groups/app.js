@@ -1,13 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
-const Group = require("./models/group");
-const Member = require("./models/member");
 const {mongoose, connect} = require("./db/mongoose");
-
-var bcrypt = require('bcrypt-nodejs');
-var async = require('async');
-var crypto = require('crypto');
 
 const app = express();
 const path = require("path");
