@@ -22,11 +22,15 @@ ssh -i ~/.ssh/aws-capstone-2019.pem ec2-user@54.191.200.168 'bash -s'<< EOF
     docker rm -f gateway
     docker rm -f messagesMYSQLDB
     docker rm -f redisServer
-    docker rm -f groupdb
+    docker rm -f groupsdb || true
 
     docker network rm ahodnet
 
     docker network create ahodnet
+
+    docker network create --driver bridge ahodnet || true
+    
+    docker run -d --name groupsdb --network ahodnet mongo
     
     docker pull uwkoma/koma-mysql
 

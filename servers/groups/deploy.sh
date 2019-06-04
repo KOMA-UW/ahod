@@ -9,13 +9,8 @@ export PUSHER_APP_SECRET='eb11a0511bd5e648f4a9'
 ssh -i ~/.ssh/aws-capstone-2019.pem ec2-user@54.191.200.168 'bash -s' << EOF
 
 docker rm -f groups || true
-docker rm -f groupsdb || true
-
-docker network create --driver bridge ahodnet || true
 
 docker pull uwkoma/groups
-docker run -d --name groupsdb --network ahodnet mongo
-
 
 sleep 20
 
