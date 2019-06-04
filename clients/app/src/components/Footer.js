@@ -72,6 +72,11 @@ const styles = theme => ({
   },
   social: {
     paddingLeft: 10
+  },
+  button: {
+    height: "30px",
+    width: "10px",
+    paddingRight: 30
   }
 });
 
@@ -96,7 +101,11 @@ const Footer = props => {
 
             <div>
               <div className={classes.flexContainer}>
-                <AwesomeButtonSocial type="facebook" size="icon" />
+                <AwesomeButtonSocial
+                  type="facebook"
+                  size="icon"
+                  className={classes.button}
+                />
                 <Typography
                   variant="body2"
                   color="inherit"
@@ -109,7 +118,11 @@ const Footer = props => {
             </div>
             <div>
               <div className={classes.flexContainer}>
-                <AwesomeButtonSocial type="twitter" size="icon" />
+                <AwesomeButtonSocial
+                  type="twitter"
+                  size="icon"
+                  className={classes.button}
+                />
                 <Typography
                   variant="body2"
                   color="inherit"
@@ -122,7 +135,11 @@ const Footer = props => {
             </div>
             <div>
               <div className={classes.flexContainer}>
-                <AwesomeButtonSocial type="gplus" size="icon" />
+                <AwesomeButtonSocial
+                  type="gplus"
+                  size="icon"
+                  className={classes.button}
+                />
                 <Typography
                   variant="body2"
                   color="inherit"

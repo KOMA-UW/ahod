@@ -4,6 +4,7 @@ import heroImage from "../../img/here_friends.jpeg";
 import { Button, Typography } from "@material-ui/core";
 import { withStyles, withTheme } from "@material-ui/core/styles";
 import { ROUTES } from "../../constants";
+import { Animation } from "./animation";
 
 const styles = theme => ({
   root: {
@@ -42,9 +43,10 @@ class Hero extends React.Component {
       <div className={classes.root}>
         <div className={classes.center}>
           <div className={classes.textContainer}>
-            <Typography className={classes.text} color="inherit" variant="h3">
+            {/*             <Typography className={classes.text} color="inherit" variant="h3">
               Clique
-            </Typography>
+            </Typography> */}
+            <Animation />
             <Typography className={classes.text} color="inherit" variant="h5">
               Pay. Borrow. Save.
             </Typography>
