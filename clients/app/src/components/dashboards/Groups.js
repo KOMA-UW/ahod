@@ -48,9 +48,10 @@ class Groups extends React.Component {
   handleJoinGroup = () => {
     this.setState({ showGroupJoin: true });
   };
+
   render() {
     const { classes, isAdmin } = this.props;
-    const { showGroupJoin } = this.state;
+    const { showGroupJoin, groupJoined } = this.state;
     const JoinGroupLink = props => <Link to="/joingroup" {...props} />;
     return (
       <div>

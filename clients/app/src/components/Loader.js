@@ -1,17 +1,17 @@
-import React from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = {
   loader: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 };
 const Loader = () => {
   return (
     <div style={styles.loader}>
-      <CircularProgress disableShrink size={80} />
+      <CircularProgress size={80} />
     </div>
   );
 };

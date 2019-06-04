@@ -26,6 +26,11 @@ class JoinGroup extends Component {
       [name]: event.target.value
     });
   };
+
+  handleCreateGroup = () => {
+    this.props.handleGroupJoin();
+  };
+
   render() {
     const { groupJoined } = this.props;
     console.log(groupJoined);
@@ -54,7 +59,12 @@ class JoinGroup extends Component {
                   value={this.state.groupID}
                   onChange={this.handleChange('groupID')}
                 />
-                <Button variant="contained" color="secondary" type="submit">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  type="submit"
+                  onClick={this.handleCreateGroup}
+                >
                   Join
                 </Button>
               </form>
