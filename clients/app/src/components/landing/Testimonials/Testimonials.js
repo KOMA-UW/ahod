@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Circles from './circles/Circles';
-import Testimonial from './Testimonial';
-import { Container, Row, Col } from 'react-grid-system';
-import SimpleCard from '../../SimpleCard';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Circles from "./circles/Circles";
+import Testimonial from "./Testimonial";
+import { Container, Row, Col } from "react-grid-system";
+import SimpleCard from "../../SimpleCard";
+import Fade from "react-reveal";
 
 const styles = theme => ({
   title: {
@@ -18,7 +19,7 @@ class Testimonials extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: { name: 'Kidus', age: '22', testimonial: 'Awesome' }
+      user: { name: "Kidus", age: "22", testimonial: "Awesome" }
     };
   }
 
@@ -48,7 +49,9 @@ class Testimonials extends Component {
               <Testimonial user={this.state.user} />
             </Col>
             <Col>
-              <Circles handleImageClick={this.handleClick} />
+              <Fade top>
+                <Circles handleImageClick={this.handleClick} />
+              </Fade>
             </Col>
           </Row>
         </Container>

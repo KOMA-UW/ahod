@@ -1,20 +1,21 @@
-import React from 'react';
-import { withStyles, withTheme } from '@material-ui/core/styles';
-import { Container, Row, Col } from 'react-grid-system';
-import classNames from 'classnames';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
+import React from "react";
+import { withStyles, withTheme } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import classNames from "classnames";
+import Typography from "@material-ui/core/Typography";
+import Avatar from "@material-ui/core/Avatar";
+import Fade from "react-reveal";
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    display: "flex",
     padding: 20
   },
 
   item: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
 
     padding: `0px ${theme.spacing(1) * 5}px`
   },
@@ -42,11 +43,13 @@ class Explainers extends React.Component {
           {item.number && (
             <Avatar className={classes.number}>{item.number}</Avatar>
           )}
-          <img
-            className={iconClass || classes.image}
-            src={item.icon}
-            alt={item.alt}
-          />
+          <Fade top>
+            <img
+              className={iconClass || classes.image}
+              src={item.icon}
+              alt={item.alt}
+            />
+          </Fade>
           <Typography variant="body1" className={classes.title}>
             {item.text}
           </Typography>
@@ -69,7 +72,7 @@ class Explainers extends React.Component {
               </Typography>
             </Col>
           </Row>
-          <Row justify={'center'}>
+          <Row justify={"center"}>
             {itmesElems}
             {this.props.children}
           </Row>
