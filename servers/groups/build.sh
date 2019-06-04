@@ -1,2 +1,2 @@
-docker build -t uwkoma/groups_api:latest .
-docker push uwkoma/groups_api
+docker build -t uwkoma/groups:latest .
+docker push uwkoma/groups

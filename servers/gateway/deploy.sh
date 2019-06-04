@@ -11,8 +11,8 @@ export MYSQL_ADDR=messagesMYSQLDB:3306
 export DSN="root:$MYSQL_ROOT_PASSWORD@tcp\(messagesMYSQLDB:3306\)/messagesDB"
 
 export SESSIONKEY="sessionkey"
-export REDISSVR=redisServer:6379
-export GROUPADDR=groups_api:80
+export REDISADDR=redisServer:6379
+export GROUPADDR=groups:80
 export MESSAGESADDR=messaging:80
 
 
@@ -22,6 +22,7 @@ ssh -i ~/.ssh/aws-capstone-2019.pem ec2-user@54.191.200.168 'bash -s'<< EOF
     docker rm -f gateway
     docker rm -f messagesMYSQLDB
     docker rm -f redisServer
+    docker rm -f groupdb
 
     docker network rm ahodnet
 
@@ -43,23 +44,19 @@ ssh -i ~/.ssh/aws-capstone-2019.pem ec2-user@54.191.200.168 'bash -s'<< EOF
     -v /my/own/datadir:/var/lib/mysql \
     uwkoma/koma-mysql
 
-    docker run -d \
-    --name groupdb \
-    --network ahodnet \
-    mongo
-
     sleep 20
 
     docker run -d \
     --name gateway \
     --network ahodnet \
     -p 443:443 \
-    -e DSN=$DSN \
-    -e REDISADDR=$REDISSVR \
-    -e GROUPADDR=$GROUPADDR \
     -v /etc/letsencrypt:/etc/letsencrypt:ro \
+    -e DSN=$DSN \
+    -e REDISADDR=$REDISADDR \
+    -e SESSIONKEY=$SESSIONKEY \
     -e TLSCERT=$TLSCERT \
     -e TLSKEY=$TLSKEY \
+    -e GROUPADDR=$GROUPADDR \
     -e MESSAGESADDR=$MESSAGESADDR \
     uwkoma/gateway
 
