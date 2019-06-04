@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withAuth } from '../../../Context';
 import SimpleCard from '../../SimpleCard';
 import CheckoutForm from '../../payment/CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
@@ -18,4 +19,4 @@ class Payment extends Component {
   }
 }
 
-export default Payment;
+export default withAuth(Payment);

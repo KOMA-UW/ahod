@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { Container, Row, Col } from "react-grid-system";
-import SimpleCard from "../SimpleCard";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { withAuth } from '../../Context';
+import { Container, Row, Col } from 'react-grid-system';
+import SimpleCard from '../SimpleCard';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import CenteredLeftPadding from '../CenteredLeftPadding';
 
 const styles = {
   container: {
-    display: "flex"
+    display: 'flex'
   },
   avatar: {
     margin: 10
@@ -20,7 +22,7 @@ const styles = {
     height: 60
   },
   button: {
-    marginLeft: "auto",
+    marginLeft: 'auto',
     width: 100,
     height: 45
   }
@@ -28,9 +30,9 @@ const styles = {
 
 class Profile extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, drawerOpen } = this.props;
     return (
-      <div>
+      <CenteredLeftPadding drawerOpen={drawerOpen}>
         <Container>
           <Row>
             <Col>
@@ -44,26 +46,29 @@ class Profile extends Component {
 
                   <Typography variant="h5">John Smith</Typography>
 
-                  <Button
+                  {/* <Button
                     size="medium"
-                    variant="outlined"
+                    variant="contained"
                     color="secondary"
                     className={classes.button}
                   >
                     Edit
-                  </Button>
+                  </Button> */}
                 </div>
                 <br />
                 <Divider />
                 <br />
-                <Typography variant="body1">Email: abc@test.com</Typography>
+                <Typography variant="body1">
+                  Email: johnsmith@test.com
+                </Typography>
+                <Typography variant="body1">Number of cliques: 2</Typography>
               </SimpleCard>
             </Col>
           </Row>
         </Container>
-      </div>
+      </CenteredLeftPadding>
     );
   }
 }
 
-export default withStyles(styles)(Profile);
+export default withAuth(withStyles(styles)(Profile));
