@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { withAuth } from '../Context';
-import Typography from '@material-ui/core/Typography';
-import { Container, Row, Col } from 'react-grid-system';
-import LogoSVG from './LogoSVG';
-import logo from '../img/ischool_log.png';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { withAuth } from "../Context";
+import Typography from "@material-ui/core/Typography";
+import { Container, Row, Col } from "react-grid-system";
+import LogoSVG from "./LogoSVG";
+import logo from "../img/ischool_log.png";
+import { AwesomeButtonSocial } from "react-awesome-button";
+import "react-awesome-button/src/styles/styles.scss";
 
 import {
   FacebookShareButton,
@@ -14,9 +16,9 @@ import {
   FacebookIcon,
   TwitterIcon,
   EmailIcon
-} from 'react-share';
+} from "react-share";
 
-const black = '#000';
+const black = "#000";
 // const logoClass = css`
 //   height: 24px;
 //   width: 24px;
@@ -31,26 +33,26 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     borderRadius: 3,
     border: 0,
-    color: 'white',
+    color: "white",
     height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+    padding: "0 30px",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
   },
   label: {
-    textTransform: 'capitalize'
+    textTransform: "capitalize"
   },
   footers: {
-    background: '#37517e',
-    height: '200px',
-    position: 'fixed',
+    background: "#37517e",
+    height: "200px",
+    position: "fixed",
     bottom: 0,
     left: 0,
     marginBottom: 0,
-    width: '100%',
-    color: '#FFF',
+    width: "100%",
+    color: "#FFF",
     padding: 15
     // paddingTop: theme.spacing(1) * 2,
     // paddingBottom: theme.spacing(1) * 2
@@ -66,10 +68,10 @@ const styles = theme => ({
     width: 24
   },
   flexContainer: {
-    display: 'flex'
+    display: "flex"
   },
   social: {
-    paddingRight: 10
+    paddingLeft: 10
   }
 });
 
@@ -93,46 +95,43 @@ const Footer = props => {
             </Typography>
 
             <div>
-              <FacebookShareButton url="">
-                <div className={classes.flexContainer}>
-                  <FacebookIcon className={classes.social} size={25} round />
-                  <Typography
-                    variant="body2"
-                    color="inherit"
-                    style={{ color: '#697A89' }}
-                  >
-                    Facebook
-                  </Typography>
-                </div>
-              </FacebookShareButton>
+              <div className={classes.flexContainer}>
+                <AwesomeButtonSocial type="facebook" size="icon" />
+                <Typography
+                  variant="body2"
+                  color="inherit"
+                  style={{ color: "#697A89" }}
+                  className={classes.social}
+                >
+                  Facebook
+                </Typography>
+              </div>
             </div>
             <div>
-              <TwitterShareButton url="">
-                <div className={classes.flexContainer}>
-                  <TwitterIcon className={classes.social} size={25} round />
-                  <Typography
-                    variant="body2"
-                    color="inherit"
-                    style={{ color: '#697A89' }}
-                  >
-                    Twitter
-                  </Typography>
-                </div>
-              </TwitterShareButton>
+              <div className={classes.flexContainer}>
+                <AwesomeButtonSocial type="twitter" size="icon" />
+                <Typography
+                  variant="body2"
+                  color="inherit"
+                  style={{ color: "#697A89" }}
+                  className={classes.social}
+                >
+                  Twitter
+                </Typography>
+              </div>
             </div>
             <div>
-              <EmailShareButton url="">
-                <div className={classes.flexContainer}>
-                  <EmailIcon className={classes.social} size={25} round />
-                  <Typography
-                    variant="body2"
-                    color="inherit"
-                    style={{ color: '#697A89' }}
-                  >
-                    Email
-                  </Typography>
-                </div>
-              </EmailShareButton>
+              <div className={classes.flexContainer}>
+                <AwesomeButtonSocial type="gplus" size="icon" />
+                <Typography
+                  variant="body2"
+                  color="inherit"
+                  style={{ color: "#697A89" }}
+                  className={classes.social}
+                >
+                  Email
+                </Typography>
+              </div>
             </div>
           </Col>
 
@@ -143,14 +142,14 @@ const Footer = props => {
             <Typography
               color="inherit"
               variant="body2"
-              style={{ color: '#697A89' }}
+              style={{ color: "#697A89" }}
             >
               T&C
             </Typography>
             <Typography
               color="inherit"
               variant="body2"
-              style={{ color: '#697A89' }}
+              style={{ color: "#697A89" }}
             >
               Privacy
             </Typography>

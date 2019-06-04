@@ -1,29 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import heroImage from '../../img/here_friends.jpeg';
-import { Button, Typography } from '@material-ui/core';
-import { withStyles, withTheme } from '@material-ui/core/styles';
-import { ROUTES } from '../../constants';
+import React from "react";
+import { Link } from "react-router-dom";
+import heroImage from "../../img/here_friends.jpeg";
+import { Button, Typography } from "@material-ui/core";
+import { withStyles, withTheme } from "@material-ui/core/styles";
+import { ROUTES } from "../../constants";
 
 const styles = theme => ({
   root: {
-    height: '100vh',
+    height: "100vh",
     background: theme.palette.primary.dark,
     background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImage})`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    position: 'relative'
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    position: "relative"
   },
   center: {
-    textAlign: 'center',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)'
+    textAlign: "center",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)"
   },
   textContainer: {
-    color: 'white'
+    color: "white"
   },
   text: {
     padding: 5
