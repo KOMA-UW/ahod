@@ -7,7 +7,7 @@ class Testimonial extends Component {
     return (
       <div>
         <Typography variant="h5">{name}</Typography>
-        <Typography variant="body2">{text}</Typography>
+        <Typography variant="h6">{text}</Typography>
       </div>
     );
   }

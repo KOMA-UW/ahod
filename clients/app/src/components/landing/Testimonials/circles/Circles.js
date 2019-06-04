@@ -10,52 +10,58 @@ const members = [
   {
     name: "John",
     photoUrl: "https://material-ui.com/static/images/avatar/1.jpg",
-    text: "Some details about John"
+    text:
+      "With Clique, I have paid my student debt off much faster. And now I can finally relax and spend money on things I will enjoy. "
   },
   {
     name: "Sam",
     photoUrl: "https://material-ui.com/static/images/avatar/2.jpg",
-    text: "Some details about John"
+    text: "I was planning for a vacation and Clique helped me save up for it!"
   },
   {
-    name: "Tom",
+    name: "Tammy",
     photoUrl: "https://material-ui.com/static/images/avatar/3.jpg",
-    text: "Some details about John"
+    text:
+      "Clique acted like a saving account for me, and helped me actually save instead of spending it on things I didn't need."
   },
   {
     name: "Wendy",
     photoUrl: "https://material-ui.com/static/images/avatar/4.jpg",
-    text: "Some details about John"
+    text: "Clique helped me plan for my dream wedding!"
   },
   {
-    name: "Melody",
+    name: "Jarvis",
     photoUrl: "https://material-ui.com/static/images/avatar/5.jpg",
-    text: "Some details about John"
+    text: "I am finally student-debt free! All thanks to Clique!"
   },
   {
     name: "Stuart",
     photoUrl: "https://material-ui.com/static/images/avatar/6.jpg",
-    text: "Some details about John"
+    text:
+      "Clique was a way for me to connect with my distant family. It really brought us together!"
   },
   {
     name: "Anita",
     photoUrl: "https://material-ui.com/static/images/avatar/7.jpg",
-    text: "Some details about John"
+    text:
+      "I needed to pay off my car loans for my new Mercedes. Clique helped me pay them off in the most efficient way possible. "
   },
   {
-    name: "Mary",
+    name: "Akram",
     photoUrl: "https://material-ui.com/static/images/avatar/2.jpg",
-    text: "Some details about John"
+    text:
+      "I just needed a quick, big chunk of money, and by using Clique I was able to get it, and then helped my other Clique members get their payouts."
   },
   {
-    name: "Nina",
+    name: "Nick",
     photoUrl: "https://material-ui.com/static/images/avatar/6.jpg",
-    text: "Some details about John"
+    text: "I am debt free!"
   },
   {
     name: "Ada",
     photoUrl: aMember,
-    text: "Some details about John"
+    text:
+      "I wanted to buy my parents a home, and had a little bit left. Clique helped me get that tiny amount to buy the house!"
   }
 ];
 
