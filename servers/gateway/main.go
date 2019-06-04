@@ -4,6 +4,12 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
+	"os"
+	"time"
 
 	"github.com/KOMA-UW/ahod/servers/gateway/handlers"
 	"github.com/KOMA-UW/ahod/servers/gateway/indexes"
@@ -11,197 +17,165 @@ import (
 	"github.com/KOMA-UW/ahod/servers/gateway/sessions"
 	"github.com/go-redis/redis"
 	_ "github.com/go-sql-driver/mysql"
-
-	"log"
-	"net/http"
-	"net/http/httputil"
-	"os"
-	"strings"
-	"sync"
-	"time"
+	"github.com/pusher/pusher-http-go"
 )
 
-const headerUser = "X-User"
+// Director is a specific function which returns a http request
+type Director func(r *http.Request)
 
-//User represents an authenticated user
-type User struct {
-	ID       int64
-	UserName string
-}
-
-//GetUser returns the currently-authenticated user,
-//or an error if the user is not authenticated. For
-//this demo, this function just returns a hard-coded
-//test user. In a real gateway, you should use your
-//sessions library to get the current session state,
-//which contains the currently-authenticated user.
-func GetUser(r *http.Request) (*User, error) {
-	authHeader := r.Header.Get("Authorization")
-	if len(authHeader) == 0 {
-		return nil, fmt.Errorf("not authenticated")
-	}
-	return &User{
-		ID:       1,
-		UserName: "TestUser",
-	}, nil
-}
-
-//RootHandler handles requests for the root resource
-func RootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello from the gateway!")
-}
-
-func reqEnv(name string) string {
-	val := os.Getenv(name)
-	if len(val) == 0 {
-		log.Fatalf("please set the %s environment variable", name)
-	}
-	return val
-}
-
-//NewServiceProxy returns a new ReverseProxy
-//for a microservice given a comma-delimited
-//list of network addresses
-func NewServiceProxy(addrs string, ctx handlers.HandlerContext) *httputil.ReverseProxy {
-	splitAddrs := strings.Split(addrs, ",")
-	nextAddr := 0
-	mx := sync.Mutex{}
-
-	return &httputil.ReverseProxy{
-		Director: func(r *http.Request) {
-			r.URL.Scheme = "http"
-			mx.Lock()
-			r.URL.Host = splitAddrs[nextAddr]
-			nextAddr = (nextAddr + 1) % len(splitAddrs)
-			mx.Unlock()
-
-			sessionState := &handlers.SessionState{}
-			_, err := sessions.GetState(r, ctx.SigningKey, ctx.SessionStore, sessionState)
-			if err != nil {
-				fmt.Printf("Unable to get session state: %v", err)
-				return
-			}
-
-			user := sessionState.User
-
-			if user != nil {
-				userJSON, err := json.Marshal(user)
-				if err != nil {
-					fmt.Printf("error encoding user to JSON %v", err)
-					return
-				}
-				r.Header.Add(headerUser, string(userJSON))
+// GroupsDirector is a director function that redirects a url to the messages
+// microservice
+func GroupsDirector(target *url.URL, ctx *handlers.HandlerContext) Director {
+	return func(r *http.Request) {
+		r.Header.Set("X-Forwarded-Host", r.Host)
+		ss := &handlers.SessionState{}
+		_, err := sessions.GetState(r, ctx.SigningKey, ctx.SessionStore, ss)
+		if err == nil {
+			userBytes, err := json.Marshal(ss.User)
+			if err == nil {
+				r.Header.Set("X-User", string(userBytes))
 			} else {
-				r.Header.Del(headerUser)
+				r.Header.Del("X-User")
 			}
-		},
+		} else {
+			r.Header.Del("X-User")
+		}
+		r.Host = target.Host
+		r.URL.Host = target.Host
+		r.URL.Scheme = target.Scheme
 	}
-}
-
-//HelloHandler handles requests for the `/hello` resource
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, Web!\n"))
 }
 
 //main is the main entry point for the server
 func main() {
-	/* TODO: add code to do the following
-	- Read the ADDR environment variable to get the address
-	  the server should listen on. If empty, default to ":80"
-	- Create a new mux for the web server.
-	- Tell the mux to call your handlers.SummaryHandler function
-	  when the "/v1/summary" URL path is requested.
-	- Start a web server listening on the address you read from
-	  the environment variable, using the mux you created as
-	  the root handler. Use log.Fatal() to report any errors
-	  that occur when trying to start the web server.
-	*/
+	// get all env variables
+	groupAddr := os.Getenv("GROUPADDR")
 
-	addr := os.Getenv("ADDR")
-
-	if len(addr) == 0 {
-		addr = ":443"
-	}
+	DSN := os.Getenv("DSN")
+	radisAddr := os.Getenv("REDISADDR")
 	tlsKeyPath := os.Getenv("TLSKEY")
 	tlsCertPath := os.Getenv("TLSCERT")
-
-	if len(tlsKeyPath) == 0 || len(tlsCertPath) == 0 {
-		fmt.Println("Either TLSKEY or TLSCERT environment variables are not set!")
-		os.Exit(1)
-	}
-
 	sessionKey := os.Getenv("SESSIONKEY")
+	addr := os.Getenv("ADDR")
 
-	if len(sessionKey) == 0 {
-		sessionKey = "default"
-	}
-
-	radisAddr := os.Getenv("REDISADDR")
-
-	if len(radisAddr) == 0 {
-		radisAddr = "localhost:6379"
-	}
-
+	// setup redisstore
+	// redisStore := setUpRedis(redisAddr)
 	redisClient := redis.NewClient(&redis.Options{
 		Addr: radisAddr,
 	})
 
-	dsn := os.Getenv("DSN")
+	// set up mysqlstore
+	db := setUpMySQL(DSN)
+	// store := users.NewMySQLStore(db)
+	// defer db.Close()
 
-	messagingServiceAddr := reqEnv("MESSAGESADDR")
-
-	if len(dsn) == 0 {
-		log.Fatal("DSN not set")
-	}
-
-	db, err := sql.Open("mysql", dsn)
-
-	if err != nil {
-		log.Fatalf("error opening connection to mysql %v", err)
-	}
-
+	// setup trie
+	// searchIndex := setUpTrie(store)
 	sessionStore := sessions.NewRedisStore(redisClient, time.Hour)
 	userStore := users.NewMySQLStore(db)
-
 	trieTree := indexes.NewTrie() //userStore.Trie() //setUpTrie(userStore)
 
-	defer db.Close()
+	// setup websocketstore
+	// socketStore := setUpWebsocket(groupAddr)
 
-	if err != nil {
-		log.Fatalf("error constructing user trie tree: %v", err)
-	}
+	// setup rabbit
 
-	hctx := handlers.HandlerContext{
+	// forever := make(chan []byte)
 
+	// // start two go routines:
+	// // 1. read from rabbit
+	// // 2. read and write to socket
+	// go func() {
+	// 	for d := range msgs {
+	// 		log.Printf("Received a message: %s", d.Body)
+	// 		forever <- d.Body
+	// 		log.Printf("Done")
+	// 		d.Ack(false)
+	// 	}
+	// }()
+
+	// go socketStore.ReadAndWrite(forever)
+
+	// Make ContextHandler
+
+	ctx := &handlers.HandlerContext{
 		SigningKey:   sessionKey,
 		SessionStore: sessionStore,
 		UsersStore:   userStore,
 		Trie:         trieTree,
-	} //*handlers.NewHandlerContext(sessionKey, sessionStore, userStore, trieTree)
+	}
 
-	messagingProxy := NewServiceProxy(messagingServiceAddr, hctx)
-
-	groupsAddr := reqEnv("GROUPADDR")
-	groupsProxy := NewServiceProxy(groupsAddr, hctx)
+	// message proxy to redirect requests to message microservice
+	groupProxy := &httputil.ReverseProxy{
+		Director: GroupsDirector(&url.URL{
+			Scheme: "http",
+			Host:   groupAddr,
+		}, ctx),
+	}
 
 	mux := http.NewServeMux()
 
-	// mux.HandleFunc("/", HomeHandler)
+	mux.HandleFunc("/v1/users", ctx.UsersHandler)
+	mux.HandleFunc("/v1/users/", ctx.SpecificUserHandler)
+	mux.HandleFunc("/v1/sessions", ctx.SessionsHandler)
+	mux.HandleFunc("/v1/sessions/", ctx.SpecificSessionHandler)
 
-	mux.Handle("/v1/channels", messagingProxy)
-	mux.Handle("/v1/channels/", messagingProxy)
+	mux.Handle("/v1/groups", groupProxy)
+	mux.Handle("/v1/groups/", groupProxy)
 
-	mux.Handle("/v1/groups", groupsProxy)
+	wrappedMux := handlers.NewCorsMiddleware(mux)
 
-	mux.Handle("/v1/messages/", messagingProxy)
+	if len(addr) == 0 {
+		addr = ":443"
+	}
 
-	mux.HandleFunc("/v1/users", hctx.UsersHandler)
-	mux.HandleFunc("/v1/users/", hctx.SpecificUserHandler)
-	mux.HandleFunc("/v1/sessions", hctx.SessionsHandler)
-	mux.HandleFunc("/v1/sessions/", hctx.SpecificSessionHandler)
+	client := pusher.Client{
+		AppId:   "665946",
+		Key:     "c451dcc9dc05cae5a9c0",
+		Secret:  "622ae2f1c890236d1dec",
+		Cluster: "mt1",
+		Secure:  true,
+	}
 
-	corsMux := handlers.NewCorsHandler(mux)
+	data := map[string]string{"message": "hello world"}
+	client.Trigger("my-channel", "my-event", data)
 
+	log.Fatal(http.ListenAndServeTLS(addr, tlsCertPath, tlsKeyPath, wrappedMux))
 	log.Printf("server is listening at %s...", addr)
-	log.Fatal(http.ListenAndServeTLS(addr, tlsCertPath, tlsKeyPath, corsMux))
+}
+
+func setUpMySQL(DSN string) *sql.DB {
+	db, err := sql.Open("mysql", DSN)
+
+	if err != nil {
+		fmt.Printf("error opening database: %v\n", err)
+		os.Exit(1)
+	}
+
+	err = db.Ping()
+	if err != nil {
+		log.Printf("could not open mysql database at dsn %s", DSN)
+		fmt.Println(err)
+	}
+
+	return db
+}
+
+func setUpRedis(redisAddr string) *sessions.RedisStore {
+	client := redis.NewClient(&redis.Options{
+		Addr: redisAddr,
+	})
+	redisStore := sessions.NewRedisStore(client, time.Hour)
+	return redisStore
+}
+
+func setUpTrie(userstore *users.MySQLStore) *indexes.Trie {
+	trie := indexes.NewTrie()
+	return trie
+}
+
+func failOnError(err error, msg string) {
+	if err != nil {
+		log.Fatalf("%s: %s", msg, err)
+	}
 }
