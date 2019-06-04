@@ -82,7 +82,7 @@ class GroupCard extends React.Component {
     );
 
     const ViewLink = props => <RouterLink to={ROUTES.group} {...props} />;
-    const { classes, isAdmin, title, groupImage } = this.props;
+    const { classes, isAdmin, title, groupImage, users } = this.props;
 
     return (
       <Card className={classes.card} elevation={0} square={true}>
@@ -123,10 +123,13 @@ class GroupCard extends React.Component {
             <div className={classes.participants}>
               <Typography className={classes.text}>+12 Participants</Typography>
             </div>
-            {[1, 2, 3].map((a, b) => {
+            {users.map((a, b) => {
               return (
                 <div key={b} className={classes.member}>
-                  <Avatar className="shadow" src={this.props.adminAvatar} />
+                  <Avatar
+                    className="shadow"
+                    src={`https://material-ui.com/static/images/avatar/${a}.jpg`}
+                  />
                 </div>
               );
             })}
