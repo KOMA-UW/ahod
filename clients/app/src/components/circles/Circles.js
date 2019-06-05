@@ -1,134 +1,136 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Circle from "./Circle";
-import aMember from "../../img/group_1.jpg";
-import { Container, Row, Col } from "react-grid-system";
-import classNames from "classnames";
-import { Avatar, Typography } from "@material-ui/core";
-import MemberDetails from "./MemberDetails";
-import GroupDetails from "./GroupDetails";
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Circle from './Circle';
+import aMember from '../../img/group_1.jpg';
+import { Container, Row, Col } from 'react-grid-system';
+import classNames from 'classnames';
+import { Avatar, Typography } from '@material-ui/core';
+import MemberDetails from './MemberDetails';
+import GroupDetails from './GroupDetails';
 
 let members = [
   {
-    name: "John",
-    photoUrl: "https://material-ui.com/static/images/avatar/1.jpg",
-    details: "Some details",
+    name: 'John',
+    photoUrl: 'https://material-ui.com/static/images/avatar/1.jpg',
+    details: 'Some details',
     won: true,
-    winningRound: "January",
-    winningAmount: "$1,000"
+    winningRound: 'January',
+    winningAmount: '$1,000'
   },
   {
-    name: "Sam",
-    photoUrl: "https://material-ui.com/static/images/avatar/2.jpg"
+    name: 'Sam',
+    photoUrl: 'https://material-ui.com/static/images/avatar/2.jpg'
   },
   {
-    name: "Tom",
-    photoUrl: "https://material-ui.com/static/images/avatar/3.jpg"
+    name: 'Tammy',
+    photoUrl: 'https://material-ui.com/static/images/avatar/3.jpg'
   },
   {
-    name: "Wendy",
-    photoUrl: "https://material-ui.com/static/images/avatar/4.jpg",
+    name: 'Wendy',
+    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg',
     won: true,
-    winningRound: "May",
-    winningAmount: "$1,000"
+    winningRound: 'May',
+    winningAmount: '$1,000'
   },
   {
-    name: "Melody",
-    photoUrl: "https://material-ui.com/static/images/avatar/5.jpg"
+    name: 'Ilyas',
+    photoUrl: 'https://material-ui.com/static/images/avatar/5.jpg'
   },
   {
-    name: "Stuart",
-    photoUrl: "https://material-ui.com/static/images/avatar/6.jpg"
+    name: 'Stuart',
+    photoUrl: 'https://material-ui.com/static/images/avatar/6.jpg'
   },
   {
-    name: "Anita",
-    photoUrl: "https://material-ui.com/static/images/avatar/7.jpg",
+    name: 'Angella',
+    photoUrl: 'https://material-ui.com/static/images/avatar/7.jpg',
     won: true,
-    winningRound: "March",
-    winningAmount: "$1,000"
+    winningRound: 'March',
+    winningAmount: '$1,000'
   },
   {
-    name: "Mary",
-    photoUrl: "https://material-ui.com/static/images/avatar/2.jpg"
+    name: 'Mohammad',
+    photoUrl: 'https://material-ui.com/static/images/avatar/2.jpg'
   },
   {
-    name: "Nina",
-    photoUrl: "https://material-ui.com/static/images/avatar/6.jpg"
+    name: 'Nina',
+    photoUrl: 'https://material-ui.com/static/images/avatar/3.jpg'
   },
   {
-    name: "Ada",
-    photoUrl: "https://material-ui.com/static/images/avatar/5.jpg"
+    name: 'Evan',
+    photoUrl: 'https://material-ui.com/static/images/avatar/6.jpg'
   },
   {
-    name: "John",
-    photoUrl: "https://material-ui.com/static/images/avatar/1.jpg",
-    details: "Some details",
+    name: 'John',
+    photoUrl: 'https://material-ui.com/static/images/avatar/1.jpg',
+    details: 'Some details',
     won: true,
-    winningRound: "April",
-    winningAmount: "$1,000"
+    winningRound: 'April',
+    winningAmount: '$1,000'
   },
   {
-    name: "Sam",
-    photoUrl: "https://material-ui.com/static/images/avatar/2.jpg"
+    name: 'Sam',
+    photoUrl: 'https://material-ui.com/static/images/avatar/2.jpg'
   },
   {
-    name: "Tom",
-    photoUrl: "https://material-ui.com/static/images/avatar/3.jpg"
+    name: 'Mary',
+    photoUrl: 'https://material-ui.com/static/images/avatar/3.jpg'
   },
   {
-    name: "Wendy",
-    photoUrl: "https://material-ui.com/static/images/avatar/4.jpg",
+    name: 'Wendy',
+    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg',
     won: true,
-    winningRound: "May",
-    winningAmount: "$1,000"
+    winningRound: 'May',
+    winningAmount: '$1,000'
   },
   {
-    name: "Melody",
-    photoUrl: "https://material-ui.com/static/images/avatar/5.jpg"
+    name: 'Ifran',
+    photoUrl: 'https://material-ui.com/static/images/avatar/5.jpg'
   },
   {
-    name: "Stuart",
-    photoUrl: "https://material-ui.com/static/images/avatar/6.jpg"
+    name: 'Stuart',
+    photoUrl: 'https://material-ui.com/static/images/avatar/6.jpg'
   },
   {
-    name: "Anita",
-    photoUrl: "https://material-ui.com/static/images/avatar/7.jpg",
+    name: 'Anita',
+    photoUrl: 'https://material-ui.com/static/images/avatar/7.jpg',
     won: true,
-    winningRound: "June",
-    winningAmount: "$1,000"
+    winningRound: 'June',
+    winningAmount: '$1,000'
   },
   {
-    name: "Mary",
-    photoUrl: "https://material-ui.com/static/images/avatar/2.jpg"
+    name: 'Mary',
+    photoUrl: 'https://material-ui.com/static/images/avatar/2.jpg'
   },
   {
-    name: "Nina",
-    photoUrl: "https://material-ui.com/static/images/avatar/6.jpg"
+    name: 'Winod',
+    photoUrl:
+      'https://images.pexels.com/photos/2232981/pexels-photo-2232981.jpeg'
   },
   {
-    name: "Ada",
-    photoUrl: aMember
+    name: 'Ada',
+    photoUrl:
+      'https://images.pexels.com/photos/2232981/pexels-photo-2232981.jpeg'
   },
   {
-    name: "John",
-    photoUrl: "https://material-ui.com/static/images/avatar/1.jpg",
-    details: "Some details"
+    name: 'John',
+    photoUrl: 'https://material-ui.com/static/images/avatar/1.jpg',
+    details: 'Some details'
   },
   {
-    name: "Sam",
-    photoUrl: "https://material-ui.com/static/images/avatar/2.jpg"
+    name: 'Sam',
+    photoUrl: 'https://material-ui.com/static/images/avatar/2.jpg'
   },
   {
-    name: "Tom",
-    photoUrl: "https://material-ui.com/static/images/avatar/3.jpg"
+    name: 'Samantha',
+    photoUrl: 'https://material-ui.com/static/images/avatar/3.jpg'
   },
   {
-    name: "Wendy",
-    photoUrl: "https://material-ui.com/static/images/avatar/4.jpg"
+    name: 'Wendy',
+    photoUrl: 'https://material-ui.com/static/images/avatar/4.jpg'
   },
   {
-    name: "Melody",
-    photoUrl: "https://material-ui.com/static/images/avatar/5.jpg"
+    name: 'Melody',
+    photoUrl: 'https://material-ui.com/static/images/avatar/5.jpg'
   }
 ];
 
@@ -137,9 +139,9 @@ members = members.splice(0, 15);
 const circleWidth = members.length * 15;
 
 const groupDetails = {
-  capital: "$10,000",
-  individualMonthly: "$1,000 / month",
-  winnerPotential: "$10,000 / month"
+  capital: '$10,000',
+  individualMonthly: '$1,000 / month',
+  winnerPotential: '$10,000 / month'
 };
 
 const styles = theme => ({
@@ -148,49 +150,49 @@ const styles = theme => ({
     padding: circleWidth - 150
   },
   bigCircle: {
-    position: "relative",
-    [theme.breakpoints.down("sm")]: {
+    position: 'relative',
+    [theme.breakpoints.down('sm')]: {
       width: circleWidth - 30,
       height: circleWidth - 30
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
       width: circleWidth - 15,
       height: circleWidth - 15
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up('lg')]: {
       width: circleWidth - 15,
       height: circleWidth - 15
     },
 
-    borderRadius: "50%",
+    borderRadius: '50%',
     margin: 5,
     //backgroundColor: '#cfc8c16b',//theme.palette.primary.light,
-    cursor: "pointer"
+    cursor: 'pointer'
   },
   text: {
     padding: 20
   },
   circleInner: {
-    backgroundColor: "#cfc8c16b",
-    borderRadius: "50%",
-    position: "absolute",
+    backgroundColor: '#cfc8c16b',
+    borderRadius: '50%',
+    position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
-    width: "100%",
-    height: "100%"
+    width: '100%',
+    height: '100%'
   },
   centerWrapper: {
-    display: "table",
-    width: "100%",
-    height: "100%"
+    display: 'table',
+    width: '100%',
+    height: '100%'
   },
   center: {
-    display: "table-cell",
+    display: 'table-cell',
 
-    textAlign: "center",
+    textAlign: 'center',
     // padding: '1em',
-    verticalAlign: "middle"
+    verticalAlign: 'middle'
   }
 });
 
@@ -204,9 +206,9 @@ class CircleView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "",
+      text: '',
       showUserDetails: false,
-      userImage: "https://material-ui.com/static/images/avatar/7.jpg"
+      userImage: 'https://material-ui.com/static/images/avatar/7.jpg'
     };
     this.handleHover = this.handleHover.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
@@ -222,19 +224,19 @@ class CircleView extends Component {
   handleMouseLeave(event) {
     this.setState({
       showUserDetails: false,
-      userImage: ""
+      userImage: ''
     });
   }
 
   render() {
-    console.log("members", members.length);
+    console.log('members', members.length);
     const { classes, rotate } = this.props;
 
     const cliqueMembers = members.map((member, i) => {
       const y = Math.sin(mainCircle * i * (Math.PI / 180)) * radius;
       const x = Math.cos(mainCircle * i * (Math.PI / 180)) * radius;
-      const top = (y + totalOffset).toString() + "px";
-      const left = (x + totalOffset).toString() + "px";
+      const top = (y + totalOffset).toString() + 'px';
+      const left = (x + totalOffset).toString() + 'px';
 
       const item = (
         <Circle
@@ -257,15 +259,15 @@ class CircleView extends Component {
             <div
               className={classNames(
                 classes.bigCircle,
-                rotate ? "outerCircle" : ""
+                rotate ? 'outerCircle' : ''
               )}
             >
               <div
                 className={classNames(
                   classes.circleInner,
-                  this.state.userDetails ? "" : "pulse",
-                  "hvr-bounce-in",
-                  this.props.winner ? "grow" : ""
+                  this.state.userDetails ? '' : 'pulse',
+                  'hvr-bounce-in',
+                  this.props.winner ? 'grow' : ''
                 )}
               >
                 <div className={classes.centerWrapper}>
@@ -282,7 +284,7 @@ class CircleView extends Component {
                     ) : !rotate ? (
                       <GroupDetails groupDetails={groupDetails} />
                     ) : (
-                      ""
+                      ''
                     )}
                   </div>
                 </div>
